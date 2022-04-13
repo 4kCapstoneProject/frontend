@@ -18,8 +18,8 @@ function Login({ userAdd }) {
     setPassword(event.currentTarget.value);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onClick = (event) => {
+    // event.preventDefault();
     if (id === "" || password === "") {
       window.alert("아이디와 비밀번호를 입력해주세요.");
       return;
@@ -85,9 +85,8 @@ function Login({ userAdd }) {
 
         <div>
           {/* 버튼? or input? */}
-          <button type="submit" onSubmit={onSubmit}>
-            로그인
-          </button>
+          {/* <button type="submit" onSubmit={onSubmit}> */}
+          <button onClick={onClick}>로그인</button>
         </div>
         <div id="not_register">
           아직 회원이 아니신가요?{" "}
