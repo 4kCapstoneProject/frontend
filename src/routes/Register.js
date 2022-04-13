@@ -26,8 +26,9 @@ function Register({ userAdd }) {
     setConfirmPassword(event.currentTarget.value);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onClick = (event) => {
+    // event.preventDefault();
+    console.log("hi");
     if (userPassword !== confirmPassword) {
       return alert("비밀번호와 비밀번호확인은 같아야 합니다.");
     }
@@ -97,9 +98,7 @@ function Register({ userAdd }) {
         </div>
         <div className="input-box">
           {/* 버튼? or input? */}
-          <button type="submit" onSubmit={onSubmit}>
-            계정 생성하기
-          </button>
+          <button onClick={onClick}>계정 생성하기</button>
         </div>
       </form>
     </div>
