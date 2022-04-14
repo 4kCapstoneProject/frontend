@@ -1,32 +1,54 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { userAdd } from "../redux/user";
+import { connect } from "react-redux"; // connect함수 쓰기위해 import
 import "./LoginRegister.css";
+import { Link } from "react-router-dom";
 
-function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Register({ userAdd }) {
+  const [userId, setUserId] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const onNameHandler = (event) => {
-    setName(event.currentTarget.value);
+    setUserId(event.currentTarget.value);
   };
   const onEmailHandler = (event) => {
-    setEmail(event.currentTarget.value);
+    setUserEmail(event.currentTarget.value);
   };
 
   const onPasswordHandler = (event) => {
-    setPassword(event.currentTarget.value);
+    setUserPassword(event.currentTarget.value);
   };
 
   const onConfirmPasswordHandler = (event) => {
     setConfirmPassword(event.currentTarget.value);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (password !== confirmPassword) {
+  const onClick = (event) => {
+    // event.preventDefault();
+    console.log("hi");
+    if (userPassword !== confirmPassword) {
       return alert("비밀번호와 비밀번호확인은 같아야 합니다.");
     }
+    axios({
+      method: "post",
+      //   url: "http://localhost:8080/api/auth/register",
+      url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      data: {
+        userId: userId,
+        userPw: userPassword,
+        auth: "ROLE_ADMIN",
+        email: userEmail,
+      },
+    })
+      .then((res) => {
+        window.alert(res.data.result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -35,30 +57,30 @@ function Register() {
         <h2>회원 가입</h2>
         <div className="input-box">
           <input
-            name="name"
+            userId="userId"
             type="text"
-            placeholder="이름"
-            value={name}
+            placeholder="아이디"
+            value={userId}
             onChange={onNameHandler}
           />
-          <label for="create_username">이름</label>
+          <label for="create_username">아이디</label>
         </div>
         <div className="input-box">
           <input
-            name="email"
-            type="email"
+            userId="userEmail"
+            type="userEmail"
             placeholder="이메일"
-            value={email}
+            value={userEmail}
             onChange={onEmailHandler}
           />
           <label for="create_useremail">이메일</label>
         </div>
         <div className="input-box">
           <input
-            name="password"
-            type="password"
+            userId="userPassword"
+            type="userPassword"
             placeholder="비밀번호"
-            value={password}
+            value={userPassword}
             onChange={onPasswordHandler}
           />
           <label for="create_userpassword">비밀번호</label>
@@ -66,8 +88,8 @@ function Register() {
 
         <div className="input-box">
           <input
-            name="confirmPassword"
-            type="password"
+            userId="confirmPassword"
+            type="userPassword"
             placeholder="비밀번호 확인"
             value={confirmPassword}
             onChange={onConfirmPasswordHandler}
@@ -76,12 +98,19 @@ function Register() {
         </div>
         <div className="input-box">
           {/* 버튼? or input? */}
-          <button type="submit" onSubmit={onSubmit}>
-            계정 생성하기
-          </button>
+          <button onClick={onClick}>계정 생성하기</button>
         </div>
       </form>
     </div>
   );
 }
-export default Register;
+
+// mapDispatchToProps는 action을 prop으로 컴포넌트에 담아줌 / 반드시 object를 return 해야함
+function mapDispatchToProps(dispatch) {
+  return {
+    userAdd: (id, password, auth, email) =>
+      dispatch(userAdd(id, password, auth, email)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Register);

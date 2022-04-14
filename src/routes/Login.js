@@ -1,20 +1,61 @@
 import React, { useState } from "react";
+import { connect } from "react-redux"; // connect함수 쓰기위해 import
+import { userAdd } from "../redux/user";
+import { emailCheck } from "../shared/common";
+import axios from "axios";
 import "./LoginRegister.css";
+import { Link } from "react-router-dom";
 
-function Login() {
-  const [email, setEmail] = useState("");
+function Login({ userAdd }) {
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
   const onEmailHandler = (event) => {
-    setEmail(event.currentTarget.value);
+    setId(event.currentTarget.value);
   };
 
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onClick = (event) => {
+    // event.preventDefault();
+    if (id === "" || password === "") {
+      window.alert("아이디와 비밀번호를 입력해주세요.");
+      return;
+    }
+    // if (!emailCheck(id)) {
+    //   window.alert("이메일 형식이 맞지 않습니다.");
+    // }
+
+    axios({
+      method: "post",
+      //   url: "http://localhost:8080/api/auth/login",
+      url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      data: {
+        userId: id,
+        userPw: password,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        userAdd(
+          res.data.userId,
+          res.data.userPw,
+          res.data.auth,
+          res.data.email
+        );
+        const accessToken = res.data.token;
+
+        window.alert("로그인 성공!!");
+        //쿠키에 토큰 저장
+        //   setCookie("is_login", ${accessToken});
+        //   document.location.href = "/";
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
   };
 
   return (
@@ -23,13 +64,13 @@ function Login() {
         <h2>로그인</h2>
         <div className="input-box">
           <input
-            name="email"
-            type="email"
+            name="id"
+            type="id"
             placeholder="이메일"
-            value={email}
+            value={id}
             onChange={onEmailHandler}
           />
-          <label for="username">아이디</label>
+          <label htmlFor="username">아이디</label>
         </div>
         <div className="input-box">
           <input
@@ -39,21 +80,32 @@ function Login() {
             value={password}
             onChange={onPasswordHandler}
           />
-          <label for="password">비밀번호</label>
+          <label htmlFor="password">비밀번호</label>
         </div>
 
         <div>
           {/* 버튼? or input? */}
-          <button type="submit" onSubmit={onSubmit}>
-            로그인
-          </button>
+          {/* <button type="submit" onSubmit={onSubmit}> */}
+          <button onClick={onClick}>로그인</button>
         </div>
         <div id="not_register">
-          아직 회원이 아니신가요? <button id="create_id">회원 가입</button>
+          아직 회원이 아니신가요?{" "}
+          <Link to="/register">
+            <button id="create_id">회원 가입</button>
+          </Link>
         </div>
       </form>
     </div>
   );
 }
 
-export default Login;
+// mapDispatchToProps는 action을 prop으로 컴포넌트에 담아줌 / 반드시 object를 return 해야함
+function mapDispatchToProps(dispatch) {
+  return {
+    userAdd: (id, password) => dispatch(userAdd(id, password)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);
+
+// export default Login;
