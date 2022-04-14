@@ -24,9 +24,9 @@ function Login({ userAdd }) {
       window.alert("아이디와 비밀번호를 입력해주세요.");
       return;
     }
-    if (!emailCheck(id)) {
-      window.alert("이메일 형식이 맞지 않습니다.");
-    }
+    // if (!emailCheck(id)) {
+    //   window.alert("이메일 형식이 맞지 않습니다.");
+    // }
 
     axios({
       method: "post",
