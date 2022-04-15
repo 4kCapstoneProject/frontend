@@ -56,7 +56,7 @@ function Login({ userAdd }) {
         //   document.location.href = "/";
         setCookie("loginCookie", res.data.accessToken, {
           path: "/",
-          expires: Math.floor(Date.now() / 1000) + 60 * 60,
+          //   expires: Math.floor(Date.now() / 1000) + 60 * 60,
         });
         console.log(getCookie("loginCookie"));
         setIsLogin(true);
