@@ -44,7 +44,7 @@ input:not(:placeholder-shown) {
 }
 
 /* 버튼 -> 인풋으로 바뀔시 수정 */
-button[type="submit"] {
+.create_login {
   background: #91a7ff;
   color: #fff;
 
@@ -55,6 +55,10 @@ button[type="submit"] {
   font-size: 14pt;
   margin-top: 30px;
 }
+.create_login:hover {
+  background: #5c7cfa;
+}
+
 #create_id {
   text-align: center;
 
@@ -68,6 +72,9 @@ button[type="submit"] {
   width: 20%;
   height: 35px;
   font-size: 12pt;
+}
+#create_id:hover {
+  background: #5c7cfa;
 }
 #not_register {
   font-size: 12pt;
