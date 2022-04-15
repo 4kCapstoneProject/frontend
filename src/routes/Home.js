@@ -24,7 +24,7 @@ function Home() {
     <>
       {isLogin ? (
         <div>
-          <button onClick={onClick}>로그 아웃2</button>
+          <button onClick={onClick}>로그 아웃</button>
           <button onClick={cookieTest}>쿠키 확인</button>
         </div>
       ) : (
