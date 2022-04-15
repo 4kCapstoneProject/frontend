@@ -11,12 +11,14 @@ function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const onClick = (event) => {
     event.preventDefault();
-    removeCookie("loginCookie");
+    removeCookie("loginAccessToken");
+    removeCookie("loginRefreshToken");
     setIsLogin(false);
   };
   const cookieTest = (event) => {
     event.preventDefault();
-    console.log(getCookie("loginCookie"));
+    console.log(getCookie("loginAccessToken"));
+    console.log(getCookie("loginRefreshToken"));
   };
   return (
     <>

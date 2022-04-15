@@ -54,11 +54,15 @@ function Login({ userAdd }) {
         //쿠키에 토큰 저장
         //   setCookie("is_login", ${accessToken});
         //   document.location.href = "/";
-        setCookie("loginCookie", res.data.accessToken, {
+        setCookie("loginAccessToken", res.data.accessToken, {
           path: "/",
           //   expires: Math.floor(Date.now() / 1000) + 60 * 60,
         });
-        console.log(getCookie("loginCookie"));
+        setCookie("loginRefreshToken", res.data.refreshToken, {
+          path: "/",
+        });
+        console.log(getCookie("loginAccessToken"));
+        console.log(getCookie("loginRefreshToken"));
         setIsLogin(true);
       })
       .catch((error) => {
