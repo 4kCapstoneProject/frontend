@@ -42,7 +42,7 @@ function Login({ userAdd }) {
       },
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.accessToken);
         userAdd(
           res.data.userId,
           res.data.userPw,
@@ -54,7 +54,7 @@ function Login({ userAdd }) {
         //쿠키에 토큰 저장
         //   setCookie("is_login", ${accessToken});
         //   document.location.href = "/";
-        setCookie("loginCookie", res.data.token, {
+        setCookie("loginCookie", res.data.accessToken, {
           path: "/",
           expires: Math.floor(Date.now() / 1000) + 60 * 60,
         });
