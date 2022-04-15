@@ -46,8 +46,8 @@ function Register({ userAdd }) {
     }
     axios({
       method: "post",
-      //   url: "http://localhost:8080/api/auth/register",
-      url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      url: "http://localhost:8080/api/auth/register",
+      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         userId: userId,
         userPw: userPassword,
