@@ -7,6 +7,9 @@ import { getCookie, removeCookie, setCookie } from "../shared/cookie";
 import Cookies from "universal-cookie";
 import Login from "./Login";
 import "./Home.css";
+// import * as React from "react";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
@@ -47,13 +50,25 @@ function Home() {
             </div>
           </div>
           <div id="banner-wrap">
-            <div className="banner-container">banner</div>
+            <div className="banner-container">
+              <form className="searchForm">
+                <fieldset className="searchFieldset">
+                  <input className="searchInput" type="search" />
+                  <button className="searchButton" type="submit">
+                    <i className="fa fa-search"></i>
+                    {/* <i class="fa-solid fa-magnifying-glass"></i> */}
+                  </button>
+                </fieldset>
+              </form>
+            </div>
           </div>
           <div id="content-wrap">
             <div className="content-container">content</div>
           </div>
           <div id="footer-wrap">
-            <div className="footer-container">footer</div>
+            <div className="footer-container">
+              <Pagination className="pagination" count={10} color="primary" />
+            </div>
           </div>
         </div>
       ) : (
