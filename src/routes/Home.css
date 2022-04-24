@@ -1,3 +1,6 @@
+.targetImgBtn {
+  margin-top: 100px;
+}
 .targetImg {
   margin: 10px;
 }
@@ -127,6 +130,9 @@ input[type="search"] {
   text-decoration: none;
   font-weight: 600;
   transition: 0.25s;
+}
+#upload {
+  width: 130px;
 }
 /* #logout {
   width: 200px;
