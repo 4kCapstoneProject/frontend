@@ -20,10 +20,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import target from "./img/target.png";
+import logo from "./img/logo.png";
+import logo_black from "./img/logo_black.png";
+import logo_green from "./img/logo_green.png";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import { Box } from "@mui/system";
+import { Box, width } from "@mui/system";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
@@ -33,6 +36,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { orange } from "@mui/material/colors";
+// import SearchIcon from "@mui/icons-material/Search";
+import InputBase from "@mui/material/InputBase";
+import { alpha } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaSearch } from "react-icons/fa";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
@@ -63,6 +75,46 @@ function Home() {
     boxShadow: 24,
     p: 4,
   };
+
+  const Search = styled("div")(({ theme }) => ({
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto",
+    },
+  }));
+
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }));
+
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: "inherit",
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "20ch",
+      },
+    },
+  }));
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -99,17 +151,11 @@ function Home() {
         <div id="wrap">
           <div id="header-wrap">
             <div className="header-container">
-              <span className="logo">4KIM</span>
-              <button
-                id="logout"
-                onClick={onClickLogout}
-                className="w-btn-outline w-btn-blue-outline"
-                type="button"
-              >
-                로그 아웃
-              </button>
+              {/* <span className="logo">4KIM</span> */}
+              <img src={logo} className="logoImg" />
             </div>
           </div>
+
           <div id="banner-wrap">
             <div className="banner-container">
               <button
@@ -121,6 +167,7 @@ function Home() {
               >
                 타겟 추가
               </button>
+
               {/* <Modal
                 // hideBackdrop
                 open={open}
@@ -137,10 +184,12 @@ function Home() {
                 </Box>
               </Modal> */}
               <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>타겟 정보 업로드</DialogTitle>
+                <DialogTitle className="uploadDialogTitle">
+                  타겟 정보 업로드
+                </DialogTitle>
                 <DialogContent dividers>
                   <DialogContentText>
-                    <p>
+                    <p className="uploadDialogContent">
                       찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
                     </p>
                     <Typography gutterBottom></Typography>
@@ -187,30 +236,92 @@ function Home() {
                   <Button onClick={handleClose}>취소</Button>
                 </DialogActions>
               </Dialog>
-              <FormControl
+
+              {/* <FormControl
                 className="combobox"
                 variant="standard"
-                sx={{ m: 1, minWidth: 120 }}
+                sx={{ ml: 5, mt: 1, minWidth: 120 }}
               >
-                <InputLabel id="demo-simple-select-standard-label">
+                <InputLabel
+                  id="demo-simple-select-standard-label"
+                  sx={{ color: "white" }}
+                >
                   category
                 </InputLabel>
                 <Select
+                  sx={{ color: "white" }}
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
                   value={age}
                   onChange={handleChange}
                   label="Age"
                 >
-                  <MenuItem value="">
+                  <MenuItem value="" sx={{ color: "rgb(26, 188, 156)" }}>
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>이름순</MenuItem>
-                  <MenuItem value={20}>나이순</MenuItem>
-                  {/* <MenuItem value={30}>Thirty</MenuItem> */}
+                  <MenuItem value={10} sx={{ color: "rgb(26, 188, 156)" }}>
+                    이름순
+                  </MenuItem>
+                  <MenuItem value={20} sx={{ color: "rgb(26, 188, 156)" }}>
+                    나이순
+                  </MenuItem>
                 </Select>
-              </FormControl>
-              <input type="search" placeholder="HI" />
+              </FormControl> */}
+              {/* <FormControl
+                fullWidth
+                className="select"
+                sx={{
+                  width: 150,
+                  m: 1,
+                  border: 2,
+                  bgcolor: "rgb(26, 188, 156)",
+                  height: 50,
+                }}
+              >
+                <InputLabel
+                  id="demo-simple-select-label"
+                  sx={{ color: "white" }}
+                >
+                  정렬
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  label="Age"
+                  onChange={handleChange}
+                  sx={{ color: "white" }}
+                >
+                  <MenuItem value={10} sx={{ color: "rgb(26, 188, 156)" }}>
+                    이름순
+                  </MenuItem>
+                  <MenuItem value={20} sx={{ color: "rgb(26, 188, 156)" }}>
+                    나이순
+                  </MenuItem>
+                  <MenuItem value={30} sx={{ color: "rgb(26, 188, 156)" }}>
+                    Thirty
+                  </MenuItem>
+                </Select>
+              </FormControl> */}
+              <select className="selectInput">
+                <option selected disabled>
+                  Category
+                </option>
+                <option>나이순</option>
+                <option>이름순</option>
+              </select>
+              <div class="select-button">
+                <div class="small-arrow-down"></div>
+              </div>
+
+              <input
+                placeholder="Search..."
+                className="targetSearch"
+                type="search"
+              />
+              <a className="searchIcon">
+                <FaSearch className="fa" color="white" />
+              </a>
 
               {/* <form className="searchForm">
                 <fieldset className="searchFieldset">
@@ -221,18 +332,35 @@ function Home() {
                   </button>
                 </fieldset>
               </form> */}
+              <button
+                id="logout"
+                onClick={onClickLogout}
+                className="w-btn-outline w-btn-blue-outline"
+                type="button"
+              >
+                로그 아웃
+              </button>
             </div>
+            {/* <hr className="bannerBorder"></hr> */}
           </div>
+
           <div id="content-wrap">
             <div className="content-container">
               <div>
-                <Box sx={{ width: "100%" }}>
+                <Box sx={{ width: "100%", mb: 5 }}>
                   <Stack
                     direction="row"
                     divider={<Divider orientation="vertical" flexItem />}
                     spacing={2}
                   >
-                    <Item sx={{ width: 330 }}>
+                    <Item
+                      sx={{
+                        width: 330,
+                        bgcolor: "#86a8e7",
+                        // bgcolor: "rgb(236, 240, 241)",
+                        boxShadow: 10,
+                      }}
+                    >
                       <Card sx={{ maxWidth: 345 }} className="targetImg">
                         <CardActionArea>
                           <CardMedia
@@ -261,7 +389,13 @@ function Home() {
                         </CardActions>
                       </Card>
                     </Item>
-                    <Item sx={{ width: 330 }}>
+                    <Item
+                      sx={{
+                        width: 330,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
                       <Card sx={{ maxWidth: 345 }} className="targetImg">
                         <CardActionArea>
                           <CardMedia
@@ -290,7 +424,13 @@ function Home() {
                         </CardActions>
                       </Card>
                     </Item>
-                    <Item sx={{ width: 330 }}>
+                    <Item
+                      sx={{
+                        width: 330,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
                       <Card sx={{ maxWidth: 345 }} className="targetImg">
                         <CardActionArea>
                           <CardMedia
@@ -327,7 +467,13 @@ function Home() {
                     divider={<Divider orientation="vertical" flexItem />}
                     spacing={2}
                   >
-                    <Item sx={{ width: 330 }}>
+                    <Item
+                      sx={{
+                        width: 330,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
                       <Card sx={{ maxWidth: 345 }} className="targetImg">
                         <CardActionArea>
                           <CardMedia
@@ -356,7 +502,13 @@ function Home() {
                         </CardActions>
                       </Card>
                     </Item>
-                    <Item sx={{ width: 330 }}>
+                    <Item
+                      sx={{
+                        width: 330,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
                       <Card sx={{ maxWidth: 345 }} className="targetImg">
                         <CardActionArea>
                           <CardMedia
@@ -385,7 +537,13 @@ function Home() {
                         </CardActions>
                       </Card>
                     </Item>
-                    <Item sx={{ width: 330 }}>
+                    <Item
+                      sx={{
+                        width: 330,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
                       <Card sx={{ maxWidth: 345 }} className="targetImg">
                         <CardActionArea>
                           <CardMedia
