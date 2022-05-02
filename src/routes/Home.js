@@ -262,11 +262,11 @@ function Home() {
                 </DialogTitle>
                 <DialogContent dividers>
                   <DialogContentText>
-                    <p className="uploadDialogContent">
+                    <Typography className="uploadDialogContent">
                       찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
-                    </p>
+                    </Typography>
                     <Typography gutterBottom></Typography>
-                    <p>특징 예시) 갸름한 얼굴 , 쳐진 눈매</p>
+                    <Typography>특징 예시) 갸름한 얼굴 , 쳐진 눈매</Typography>
                   </DialogContentText>
                   <Typography gutterBottom></Typography>
                   <TextField
