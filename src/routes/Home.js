@@ -156,12 +156,17 @@ function Home() {
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
-    formdata.append("imageFileList", values.imgFile);
-    formdata.append("personName", values.name);
-    formdata.append("personAge", values.age);
-    formdata.append("characteristic", values.feature);
-    // formdata.append("targetInfoDto", targetInfoDto);
-    // formdata.append("imageThumbNum", 1);
+    targetInfoDto.personName = values.name;
+    targetInfoDto.personAge = values.age;
+    targetInfoDto.userId = "oldaim";
+    targetInfoDto.characteristic = values.feature;
+
+    // formdata.append("imageFileList", values.imgFile);
+    // formdata.append("personName", values.name);
+    // formdata.append("personAge", values.age);
+    // formdata.append("characteristic", values.feature);
+    formdata.append("targetInfoDto", targetInfoDto);
+    formdata.append("imageThumbNum", 1);
 
     console.log(formdata);
     for (let key of formdata.keys()) {
