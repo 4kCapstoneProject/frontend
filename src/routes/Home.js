@@ -147,55 +147,67 @@ function Home() {
 
   const [values, setValues] = useState(INITIAL_VALUES);
 
+  // let targetInfoDtoList = {
+  //   personName: values.name,
+  //   personAge: values.age,
+  //   userId: "oldaim",
+  //   characteristic: values.feature,
+  // };
+
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
-    const formdata = new FormData();
-
-    formdata.append("imageFileList", values.imgFile);
-    let targetInfoDtoList = {
-      personName: values.name,
-      personAge: values.age,
-      userId: "oldaim",
-      characteristic: values.feature,
-    };
-    // targetInfoDto.personName = values.name;
-    // targetInfoDto.personAge = values.age;
-    // targetInfoDto.userId = "oldaim";
-    // targetInfoDto.characteristic = values.feature;
-    let targetInfoDto = new Blob([JSON.stringify(targetInfoDtoList)], {
-      type: "multipart/form-data",
-    });
-    formdata.append("targetInfoDto", targetInfoDto);
+    const targetInfoDto = new FormData();
 
     // formdata.append("imageFileList", values.imgFile);
-    // formdata.append("personName", values.name);
-    // formdata.append("personAge", values.age);
-    // formdata.append("characteristic", values.feature);
+    targetInfoDto.append("personName", values.name);
+    targetInfoDto.append("personAge", values.age);
+    targetInfoDto.append("characteristic", values.feature);
 
-    formdata.append("imageThumbNum", 1);
+    // formdata.append("imageThumbNum", 1);
 
-    console.log(formdata);
-    for (let key of formdata.keys()) {
+    console.log(targetInfoDto);
+    for (let key of targetInfoDto.keys()) {
       console.log(key);
     }
-    for (let value of formdata.values()) {
+    for (let value of targetInfoDto.values()) {
       console.log(value);
     }
 
     await axios({
       method: "post",
-      url: "http://localhost:8080/api/target/upload",
+      url: "http://localhost:8080/api/target/uploadTargetInfo",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-      data: formdata,
+      data: targetInfoDto,
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
       .then((res) => {
-        console.log(res.data.accessToken);
+        console.log(res.data.targetId);
+
         window.alert("업로드 성공");
-        targetListGet();
+        axios({
+          method: "post",
+          url: "http://localhost:8080/api/target/uploadImage",
+          //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+          data: {
+            imageFileList: values.imgFile,
+            targetId: res.data.targetId,
+            thumbNum: 1,
+          },
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+          },
+        })
+          .then((response) => {
+            targetListGet();
+          })
+          .catch((error) => {
+            window.alert(error);
+            console.log(error);
+          });
       })
       .catch((error) => {
         window.alert(error);
