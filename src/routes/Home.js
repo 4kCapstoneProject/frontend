@@ -140,19 +140,27 @@ function Home() {
 
   const [values, setValues] = useState(INITIAL_VALUES);
 
+  let targetInfoDto = {
+    personName: "kim",
+    personAge: 11,
+    userId: "oldaim",
+    characteristic: "hello",
+  };
+
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
-    formdata.append("imgfile", values.imgFile);
+    formdata.append("imgFileList", values.imgFile);
     formdata.append("name", values.name);
     formdata.append("age", values.age);
     formdata.append("feature", values.feature);
+    formdata.append("targetInfoDto", targetInfoDto);
 
     await axios({
       method: "post",
       url: "http://localhost:8080/api/target/upload",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-      data: JSON.stringify(formdata),
+      data: formdata,
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
         "Content-Type": "multipart/form-data",
