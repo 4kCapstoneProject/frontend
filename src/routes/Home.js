@@ -147,31 +147,29 @@ function Home() {
 
   const [values, setValues] = useState(INITIAL_VALUES);
 
-  // let targetInfoDtoList = {
-  //   personName: values.name,
-  //   personAge: values.age,
-  //   userId: "oldaim",
-  //   characteristic: values.feature,
-  // };
-
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
-    const targetInfoDto = new FormData();
+    // const targetInfoDto = new FormData();
 
     // formdata.append("imageFileList", values.imgFile);
-    targetInfoDto.append("personName", values.name);
-    targetInfoDto.append("personAge", values.age);
-    targetInfoDto.append("characteristic", values.feature);
-
     // formdata.append("imageThumbNum", 1);
 
-    console.log(targetInfoDto);
+    let targetInfoDtoList = {
+      personName: values.name,
+      personAge: values.age,
+      userId: "oldaim",
+      characteristic: values.feature,
+    };
+
+    console.log(targetInfoDtoList);
     for (let key of targetInfoDto.keys()) {
       console.log(key);
     }
-    for (let value of targetInfoDto.values()) {
+    for (let value of targetInfoDtoList.values()) {
       console.log(value);
     }
+
+    const targetInfoDto = JSON.stringify(targetInfoDtoList);
 
     await axios({
       method: "post",
