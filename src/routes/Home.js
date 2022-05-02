@@ -164,7 +164,7 @@ function Home() {
       data: formdata,
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        // "Content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
@@ -220,7 +220,7 @@ function Home() {
       },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        // "Content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
