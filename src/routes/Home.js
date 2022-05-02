@@ -151,11 +151,13 @@ function Home() {
     e.preventDefault();
     const formdata = new FormData();
     formdata.append("imageFileList", values.imgFile);
-    // formdata.append("personName", values.name);
-    // formdata.append("personAge", values.age);
-    // formdata.append("characteristic", values.feature);
-    formdata.append("targetInfoDto", targetInfoDto);
-    formdata.append("imageThumbNum", 1);
+    formdata.append("personName", "안녕하세요");
+    formdata.append("personAge", values.age);
+    formdata.append("characteristic", "안녕");
+    // formdata.append("targetInfoDto", targetInfoDto);
+    // formdata.append("imageThumbNum", 1);
+
+    console.log(formdata);
 
     await axios({
       method: "post",
