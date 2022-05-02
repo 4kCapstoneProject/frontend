@@ -152,7 +152,7 @@ function Home() {
       method: "post",
       url: "http://localhost:8080/api/target/upload",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-      data: formdata,
+      data: JSON.stringify(formdata),
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
         "Content-Type": "multipart/form-data",
