@@ -127,8 +127,14 @@ function Home() {
 
   // 업로드 Dialog ~ *****************************************************************
   const onLoadImgFile = (e) => {
-    const Imgfiles = e.target.files;
-    setImgFiles(Imgfiles);
+    const { name, value, type } = e.target;
+    const targetImgFiles = e.target.files[0];
+    handleTargetChange(name, sanitize(type, value));
+
+    setValues((prevValues) => ({
+      ...prevValues,
+      imgFile: value,
+    }));
   };
 
   const INITIAL_VALUES = {
@@ -151,13 +157,19 @@ function Home() {
     e.preventDefault();
     const formdata = new FormData();
     formdata.append("imageFileList", values.imgFile);
-    formdata.append("personName", "안녕하세요");
+    formdata.append("personName", values.name);
     formdata.append("personAge", values.age);
-    formdata.append("characteristic", "안녕");
+    formdata.append("characteristic", values.feature);
     // formdata.append("targetInfoDto", targetInfoDto);
     // formdata.append("imageThumbNum", 1);
 
     console.log(formdata);
+    for (let key of formdata.keys()) {
+      console.log(key);
+    }
+    for (let value of formdata.values()) {
+      console.log(value);
+    }
 
     await axios({
       method: "post",
@@ -330,8 +342,9 @@ function Home() {
                       accept="img/*"
                       // onChange={onLoadImgFile}
                       name="imgFile"
-                      value={values.imgFile || ""}
-                      onChange={handleTargetChange}
+                      value={values.imgFile}
+                      // onChange={handleTargetChange}
+                      onChange={onLoadImgFile}
                     />
                     <label htmlFor="imgFile"></label>
                   </DialogContent>
