@@ -150,11 +150,12 @@ function Home() {
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
-    formdata.append("imgFileList", values.imgFile);
-    // formdata.append("name", values.name);
-    // formdata.append("age", values.age);
-    // formdata.append("feature", values.feature);
+    formdata.append("imageFileList", values.imgFile);
+    // formdata.append("personName", values.name);
+    // formdata.append("personAge", values.age);
+    // formdata.append("characteristic", values.feature);
     formdata.append("targetInfoDto", targetInfoDto);
+    formdata.append("imageThumbNum", 1);
 
     await axios({
       method: "post",
@@ -163,7 +164,7 @@ function Home() {
       data: formdata,
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
@@ -219,7 +220,7 @@ function Home() {
       },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
@@ -265,80 +266,84 @@ function Home() {
                 onClose={handleClose}
                 onSubmit={handleTargetSubmit}
               >
-                <DialogTitle className="uploadDialogTitle">
-                  타겟 정보 업로드
-                </DialogTitle>
-                <DialogContent dividers>
-                  <DialogContentText>
-                    <Typography className="uploadDialogContent">
-                      찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
-                    </Typography>
+                <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
+                  <DialogTitle className="uploadDialogTitle">
+                    타겟 정보 업로드
+                  </DialogTitle>
+                  <DialogContent dividers>
+                    <DialogContentText>
+                      <Typography className="uploadDialogContent">
+                        찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
+                      </Typography>
+                      <Typography gutterBottom></Typography>
+                      <Typography>
+                        특징 예시) 갸름한 얼굴 , 쳐진 눈매
+                      </Typography>
+                    </DialogContentText>
                     <Typography gutterBottom></Typography>
-                    <Typography>특징 예시) 갸름한 얼굴 , 쳐진 눈매</Typography>
-                  </DialogContentText>
-                  <Typography gutterBottom></Typography>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="이름"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    name="name"
-                    value={values.name || ""}
-                    onChange={handleTargetInputChange}
-                  />
-                  <TextField
-                    margin="dense"
-                    id="name"
-                    label="나이"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    name="age"
-                    value={values.age || ""}
-                    onChange={handleTargetInputChange}
-                  />
-                  <TextField
-                    margin="dense"
-                    id="name"
-                    label="특징"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    name="feature"
-                    value={values.feature || ""}
-                    onChange={handleTargetInputChange}
-                  />
-                  {/* <Button
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="name"
+                      label="이름"
+                      type="email"
+                      fullWidth
+                      variant="standard"
+                      name="name"
+                      value={values.name || ""}
+                      onChange={handleTargetInputChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="name"
+                      label="나이"
+                      type="email"
+                      fullWidth
+                      variant="standard"
+                      name="age"
+                      value={values.age || ""}
+                      onChange={handleTargetInputChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="name"
+                      label="특징"
+                      type="email"
+                      fullWidth
+                      variant="standard"
+                      name="feature"
+                      value={values.feature || ""}
+                      onChange={handleTargetInputChange}
+                    />
+                    {/* <Button
                     type="file"
                     sx={{ mt: 5, mb: 2, minWidth: 120 }}
                     variant="contained"
                   >
                     사진 업로드
                   </Button> */}
-                  <input
-                    type="file"
-                    id="imgFile"
-                    accept="img/*"
-                    // onChange={onLoadImgFile}
-                    name="imgFile"
-                    value={values.imgFile || ""}
-                    onChange={handleTargetChange}
-                  />
-                  <label htmlFor="imgFile"></label>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    type="submit"
-                    // onClick={handleClose}
-                    onClick={handleTargetSubmit}
-                  >
-                    저장
-                  </Button>
-                  <Button onClick={handleClose}>취소</Button>
-                </DialogActions>
+                    <input
+                      type="file"
+                      id="imgFile"
+                      accept="img/*"
+                      // onChange={onLoadImgFile}
+                      name="imgFile"
+                      value={values.imgFile || ""}
+                      onChange={handleTargetChange}
+                    />
+                    <label htmlFor="imgFile"></label>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      type="submit"
+                      // onClick={handleClose}
+                      onClick={handleTargetSubmit}
+                    >
+                      저장
+                    </Button>
+                    <Button onClick={handleClose}>취소</Button>
+                  </DialogActions>
+                </form>
               </Dialog>
 
               <select className="selectInput">
