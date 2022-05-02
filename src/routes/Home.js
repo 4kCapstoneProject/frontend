@@ -195,7 +195,7 @@ function Home() {
             thumbNum: 1,
           },
           headers: {
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${getCookie("loginAccessToken")}`,
           },
         })
