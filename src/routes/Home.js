@@ -225,9 +225,10 @@ function Home() {
       });
   };
 
-  useEffect(() => {
-    targetListGet();
-  }, []);
+  // useEffect(() => {
+  //   targetListGet();
+  // }, []);
+
   // ~ Target 배열 바뀔때마다 렌더링 *****************************************************
 
   return (
