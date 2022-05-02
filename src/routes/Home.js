@@ -182,8 +182,6 @@ function Home() {
       },
     })
       .then((res) => {
-        console.log(res.data.targetId);
-        console.log(res);
         console.log(res.data);
         window.alert("업로드 성공");
         axios({
@@ -192,7 +190,7 @@ function Home() {
           //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
           data: {
             imageFileList: values.imgFile,
-            targetId: res.data.targetId,
+            targetId: res.data,
             thumbNum: 1,
           },
           headers: {
