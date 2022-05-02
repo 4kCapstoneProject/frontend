@@ -50,6 +50,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaSearch } from "react-icons/fa";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import { type } from "@testing-library/user-event/dist/type";
 
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
@@ -146,27 +147,31 @@ function Home() {
 
   const [values, setValues] = useState(INITIAL_VALUES);
 
-  let targetInfoDto = {
-    personName: "kim",
-    personAge: 11,
-    userId: "oldaim",
-    characteristic: "hello",
-  };
-
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
-    targetInfoDto.personName = values.name;
-    targetInfoDto.personAge = values.age;
-    targetInfoDto.userId = "oldaim";
-    targetInfoDto.characteristic = values.feature;
+
+    formdata.append("imageFileList", values.imgFile);
+    let targetInfoDtoList = {
+      personName: values.name,
+      personAge: values.age,
+      userId: "oldaim",
+      characteristic: values.feature,
+    };
+    // targetInfoDto.personName = values.name;
+    // targetInfoDto.personAge = values.age;
+    // targetInfoDto.userId = "oldaim";
+    // targetInfoDto.characteristic = values.feature;
+    let targetInfoDto = new Blob([JSON.stringify(targetInfoDtoList)], {
+      type: "multipart/form-data",
+    });
+    formdata.append("targetInfoDto", targetInfoDto);
 
     // formdata.append("imageFileList", values.imgFile);
     // formdata.append("personName", values.name);
     // formdata.append("personAge", values.age);
     // formdata.append("characteristic", values.feature);
-    const JsonTarget = JSON.stringify(targetInfoDto);
-    formdata.append("targetInfoDto", JsonTarget);
+
     formdata.append("imageThumbNum", 1);
 
     console.log(formdata);
@@ -183,8 +188,8 @@ function Home() {
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: formdata,
       headers: {
-        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
       .then((res) => {
