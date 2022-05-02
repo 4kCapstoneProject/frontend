@@ -278,7 +278,7 @@ function Home() {
                     fullWidth
                     variant="standard"
                     name="name"
-                    value={values.name}
+                    value={values.name || ""}
                     onChange={handleTargetInputChange}
                   />
                   <TextField
@@ -289,7 +289,7 @@ function Home() {
                     fullWidth
                     variant="standard"
                     name="age"
-                    value={values.age}
+                    value={values.age || ""}
                     onChange={handleTargetInputChange}
                   />
                   <TextField
@@ -300,7 +300,7 @@ function Home() {
                     fullWidth
                     variant="standard"
                     name="feature"
-                    value={values.feature}
+                    value={values.feature || ""}
                     onChange={handleTargetInputChange}
                   />
                   {/* <Button
@@ -316,7 +316,7 @@ function Home() {
                     accept="img/*"
                     // onChange={onLoadImgFile}
                     name="imgFile"
-                    value={values.imgFile}
+                    value={values.imgFile || ""}
                     onChange={handleTargetChange}
                   />
                   <label htmlFor="imgFile"></label>
