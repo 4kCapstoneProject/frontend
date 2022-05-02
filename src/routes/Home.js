@@ -167,7 +167,7 @@ function Home() {
         window.alert(error);
         console.log(error);
       });
-
+    setOpen(false);
     setValues(INITIAL_VALUES);
   };
 
@@ -322,7 +322,11 @@ function Home() {
                   <label htmlFor="imgFile"></label>
                 </DialogContent>
                 <DialogActions>
-                  <Button type="submit" onClick={handleClose}>
+                  <Button
+                    type="submit"
+                    // onClick={handleClose}
+                    onClick={handleTargetSubmit}
+                  >
                     저장
                   </Button>
                   <Button onClick={handleClose}>취소</Button>
