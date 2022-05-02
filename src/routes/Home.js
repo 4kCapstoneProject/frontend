@@ -183,7 +183,8 @@ function Home() {
     })
       .then((res) => {
         console.log(res.data.targetId);
-
+        console.log(res);
+        console.log(res.data);
         window.alert("업로드 성공");
         axios({
           method: "post",
