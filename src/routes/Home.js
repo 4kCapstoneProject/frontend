@@ -154,7 +154,7 @@ function Home() {
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: formdata,
       headers: {
-        Authorization: `Bearer ${loginAccessToken}`,
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
         "Content-Type": "multipart/form-data",
       },
     })
@@ -210,7 +210,7 @@ function Home() {
         page: 1,
       },
       headers: {
-        Authorization: `Bearer ${loginAccessToken}`,
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
         "Content-Type": "multipart/form-data",
       },
     })
