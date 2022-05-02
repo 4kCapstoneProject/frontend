@@ -165,7 +165,8 @@ function Home() {
     // formdata.append("personName", values.name);
     // formdata.append("personAge", values.age);
     // formdata.append("characteristic", values.feature);
-    formdata.append("targetInfoDto", targetInfoDto);
+    const JsonTarget = JSON.stringify(targetInfoDto);
+    formdata.append("targetInfoDto", JsonTarget);
     formdata.append("imageThumbNum", 1);
 
     console.log(formdata);
