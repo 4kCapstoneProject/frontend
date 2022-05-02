@@ -162,7 +162,7 @@ function Home() {
     };
 
     console.log(targetInfoDtoList);
-    for (let key of targetInfoDto.keys()) {
+    for (let key of targetInfoDtoList.keys()) {
       console.log(key);
     }
     for (let value of targetInfoDtoList.values()) {
