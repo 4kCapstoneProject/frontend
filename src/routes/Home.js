@@ -151,9 +151,9 @@ function Home() {
     e.preventDefault();
     const formdata = new FormData();
     formdata.append("imgFileList", values.imgFile);
-    formdata.append("name", values.name);
-    formdata.append("age", values.age);
-    formdata.append("feature", values.feature);
+    // formdata.append("name", values.name);
+    // formdata.append("age", values.age);
+    // formdata.append("feature", values.feature);
     formdata.append("targetInfoDto", targetInfoDto);
 
     await axios({
