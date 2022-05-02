@@ -161,13 +161,13 @@ function Home() {
       characteristic: values.feature,
     };
 
-    console.log(targetInfoDtoList);
-    for (let key of targetInfoDtoList.keys()) {
-      console.log(key);
-    }
-    for (let value of targetInfoDtoList.values()) {
-      console.log(value);
-    }
+    // console.log(targetInfoDtoList);
+    // for (let key of targetInfoDtoList.keys()) {
+    //   console.log(key);
+    // }
+    // for (let value of targetInfoDtoList.values()) {
+    //   console.log(value);
+    // }
 
     const targetInfoDto = JSON.stringify(targetInfoDtoList);
 
