@@ -157,6 +157,7 @@ function Home() {
       personAge: values.age,
       userId: "oldaim",
       characteristic: values.feature,
+      targetPk: 1,
     };
 
     const formData = new FormData();
