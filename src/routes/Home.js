@@ -161,7 +161,7 @@ function Home() {
 
     const formData = new FormData();
     formData.append("imageFileList", imageFileList[0].uploadedFile);
-    formData.append("targetInfoDto", targetInfoDto);
+    formData.append("targetInfoDto", JSON.parse(targetInfoDto));
 
     for (let key of formData.keys()) {
       console.log(key);
