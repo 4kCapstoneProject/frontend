@@ -55,7 +55,7 @@ import { type } from "@testing-library/user-event/dist/type";
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
-  const [imgFiles, setImgFiles] = useState("");
+  const [imageFileList, setImageFileList] = useState([]);
   const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
 
@@ -128,13 +128,15 @@ function Home() {
 
   // 업로드 Dialog ~ *****************************************************************
   const onLoadImgFile = (e) => {
+    e.preventDefault();
     const { name, value, type } = e.target;
-    const targetImgFiles = e.target.files[0];
-    handleTargetChange(name, sanitize(type, value));
+    const imageFile = e.target.files[0];
+    setImageFileList([...imageFileList, { uploadedFile: imageFile }]);
+    // handleTargetChange(name, sanitize(type, value));
 
     setValues((prevValues) => ({
       ...prevValues,
-      imgFile: value,
+      imgFile: imageFileList,
     }));
   };
 
@@ -149,62 +151,39 @@ function Home() {
 
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
-    // const targetInfoDto = new FormData();
 
-    // formdata.append("imageFileList", values.imgFile);
-    // formdata.append("imageThumbNum", 1);
-
-    let targetInfoDtoList = {
+    let targetInfoDto = {
       personName: values.name,
       personAge: values.age,
       userId: "oldaim",
       characteristic: values.feature,
     };
 
-    // console.log(targetInfoDtoList);
-    // for (let key of targetInfoDtoList.keys()) {
-    //   console.log(key);
-    // }
-    // for (let value of targetInfoDtoList.values()) {
-    //   console.log(value);
-    // }
+    const formData = new FormData();
+    formData.append("imageFileList", imageFileList[0].uploadedFile);
+    formData.append("targetInfoDto", JSON.stringify(targetInfoDto));
 
-    const targetInfoDto = JSON.stringify(targetInfoDtoList);
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
+    for (let value of formData.values()) {
+      console.log(value);
+    }
 
     await axios({
       method: "post",
-      url: "http://localhost:8080/api/target/uploadTargetInfo",
+      url: "http://localhost:8080/api/target/upload",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-      data: targetInfoDto,
+      data: formData,
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
       .then((res) => {
         console.log(res.data);
         window.alert("업로드 성공");
-        axios({
-          method: "post",
-          url: "http://localhost:8080/api/target/uploadImage",
-          //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-          data: {
-            imageFileList: values.imgFile,
-            targetId: res.data,
-            thumbNum: 1,
-          },
-          headers: {
-            // "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-          },
-        })
-          .then((response) => {
-            targetListGet();
-          })
-          .catch((error) => {
-            window.alert(error);
-            console.log(error);
-          });
+        targetListGet();
       })
       .catch((error) => {
         window.alert(error);
@@ -360,9 +339,8 @@ function Home() {
                       type="file"
                       id="imgFile"
                       accept="img/*"
-                      // onChange={onLoadImgFile}
                       name="imgFile"
-                      value={values.imgFile}
+                      // value={values.imgFile}
                       // onChange={handleTargetChange}
                       onChange={onLoadImgFile}
                     />
