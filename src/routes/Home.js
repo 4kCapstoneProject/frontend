@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux"; // connect함수 쓰기위해 import
 import { userAdd } from "../redux/user";
 import axios from "axios";
@@ -18,7 +18,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import {
+  Button,
+  CardActionArea,
+  CardActions,
+  SliderValueLabel,
+} from "@mui/material";
 import target from "./img/target.png";
 import logo from "./img/logo.png";
 import logo_black from "./img/logo_black.png";
@@ -45,37 +50,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaSearch } from "react-icons/fa";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import { type } from "@testing-library/user-event/dist/type";
 
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
-  //   const [open, setOpen] = React.useState(false);
-
-  //   const handleOpen = () => setOpen(true);
-  //   const handleClose = () => setOpen(false);
+  const [imageFileList, setImageFileList] = useState([]);
+  const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+  // MUI Component Style ~ *******************************************************
   const style = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 400,
-    // bgcolor: "background.paper",
     backgroundColor: "white",
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
-
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -91,7 +86,6 @@ function Home() {
       width: "auto",
     },
   }));
-
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
@@ -101,7 +95,6 @@ function Home() {
     alignItems: "center",
     justifyContent: "center",
   }));
-
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
@@ -115,7 +108,6 @@ function Home() {
       },
     },
   }));
-
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -123,36 +115,152 @@ function Home() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // ~ MUI Component Style  *******************************************************
+
+  // ~ 로그아웃 ***********************************************************************
   const onClickLogout = (event) => {
     event.preventDefault();
     removeCookie("loginAccessToken");
     removeCookie("loginRefreshToken");
     setIsLogin(false);
   };
-  //   const cookieTest = (event) => {
-  //     event.preventDefault();
-  //     console.log(getCookie("loginAccessToken"));
-  //     console.log(getCookie("loginRefreshToken"));
-  //   };
+  // 로그아웃 ~ ***********************************************************************
+
+  // 업로드 Dialog ~ *****************************************************************
+  const onLoadImgFile = (e) => {
+    e.preventDefault();
+    const { name, value, type } = e.target;
+    const imageFile = e.target.files[0];
+    setImageFileList([...imageFileList, { uploadedFile: imageFile }]);
+    // handleTargetChange(name, sanitize(type, value));
+
+    setValues((prevValues) => ({
+      ...prevValues,
+      imgFile: imageFileList,
+    }));
+  };
+
+  const INITIAL_VALUES = {
+    imgFile: null,
+    name: "",
+    age: "",
+    feature: "",
+  };
+
+  const [values, setValues] = useState(INITIAL_VALUES);
+
+  const handleTargetSubmit = async (e) => {
+    e.preventDefault();
+
+    let targetInfoDto = {
+      personName: values.name,
+      personAge: values.age,
+      userId: "oldaim",
+      characteristic: values.feature,
+      targetPk: 1,
+    };
+
+    const formData = new FormData();
+    formData.append("imageFileList", imageFileList[0].uploadedFile);
+    formData.append("targetInfoDto", JSON.stringify(targetInfoDto));
+
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
+    for (let value of formData.values()) {
+      console.log(value);
+    }
+
+    await axios({
+      method: "post",
+      url: "http://localhost:8080/api/target/upload",
+      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        window.alert("업로드 성공");
+        targetListGet();
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+    setOpen(false);
+    setValues(INITIAL_VALUES);
+  };
+
+  function sanitize(type, value) {
+    switch (type) {
+      case "number":
+        return Number(value) || 0;
+
+      default:
+        return value;
+    }
+  }
+  const handleTargetChange = (name, value) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+  const handleTargetInputChange = (e) => {
+    const { name, value, type } = e.target;
+    handleTargetChange(name, sanitize(type, value));
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // ~ 업로드 Dialog *****************************************************************
+
+  // Target 배열 바뀔때마다 렌더링 ~  *****************************************************
+  const targetListGet = async () => {
+    await axios({
+      method: "get",
+      url: "http://localhost:8080/api/target/view?method=personAge&page=1",
+      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      data: {
+        method: "personAge",
+        page: 1,
+      },
+      headers: {
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        window.alert("타겟 조회 성공");
+        setItems(res.data);
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+  };
+
+  // useEffect(() => {
+  //   targetListGet();
+  // }, []);
+
+  // ~ Target 배열 바뀔때마다 렌더링 *****************************************************
+
   return (
     <>
       {isLogin ? (
-        // <div className="home">
-        //   {/* <button onClick={cookieTest}>쿠키 확인</button> */}
-        //   <div className="nav">
-
-        //   </div>
-        //   <hr></hr>
-        //   <div className="container"></div>
-        // </div>
         <div id="wrap">
           <div id="header-wrap">
             <div className="header-container">
-              {/* <span className="logo">4KIM</span> */}
-              <img src={logo} className="logoImg" />
+              <img src={logo_black} className="logoImg" />
             </div>
           </div>
 
@@ -160,7 +268,6 @@ function Home() {
             <div className="banner-container">
               <button
                 id="upload"
-                // onClick={handleOpen}
                 onClick={handleClickOpen}
                 className="w-btn-outline w-btn-blue-outline"
                 type="button"
@@ -168,106 +275,472 @@ function Home() {
                 타겟 추가
               </button>
 
-              {/* <Modal
-                // hideBackdrop
+              <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
+                onSubmit={handleTargetSubmit}
               >
-                <Box sx={{ ...style, width: 500, height: 500 }}>
-                  <h2 id="child-modal-title">Text in a child modal</h2>
-                  <p id="child-modal-description">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  </p>
-                  <Button onClick={handleClose}>Close Child Modal</Button>
-                </Box>
-              </Modal> */}
-              <Dialog open={open} onClose={handleClose}>
-                <DialogTitle className="uploadDialogTitle">
-                  타겟 정보 업로드
-                </DialogTitle>
-                <DialogContent dividers>
-                  <DialogContentText>
-                    <p className="uploadDialogContent">
-                      찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
-                    </p>
+                <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
+                  <DialogTitle className="uploadDialogTitle">
+                    타겟 정보 업로드
+                  </DialogTitle>
+                  <DialogContent dividers>
+                    <DialogContentText>
+                      <Typography className="uploadDialogContent">
+                        찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
+                      </Typography>
+                      <Typography gutterBottom></Typography>
+                      <Typography>
+                        특징 예시) 갸름한 얼굴 , 쳐진 눈매
+                      </Typography>
+                    </DialogContentText>
                     <Typography gutterBottom></Typography>
-                    <p>특징 예시) 갸름한 얼굴 , 쳐진 눈매</p>
-                  </DialogContentText>
-                  <Typography gutterBottom></Typography>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="이름"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                  />
-                  <TextField
-                    // autoFocus
-                    margin="dense"
-                    id="name"
-                    label="나이"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                  />
-                  <TextField
-                    // autoFocus
-                    margin="dense"
-                    id="name"
-                    label="특징"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                  />
-                  <Button
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="name"
+                      label="이름"
+                      type="email"
+                      fullWidth
+                      variant="standard"
+                      name="name"
+                      value={values.name || ""}
+                      onChange={handleTargetInputChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="name"
+                      label="나이"
+                      type="email"
+                      fullWidth
+                      variant="standard"
+                      name="age"
+                      value={values.age || ""}
+                      onChange={handleTargetInputChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="name"
+                      label="특징"
+                      type="email"
+                      fullWidth
+                      variant="standard"
+                      name="feature"
+                      value={values.feature || ""}
+                      onChange={handleTargetInputChange}
+                    />
+                    {/* <Button
+                    type="file"
                     sx={{ mt: 5, mb: 2, minWidth: 120 }}
                     variant="contained"
                   >
                     사진 업로드
-                  </Button>
-                </DialogContent>
-
-                <DialogActions>
-                  <Button onClick={handleClose}>저장</Button>
-                  <Button onClick={handleClose}>취소</Button>
-                </DialogActions>
+                  </Button> */}
+                    <input
+                      type="file"
+                      id="imgFile"
+                      accept="img/*"
+                      name="imgFile"
+                      // value={values.imgFile}
+                      // onChange={handleTargetChange}
+                      onChange={onLoadImgFile}
+                    />
+                    <label htmlFor="imgFile"></label>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      type="submit"
+                      // onClick={handleClose}
+                      onClick={handleTargetSubmit}
+                    >
+                      저장
+                    </Button>
+                    <Button onClick={handleClose}>취소</Button>
+                  </DialogActions>
+                </form>
               </Dialog>
 
-              {/* <FormControl
-                className="combobox"
-                variant="standard"
-                sx={{ ml: 5, mt: 1, minWidth: 120 }}
+              <select className="selectInput">
+                <option selected disabled>
+                  Category
+                </option>
+                <option>나이순</option>
+                <option>이름순</option>
+              </select>
+              <div className="select-button">
+                <div className="small-arrow-down"></div>
+              </div>
+
+              <input
+                placeholder="Search..."
+                className="targetSearch"
+                type="search"
+              />
+              <a className="searchIcon">
+                <FaSearch className="fa" color="white" />
+              </a>
+
+              <button
+                id="logout"
+                onClick={onClickLogout}
+                className="w-btn-outline w-btn-blue-outline"
+                type="button"
               >
-                <InputLabel
-                  id="demo-simple-select-standard-label"
-                  sx={{ color: "white" }}
-                >
-                  category
-                </InputLabel>
-                <Select
-                  sx={{ color: "white" }}
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={age}
-                  onChange={handleChange}
-                  label="Age"
-                >
-                  <MenuItem value="" sx={{ color: "rgb(26, 188, 156)" }}>
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10} sx={{ color: "rgb(26, 188, 156)" }}>
-                    이름순
-                  </MenuItem>
-                  <MenuItem value={20} sx={{ color: "rgb(26, 188, 156)" }}>
-                    나이순
-                  </MenuItem>
-                </Select>
-              </FormControl> */}
-              {/* <FormControl
+                로그 아웃
+              </button>
+            </div>
+          </div>
+
+          <div id="content-wrap">
+            <div className="content-container">
+              <div>
+                <Box sx={{ width: "100%", mb: 5 }}>
+                  <Stack
+                    direction="row"
+                    divider={<Divider orientation="vertical" flexItem />}
+                    spacing={2}
+                  >
+                    <Item
+                      sx={{
+                        width: 295,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
+                      <Card sx={{ maxWidth: 345 }} className="targetImg">
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="250"
+                            image={target}
+                            alt="타겟"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              김정호
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="text.secondary"
+                              sx={{ mb: 1 }}
+                            >
+                              25
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              통통한 체형, 둥근 얼굴
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                          <Button size="small" color="primary">
+                            타겟 찾기
+                          </Button>
+                          <Button
+                            size="small"
+                            sx={{
+                              color: "rgb(26, 188, 156)",
+                              pl: 19.8,
+                            }}
+                          >
+                            삭제
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Item>
+                    <Item
+                      sx={{
+                        width: 295,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
+                      <Card sx={{ maxWidth: 345 }} className="targetImg">
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="250"
+                            image={target}
+                            alt="타겟"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              김정호
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="text.secondary"
+                              sx={{ mb: 1 }}
+                            >
+                              25
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              통통한 체형, 둥근 얼굴
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                          <Button size="small" color="primary">
+                            타겟 찾기
+                          </Button>
+                          <Button
+                            size="small"
+                            sx={{
+                              color: "rgb(26, 188, 156)",
+                              pl: 19.8,
+                            }}
+                          >
+                            삭제
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Item>
+                    <Item
+                      sx={{
+                        width: 295,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
+                      <Card sx={{ maxWidth: 345 }} className="targetImg">
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="250"
+                            image={target}
+                            alt="타겟"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              김정호
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="text.secondary"
+                              sx={{ mb: 1 }}
+                            >
+                              25
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              통통한 체형, 둥근 얼굴
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                          <Button size="small" color="primary">
+                            타겟 찾기
+                          </Button>
+                          <Button
+                            size="small"
+                            sx={{
+                              color: "rgb(26, 188, 156)",
+                              pl: 19.8,
+                            }}
+                          >
+                            삭제
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Item>
+                  </Stack>
+                </Box>
+                <Box sx={{ width: "100%", mb: 5 }}>
+                  <Stack
+                    direction="row"
+                    divider={<Divider orientation="vertical" flexItem />}
+                    spacing={2}
+                  >
+                    <Item
+                      sx={{
+                        width: 295,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
+                      <Card sx={{ maxWidth: 345 }} className="targetImg">
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="250"
+                            image={target}
+                            alt="타겟"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              김정호
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="text.secondary"
+                              sx={{ mb: 1 }}
+                            >
+                              25
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              통통한 체형, 둥근 얼굴
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                          <Button size="small" color="primary">
+                            타겟 찾기
+                          </Button>
+                          <Button
+                            size="small"
+                            sx={{
+                              color: "rgb(26, 188, 156)",
+                              pl: 19.8,
+                            }}
+                          >
+                            삭제
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Item>
+                    <Item
+                      sx={{
+                        width: 295,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
+                      <Card sx={{ maxWidth: 345 }} className="targetImg">
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="250"
+                            image={target}
+                            alt="타겟"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              김정호
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="text.secondary"
+                              sx={{ mb: 1 }}
+                            >
+                              25
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              통통한 체형, 둥근 얼굴
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                          <Button size="small" color="primary">
+                            타겟 찾기
+                          </Button>
+                          <Button
+                            size="small"
+                            sx={{
+                              color: "rgb(26, 188, 156)",
+                              pl: 19.8,
+                            }}
+                          >
+                            삭제
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Item>
+                    <Item
+                      sx={{
+                        width: 295,
+                        bgcolor: "#86a8e7",
+                        boxShadow: 10,
+                      }}
+                    >
+                      <Card sx={{ maxWidth: 345 }} className="targetImg">
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="250"
+                            image={target}
+                            alt="타겟"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              김정호
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="text.secondary"
+                              sx={{ mb: 1 }}
+                            >
+                              25
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              통통한 체형, 둥근 얼굴
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                          <Button size="small" color="primary">
+                            타겟 찾기
+                          </Button>
+                          <Button
+                            size="small"
+                            sx={{
+                              color: "rgb(26, 188, 156)",
+                              pl: 19.8,
+                            }}
+                          >
+                            삭제
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Item>
+                  </Stack>
+                </Box>
+              </div>
+            </div>
+          </div>
+          <div id="footer-wrap">
+            <div className="footer-container">
+              <Pagination className="pagination" count={10} color="primary" />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Login />
+      )}
+    </>
+  );
+}
+
+export default Home;
+
+//////////////////////////////////////////////////////////////////////////
+// const handleChange = (event) => {
+//   setAge(event.target.value);
+// };
+
+{
+  /* <FormControl
                 fullWidth
                 className="select"
                 sx={{
@@ -302,292 +775,5 @@ function Home() {
                     Thirty
                   </MenuItem>
                 </Select>
-              </FormControl> */}
-              <select className="selectInput">
-                <option selected disabled>
-                  Category
-                </option>
-                <option>나이순</option>
-                <option>이름순</option>
-              </select>
-              <div class="select-button">
-                <div class="small-arrow-down"></div>
-              </div>
-
-              <input
-                placeholder="Search..."
-                className="targetSearch"
-                type="search"
-              />
-              <a className="searchIcon">
-                <FaSearch className="fa" color="white" />
-              </a>
-
-              {/* <form className="searchForm">
-                <fieldset className="searchFieldset">
-                  <input className="searchInput" type="search" />
-                  <button className="searchButton" type="submit">
-                    
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
-                </fieldset>
-              </form> */}
-              <button
-                id="logout"
-                onClick={onClickLogout}
-                className="w-btn-outline w-btn-blue-outline"
-                type="button"
-              >
-                로그 아웃
-              </button>
-            </div>
-            {/* <hr className="bannerBorder"></hr> */}
-          </div>
-
-          <div id="content-wrap">
-            <div className="content-container">
-              <div>
-                <Box sx={{ width: "100%", mb: 5 }}>
-                  <Stack
-                    direction="row"
-                    divider={<Divider orientation="vertical" flexItem />}
-                    spacing={2}
-                  >
-                    <Item
-                      sx={{
-                        width: 330,
-                        bgcolor: "#86a8e7",
-                        // bgcolor: "rgb(236, 240, 241)",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              이름
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              특징
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 330,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              이름
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              특징
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 330,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              이름
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              특징
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                  </Stack>
-                </Box>
-                <Box sx={{ width: "100%" }}>
-                  <Stack
-                    direction="row"
-                    divider={<Divider orientation="vertical" flexItem />}
-                    spacing={2}
-                  >
-                    <Item
-                      sx={{
-                        width: 330,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              이름
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              특징
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 330,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              이름
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              특징
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 330,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              이름
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              특징
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                  </Stack>
-                </Box>
-              </div>
-            </div>
-          </div>
-          <div id="footer-wrap">
-            <div className="footer-container">
-              <Pagination className="pagination" count={10} color="primary" />
-            </div>
-          </div>
-        </div>
-      ) : (
-        <Login />
-      )}
-    </>
-  );
+              </FormControl> */
 }
-
-export default Home;
