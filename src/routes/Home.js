@@ -25,6 +25,8 @@ import {
   SliderValueLabel,
 } from "@mui/material";
 import target from "./img/target.png";
+import wh from "./img/wh.jpg";
+import dk from "./img/dk.jpg";
 import logo from "./img/logo.png";
 import logo_black from "./img/logo_black.png";
 import logo_green from "./img/logo_green.png";
@@ -329,14 +331,14 @@ function Home() {
                       value={values.feature || ""}
                       onChange={handleTargetInputChange}
                     />
-                    {/* <Button
-                    type="file"
-                    sx={{ mt: 5, mb: 2, minWidth: 120 }}
-                    variant="contained"
-                  >
-                    사진 업로드
-                  </Button> */}
-                    <input
+                    <Button
+                      type="file"
+                      sx={{ mt: 5, mb: 2, minWidth: 120 }}
+                      variant="contained"
+                    >
+                      사진 업로드
+                    </Button>
+                    {/* <input
                       type="file"
                       id="imgFile"
                       accept="img/*"
@@ -345,7 +347,7 @@ function Home() {
                       // onChange={handleTargetChange}
                       onChange={onLoadImgFile}
                     />
-                    <label htmlFor="imgFile"></label>
+                    <label htmlFor="imgFile"></label> */}
                   </DialogContent>
                   <DialogActions>
                     <Button
@@ -431,7 +433,7 @@ function Home() {
                               25
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                              통통한 체형, 둥근 얼굴
+                              키 173정도
                             </Typography>
                           </CardContent>
                         </CardActionArea>
@@ -463,7 +465,7 @@ function Home() {
                           <CardMedia
                             component="img"
                             height="250"
-                            image={target}
+                            image={dk}
                             alt="타겟"
                           />
                           <CardContent>
@@ -472,17 +474,17 @@ function Home() {
                               variant="h5"
                               component="div"
                             >
-                              김정호
+                              김동균
                             </Typography>
                             <Typography
                               variant="h6"
                               color="text.secondary"
                               sx={{ mb: 1 }}
                             >
-                              25
+                              40
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                              통통한 체형, 둥근 얼굴
+                              둥근 얼굴
                             </Typography>
                           </CardContent>
                         </CardActionArea>
@@ -514,7 +516,7 @@ function Home() {
                           <CardMedia
                             component="img"
                             height="250"
-                            image={target}
+                            image={wh}
                             alt="타겟"
                           />
                           <CardContent>
@@ -523,17 +525,17 @@ function Home() {
                               variant="h5"
                               component="div"
                             >
-                              김정호
+                              김우혁
                             </Typography>
                             <Typography
                               variant="h6"
                               color="text.secondary"
                               sx={{ mb: 1 }}
                             >
-                              25
+                              26
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                              통통한 체형, 둥근 얼굴
+                              다리털 없음
                             </Typography>
                           </CardContent>
                         </CardActionArea>
