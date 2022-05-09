@@ -212,9 +212,10 @@ function Home() {
           },
         })
           .then((res) => {
-            console.log(res.data);
             window.alert("이미지 전송 성공");
-            targetListGet();
+            console.log("이미지 전송 성공!");
+            console.log(res.data);
+            // targetListGet();
           })
           .catch((error) => {
             window.alert(error);
@@ -270,7 +271,7 @@ function Home() {
       },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
