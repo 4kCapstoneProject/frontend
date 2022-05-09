@@ -197,6 +197,8 @@ function Home() {
 
         const imageFileList = new FormData();
         imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+        imageFileList.append("targetId", res.data);
+        imageFileList.append("thumbNum", 1);
 
         axios({
           method: "post",
