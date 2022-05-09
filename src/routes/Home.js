@@ -57,7 +57,7 @@ import { type } from "@testing-library/user-event/dist/type";
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
-  const [imageFileList, setImageFileList] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
 
@@ -133,12 +133,12 @@ function Home() {
     e.preventDefault();
     const { name, value, type } = e.target;
     const imageFile = e.target.files[0];
-    setImageFileList([...imageFileList, { uploadedFile: imageFile }]);
+    setImageFiles([...imageFiles, { uploadedFile: imageFile }]);
     // handleTargetChange(name, sanitize(type, value));
 
     setValues((prevValues) => ({
       ...prevValues,
-      imgFile: imageFileList,
+      imgFile: imageFiles,
     }));
   };
 
@@ -154,39 +154,69 @@ function Home() {
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
 
-    let targetInfoDto = {
-      personName: values.name,
-      personAge: values.age,
-      userId: "oldaim",
-      characteristic: values.feature,
-      targetPk: 1,
-    };
+    // let targetInfoDto = {
+    //   personName: values.name,
+    //   personAge: values.age,
+    //   userId: "oldaim",
+    //   characteristic: values.feature,
+    //   targetPk: 1,
+    // };
 
-    const formData = new FormData();
-    formData.append("imageFileList", imageFileList[0].uploadedFile);
-    formData.append("targetInfoDto", JSON.stringify(targetInfoDto));
+    const targetInfoDto = new FormData();
+    // formData.append("imageFileList", imageFileList[0].uploadedFile);
+    targetInfoDto.append("personName", values.name);
+    targetInfoDto.append("personAge", values.age);
+    targetInfoDto.append("userId", "oldaim");
+    targetInfoDto.append("characteristic", values.feature);
+    targetInfoDto.append("targetPk", 1);
 
-    for (let key of formData.keys()) {
+    for (let key of targetInfoDto.keys()) {
       console.log(key);
     }
-    for (let value of formData.values()) {
+    for (let value of targetInfoDto.values()) {
       console.log(value);
     }
 
     await axios({
       method: "post",
-      url: "http://localhost:8080/api/target/upload",
+      url: "http://localhost:8080/api/target/uploadTargetInfo",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-      data: formData,
+      data: targetInfoDto,
       headers: {
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
       .then((res) => {
         console.log(res.data);
-        window.alert("업로드 성공");
-        targetListGet();
+        console.log("텍스트 전송 성공!");
+        window.alert("텍스트 전송 성공");
+
+        const imageFileList = new FormData();
+        imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+
+        axios({
+          method: "post",
+          url: "http://localhost:8080/api/target/uploadImage",
+          //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+          data: imageFileList,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            // "Content-Type": "application/json",
+            Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+          },
+        })
+          .then((res) => {
+            console.log(res.data);
+            window.alert("이미지 전송 성공");
+            targetListGet();
+          })
+          .catch((error) => {
+            window.alert(error);
+            console.log(error);
+          });
+        // targetListGet();
       })
       .catch((error) => {
         window.alert(error);
@@ -331,14 +361,14 @@ function Home() {
                       value={values.feature || ""}
                       onChange={handleTargetInputChange}
                     />
-                    <Button
+                    {/* <Button
                       type="file"
                       sx={{ mt: 5, mb: 2, minWidth: 120 }}
                       variant="contained"
                     >
                       사진 업로드
-                    </Button>
-                    {/* <input
+                    </Button> */}
+                    <input
                       type="file"
                       id="imgFile"
                       accept="img/*"
@@ -347,7 +377,7 @@ function Home() {
                       // onChange={handleTargetChange}
                       onChange={onLoadImgFile}
                     />
-                    <label htmlFor="imgFile"></label> */}
+                    <label htmlFor="imgFile"></label>
                   </DialogContent>
                   <DialogActions>
                     <Button
