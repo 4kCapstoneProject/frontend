@@ -206,7 +206,7 @@ function Home() {
           //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
           data: imageFileList,
           headers: {
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
             // "Content-Type": "application/json",
             Authorization: `Bearer ${getCookie("loginAccessToken")}`,
           },
