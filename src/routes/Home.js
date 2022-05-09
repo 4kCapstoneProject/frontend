@@ -172,13 +172,6 @@ function Home() {
     // targetInfoDto.append("characteristic", values.feature);
     // targetInfoDto.append("targetPk", 1);
 
-    // for (let key of targetInfoDto.keys()) {
-    //   console.log(key);
-    // }
-    // for (let value of targetInfoDto.values()) {
-    //   console.log(value);
-    // }
-
     await axios({
       method: "post",
       url: "http://localhost:8080/api/target/uploadTargetInfo",
@@ -199,6 +192,13 @@ function Home() {
         imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
         imageFileList.append("targetId", res.data);
         imageFileList.append("thumbNum", 1);
+
+        for (let key of targetInfoDto.keys()) {
+          console.log(key);
+        }
+        for (let value of targetInfoDto.values()) {
+          console.log(value);
+        }
 
         axios({
           method: "post",
