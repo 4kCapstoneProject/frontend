@@ -154,28 +154,30 @@ function Home() {
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
 
-    // let targetInfoDto = {
-    //   personName: values.name,
-    //   personAge: values.age,
-    //   userId: "oldaim",
-    //   characteristic: values.feature,
-    //   targetPk: 1,
-    // };
+    let targetInfo = {
+      personName: values.name,
+      personAge: values.age,
+      userId: "oldaim",
+      characteristic: values.feature,
+      targetPk: 1,
+    };
 
-    const targetInfoDto = new FormData();
+    const targetInfoDto = JSON.stringify(targetInfo);
+
+    // const targetInfoDto = new FormData();
     // formData.append("imageFileList", imageFileList[0].uploadedFile);
-    targetInfoDto.append("personName", values.name);
-    targetInfoDto.append("personAge", values.age);
-    targetInfoDto.append("userId", "oldaim");
-    targetInfoDto.append("characteristic", values.feature);
-    targetInfoDto.append("targetPk", 1);
+    // targetInfoDto.append("personName", values.name);
+    // targetInfoDto.append("personAge", values.age);
+    // targetInfoDto.append("userId", "oldaim");
+    // targetInfoDto.append("characteristic", values.feature);
+    // targetInfoDto.append("targetPk", 1);
 
-    for (let key of targetInfoDto.keys()) {
-      console.log(key);
-    }
-    for (let value of targetInfoDto.values()) {
-      console.log(value);
-    }
+    // for (let key of targetInfoDto.keys()) {
+    //   console.log(key);
+    // }
+    // for (let value of targetInfoDto.values()) {
+    //   console.log(value);
+    // }
 
     await axios({
       method: "post",
