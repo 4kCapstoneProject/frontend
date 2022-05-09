@@ -57,7 +57,7 @@ import { type } from "@testing-library/user-event/dist/type";
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
-  const [imageFileList, setImageFileList] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
 
@@ -133,12 +133,12 @@ function Home() {
     e.preventDefault();
     const { name, value, type } = e.target;
     const imageFile = e.target.files[0];
-    setImageFileList([...imageFileList, { uploadedFile: imageFile }]);
+    setImageFiles([...imageFiles, { uploadedFile: imageFile }]);
     // handleTargetChange(name, sanitize(type, value));
 
     setValues((prevValues) => ({
       ...prevValues,
-      imgFile: imageFileList,
+      imgFile: imageFiles,
     }));
   };
 
@@ -154,7 +154,7 @@ function Home() {
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
 
-    let targetInfoDto = {
+    let targetInfo = {
       personName: values.name,
       personAge: values.age,
       userId: "oldaim",
@@ -162,31 +162,66 @@ function Home() {
       targetPk: 1,
     };
 
-    const formData = new FormData();
-    formData.append("imageFileList", imageFileList[0].uploadedFile);
-    formData.append("targetInfoDto", JSON.stringify(targetInfoDto));
+    const targetInfoDto = JSON.stringify(targetInfo);
 
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    // const targetInfoDto = new FormData();
+    // formData.append("imageFileList", imageFileList[0].uploadedFile);
+    // targetInfoDto.append("personName", values.name);
+    // targetInfoDto.append("personAge", values.age);
+    // targetInfoDto.append("userId", "oldaim");
+    // targetInfoDto.append("characteristic", values.feature);
+    // targetInfoDto.append("targetPk", 1);
 
     await axios({
       method: "post",
-      url: "http://localhost:8080/api/target/upload",
+      url: "http://localhost:8080/api/target/uploadTargetInfo",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
-      data: formData,
+      data: targetInfoDto,
       headers: {
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
       .then((res) => {
         console.log(res.data);
-        window.alert("업로드 성공");
-        targetListGet();
+        console.log("텍스트 전송 성공!");
+        window.alert("텍스트 전송 성공");
+
+        const imageFileList = new FormData();
+        imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+        imageFileList.append("targetId", res.data);
+        imageFileList.append("thumbNum", 1);
+
+        for (let key of imageFileList.keys()) {
+          console.log(key);
+        }
+        for (let value of imageFileList.values()) {
+          console.log(value);
+        }
+
+        axios({
+          method: "post",
+          url: "http://localhost:8080/api/target/uploadImage",
+          //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+          data: imageFileList,
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            // "Content-Type": "application/json",
+            Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+          },
+        })
+          .then((res) => {
+            window.alert("이미지 전송 성공");
+            console.log("이미지 전송 성공!");
+            console.log(res.data);
+            // targetListGet();
+          })
+          .catch((error) => {
+            window.alert(error);
+            console.log(error);
+          });
+        // targetListGet();
       })
       .catch((error) => {
         window.alert(error);
@@ -236,7 +271,7 @@ function Home() {
       },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
@@ -331,14 +366,14 @@ function Home() {
                       value={values.feature || ""}
                       onChange={handleTargetInputChange}
                     />
-                    <Button
+                    {/* <Button
                       type="file"
                       sx={{ mt: 5, mb: 2, minWidth: 120 }}
                       variant="contained"
                     >
                       사진 업로드
-                    </Button>
-                    {/* <input
+                    </Button> */}
+                    <input
                       type="file"
                       id="imgFile"
                       accept="img/*"
@@ -347,7 +382,7 @@ function Home() {
                       // onChange={handleTargetChange}
                       onChange={onLoadImgFile}
                     />
-                    <label htmlFor="imgFile"></label> */}
+                    <label htmlFor="imgFile"></label>
                   </DialogContent>
                   <DialogActions>
                     <Button
@@ -481,7 +516,7 @@ function Home() {
                               color="text.secondary"
                               sx={{ mb: 1 }}
                             >
-                              40
+                              44
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                               둥근 얼굴
