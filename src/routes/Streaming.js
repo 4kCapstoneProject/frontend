@@ -12,6 +12,8 @@ import {
   SliderValueLabel,
 } from "@mui/material";
 import target from "./img/target.png";
+import wh from "./img/wh.jpg";
+import wh_model from "./img/wh_model.jpg";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
@@ -38,9 +40,9 @@ function Streaming() {
 
   const images = [
     {
-      label: "San Francisco – Oakland Bay Bridge, United States",
-      imgPath:
-        "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+      label: "Capture 1",
+      imgPath: wh_model,
+      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
     },
     {
       label: "Bird",
@@ -98,26 +100,24 @@ function Streaming() {
         </div>
       </div>
       <div id="streaming_body_wrap">
-        <div id="streaming_contents">video</div>
+        <div id="streaming_contents2">video</div>
+
+        <hr className="streaming_hr"></hr>
         <div id="streaming_side">
           <Item
             sx={{
               // width: 400,
               bgcolor: "none",
               boxShadow: 10,
+              bgcolor: "#6aafe6",
             }}
           >
-            <Card sx={{ width: 360, boxShadow: 10 }} className="targetImg">
+            <Card sx={{ width: 450, boxShadow: 10 }} className="targetImg">
               <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="370"
-                  image={target}
-                  alt="타겟"
-                />
+                <CardMedia component="img" height="450" image={wh} alt="타겟" />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    김정호 (25)
+                    김우혁 (26)
                   </Typography>
                   {/* <Typography
                     variant="h6"
@@ -127,22 +127,21 @@ function Streaming() {
                     25
                   </Typography> */}
                   <Typography variant="body2" color="text.secondary">
-                    통통한 체형, 둥근 얼굴
+                    다리털 없음
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
           </Item>
         </div>
-
-        <hr className="streaming_hr"></hr>
-
-        <div id="streaming_contents2">
+        <div id="streaming_contents">
           <Box
             className="capture"
             sx={{
               maxWidth: 800,
               flexGrow: 1,
+              boxShadow: 10,
+              // height: 450,
             }}
           >
             <Paper
@@ -173,7 +172,7 @@ function Streaming() {
                       component="img"
                       sx={{
                         // height: 255,
-                        height: 400,
+                        height: 480,
                         display: "block",
                         maxWidth: 800,
                         overflow: "hidden",
@@ -221,6 +220,7 @@ function Streaming() {
             />
           </Box>
         </div>
+
         {/* <div id="streaming_footer">footer</div> */}
       </div>
     </div>

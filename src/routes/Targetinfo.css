@@ -1,0 +1,56 @@
+#targetInfo_wrap {
+  margin: 0 auto;
+  color: orange;
+  font-size: 40px;
+  text-align: center;
+}
+#targetInfo_header {
+  width: 100%;
+  height: 120px;
+  line-height: 100px;
+  background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+  margin: 0 auto;
+}
+
+#targetInfo_body {
+  width: 440px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  /* background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); */
+}
+.targetInfo_logo {
+  height: 150px;
+  width: 150px;
+  position: relative;
+  /* right: 420px; */
+  /* right: 120px; */
+}
+.targetinfoLogoutBtn {
+  position: relative;
+  /* left: 390px; */
+  left: 90px;
+  bottom: 85px;
+}
+.targetInfoBtn {
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  border: 3px solid white;
+  color: white;
+  background-color: rgb(26, 188, 156);
+}
+.targetInfoBtn:active {
+  transform: scale(1.5);
+}
+.targetInfoBtn:hover {
+  letter-spacing: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
+  color: rgb(26, 188, 156);
+  background-color: white;
+}
