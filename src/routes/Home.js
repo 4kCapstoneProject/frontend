@@ -516,7 +516,7 @@ function Home() {
                               color="text.secondary"
                               sx={{ mb: 1 }}
                             >
-                              40
+                              44
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                               둥근 얼굴
