@@ -193,10 +193,10 @@ function Home() {
         imageFileList.append("targetId", res.data);
         imageFileList.append("thumbNum", 1);
 
-        for (let key of targetInfoDto.keys()) {
+        for (let key of imageFileList.keys()) {
           console.log(key);
         }
-        for (let value of targetInfoDto.values()) {
+        for (let value of imageFileList.values()) {
           console.log(value);
         }
 
