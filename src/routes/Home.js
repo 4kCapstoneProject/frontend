@@ -174,7 +174,7 @@ function Home() {
 
     await axios({
       method: "post",
-      url: "http://backend:8080/api/target/uploadTargetInfo",
+      url: "http://172.18.0.2:8080/api/target/uploadTargetInfo",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: targetInfoDto,
       headers: {
@@ -202,7 +202,7 @@ function Home() {
 
         axios({
           method: "post",
-          url: "http://backend:8080/api/target/uploadImage",
+          url: "http://172.18.0.2:8080/api/target/uploadImage",
           //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
           data: imageFileList,
           headers: {
@@ -263,7 +263,7 @@ function Home() {
   const targetListGet = async () => {
     await axios({
       method: "get",
-      url: "http://backend:8080/api/target/view?method=personAge&page=1",
+      url: "http://172.18.0.2:8080/api/target/view?method=personAge&page=1",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         method: "personAge",
