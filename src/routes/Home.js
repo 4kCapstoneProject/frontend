@@ -216,6 +216,7 @@ function Home() {
             console.log("이미지 전송 성공!");
             console.log(res.data);
             targetListGet();
+            console.log("아아아");
           })
           .catch((error) => {
             window.alert(error);
