@@ -216,7 +216,7 @@ function Home() {
             console.log("아아아");
             console.log("이미지 전송 성공! 아라라");
             // console.log(res.data);
-            console.log("방가방가");
+            console.log("test");
             targetListGet();
             console.log("안녕안녕");
           })
