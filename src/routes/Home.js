@@ -63,9 +63,10 @@ function Home() {
   const [textItems, setTextItems] = useState([]);
   const [imgItems, setImgItems] = useState([]);
   const [countItems, setCountItems] = useState(0);
-  const [countPage, setCountPage] = useState(0);
+  const [countPage, setCountPage] = useState(1);
   const [testCount, setTestCount] = useState(0);
   const [items, setItems] = useState([]);
+  const [page, setPage] = useState(1);
 
   // const INITIAL_ITEMS = [
   //   {
@@ -301,11 +302,14 @@ function Home() {
   const targetListGet = async () => {
     await axios({
       method: "get",
-      url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
-      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      url:
+        "http://211.201.72.35:4000/api/target/view?method=personAge&page=" +
+        page,
+      // url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
+
       data: {
         method: "personAge",
-        page: 1,
+        page: { page },
       },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
@@ -397,6 +401,25 @@ function Home() {
     },
   ];
   // ~ Target 리스트 유무 확인 **********************************************************
+
+  // 페이지 네이션 ~ *****************************************************************
+  const next = () => {
+    setPage((currentPage) => Math.min(currentPage + 1, countPage));
+  };
+  const prev = () => {
+    setPage((currentPage) => Math.max(currentPage - 1, 1));
+  };
+  const jump = (page) => {
+    const pageNumber = Math.max(1, page);
+    setPage((currentPage) => Math.min(pageNumber, countPage));
+  };
+
+  const handlePageChange = (e, p) => {
+    setPage(p);
+    targetListGet();
+  };
+
+  // ~ 페이지네이션 **********************************************************
 
   return (
     <>
@@ -935,7 +958,16 @@ function Home() {
           </div>
           <div id="footer-wrap">
             <div className="footer-container">
-              <Pagination className="pagination" count={10} color="primary" />
+              <Pagination
+                className="pagination"
+                color="primary"
+                count={countPage}
+                size="large"
+                page={page}
+                variant="outlined"
+                shape="rounded"
+                onChange={handlePageChange}
+              />
             </div>
           </div>
         </div>
