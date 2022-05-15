@@ -361,8 +361,8 @@ function Home() {
       .then((res) => {
         console.log(res.data);
         // window.alert("타겟 조회 성공");
-        setTextItems([...textItems, res.data.dtoList]);
-        setImgItems([...imgItems, res.data.imagePathDtoList]);
+        setTextItems([...res.data.dtoList]);
+        setImgItems([...res.data.imagePathDtoList]);
         setCountItems(res.data.totalElement);
         setCountPage(res.data.totalPage);
 
