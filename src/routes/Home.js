@@ -359,7 +359,7 @@ function Home() {
         if (res.data === true) {
           targetListGet();
         } else {
-          console.log("흠..");
+          console.log("흠!");
         }
         window.alert("타겟 리스트 유뮤 확인");
       })
