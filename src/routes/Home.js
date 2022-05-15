@@ -318,10 +318,11 @@ function Home() {
       .then((res) => {
         console.log(res.data);
 
-        setTargetExist(true);
-        console.log(targetExist);
-        setTest(true);
-        console.log(test);
+        if (res.data === true) {
+          targetListGet();
+        } else {
+          console.log("흠..");
+        }
         window.alert("타겟 리스트 유뮤 확인");
       })
       .catch((error) => {
@@ -332,12 +333,6 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-    if (targetExist === true) {
-      targetListGet();
-    }
-    if (targetExist === false) {
-      console.log("왜 안돼");
-    }
   }, [textItems]);
 
   const titems = [
