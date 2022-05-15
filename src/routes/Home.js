@@ -65,7 +65,37 @@ function Home() {
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
   const [testCount, setTestCount] = useState(0);
-  const [items, setItems] = useState(0);
+  const [items, setItems] = useState(INITIAL_ITEMS);
+
+  const INITIAL_ITEMS = [
+    {
+      targetPk: 0,
+      userId: "",
+      personName: "",
+      personAge: 0,
+      characteristic: "",
+      filePath: "",
+      fileName: "",
+    },
+    {
+      targetPk: 0,
+      userId: "",
+      personName: "",
+      personAge: 0,
+      characteristic: "",
+      filePath: "",
+      fileName: "",
+    },
+    {
+      targetPk: 0,
+      userId: "",
+      personName: "",
+      personAge: 0,
+      characteristic: "",
+      filePath: "",
+      fileName: "",
+    },
+  ];
 
   // MUI Component Style ~ *******************************************************
   const style = {
@@ -267,6 +297,7 @@ function Home() {
   // ~ 업로드 Dialog *****************************************************************
 
   // Target 배열 바뀔때마다 렌더링 ~  *****************************************************
+
   const targetListGet = async () => {
     await axios({
       method: "get",
@@ -288,6 +319,11 @@ function Home() {
         setImgItems(res.data.imagePathDtoList);
         setCountItems(res.data.totalElement);
         setCountPage(res.data.totalPage);
+
+        //         setItems((prev)=> ({
+        // ...prev,
+        // [name]:
+        //         }));
 
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
@@ -547,7 +583,7 @@ function Home() {
                               >
                                 {textitem.characteristic}
                                 {/* {imgItems[0].fileName} */}
-                                {imgItems[0].targetPk}
+                                {/* {imgItems[0].targetPk} */}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
