@@ -513,7 +513,7 @@ function Home() {
                             <CardMedia
                               component="img"
                               height="250"
-                              image={imgItems[0].filePath}
+                              image={target}
                               alt="타겟"
                             />
                             <CardContent>
