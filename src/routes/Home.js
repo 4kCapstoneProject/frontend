@@ -606,7 +606,7 @@ function Home() {
                               >
                                 {/* {textitem.characteristic} */}
                                 {/* {imgItems[0].fileName} */}
-                                {imgItems.targetPk}
+                                {imgItems[0].targetPk}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
