@@ -295,9 +295,11 @@ function Home() {
         console.log(imgItems);
         console.log(countItems);
         console.log(countPage);
+        console.log(typeof res.data.imagePathDtoList.filePath);
       })
       .catch((error) => {
         window.alert(error);
+
         console.log(error);
       });
   };
