@@ -65,6 +65,7 @@ function Home() {
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
   const [targetExist, setTargetExist] = useState(false);
+  const [test, setTest] = useState(false);
 
   // MUI Component Style ~ *******************************************************
   const style = {
@@ -317,7 +318,10 @@ function Home() {
       .then((res) => {
         console.log(res.data);
 
+        setTargetExist(true);
         console.log(targetExist);
+        setTest(true);
+        console.log(test);
         window.alert("타겟 리스트 유뮤 확인");
       })
       .catch((error) => {
@@ -327,7 +331,6 @@ function Home() {
   };
 
   useEffect(() => {
-    setTargetExist(true);
     targetListExist();
   }, [textItems]);
 
