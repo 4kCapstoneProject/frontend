@@ -288,11 +288,35 @@ function Home() {
       });
   };
 
-  // useEffect(() => {
-  //   targetListGet();
-  // }, []);
-
   // ~ Target 배열 바뀔때마다 렌더링 *****************************************************
+
+  // Target 리스트 유무 확인 ~~~ *****************************************************
+  const targetListExist = async () => {
+    await axios({
+      method: "get",
+      url: "http://211.201.72.35:4000/api/target/exist",
+      // data: {
+
+      // },
+      headers: {
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+        // "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        window.alert("타겟 리스트 유뮤 확인");
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    targetListExist();
+  }, []);
+  // ~ Target 리스트 유무 확인 **********************************************************
 
   return (
     <>
