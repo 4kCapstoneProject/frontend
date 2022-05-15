@@ -624,8 +624,8 @@ function Home() {
                                   variant="body2"
                                   color="text.secondary"
                                 >
-                                  {/* {textitem.characteristic} */}
-                                  {imgItems[index].fileName}
+                                  {textitem.characteristic}
+                                  {/* {imgItems[index].fileName} */}
                                   {/* {imgItems[0].targetPk} */}
                                 </Typography>
                               </CardContent>
