@@ -309,7 +309,7 @@ function Home() {
 
       data: {
         method: "personAge",
-        page: { page },
+        page: page,
       },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
