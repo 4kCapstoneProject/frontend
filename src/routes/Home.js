@@ -604,9 +604,9 @@ function Home() {
                                 variant="body2"
                                 color="text.secondary"
                               >
-                                {textitem.characteristic}
+                                {/* {textitem.characteristic} */}
                                 {/* {imgItems[0].fileName} */}
-                                {/* {imgItems[0].targetPk} */}
+                                {imgItems.targetPk}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
