@@ -64,7 +64,7 @@ function Home() {
   const [imgItems, setImgItems] = useState([]);
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
-  const [targetExist, setTargetExist] = useState(false);
+  const [targetExist, setTargetExist] = React.useState(false);
   const [test, setTest] = useState(false);
 
   // MUI Component Style ~ *******************************************************
