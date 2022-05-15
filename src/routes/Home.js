@@ -65,6 +65,7 @@ function Home() {
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
   const [testCount, setTestCount] = useState(0);
+  const [items, setItems] = useState(0);
 
   // MUI Component Style ~ *******************************************************
   const style = {
@@ -295,12 +296,9 @@ function Home() {
         console.log(imgItems);
         console.log(countItems);
         console.log(countPage);
-        console.log(typeof res.data.imagePathDtoList.filePath);
       })
       .catch((error) => {
         window.alert(error);
-
-        console.log(error);
       });
   };
 
@@ -525,7 +523,7 @@ function Home() {
                             <CardMedia
                               component="img"
                               height="250"
-                              image={imgItems[0].filePath}
+                              image={target}
                               alt="타겟"
                             />
                             <CardContent>
@@ -548,6 +546,8 @@ function Home() {
                                 color="text.secondary"
                               >
                                 {textitem.characteristic}
+                                {imgItems[0].fileName}
+                                {imgItems[0].targetPk}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
