@@ -546,7 +546,7 @@ function Home() {
                                 color="text.secondary"
                               >
                                 {textitem.characteristic}
-                                {imgItems[0].fileName}
+                                {/* {imgItems[0].fileName} */}
                                 {imgItems[0].targetPk}
                               </Typography>
                             </CardContent>
