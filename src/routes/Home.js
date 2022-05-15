@@ -585,12 +585,12 @@ function Home() {
                     divider={<Divider orientation="vertical" flexItem />}
                     spacing={2}
                   >
-                    {textItems.map(
-                      (textitem, index) => (
+                    {imgItems.map(
+                      (imgItem, index) => (
                         // <li >
 
                         <Item
-                          key={textitem.targetPk}
+                          key={textItems[index].targetPk}
                           sx={{
                             width: 295,
                             bgcolor: "#86a8e7",
@@ -602,7 +602,7 @@ function Home() {
                               <CardMedia
                                 component="img"
                                 height="250"
-                                image={target}
+                                image={imgItem.filePath}
                                 alt="타겟"
                               />
                               <CardContent>
@@ -611,20 +611,20 @@ function Home() {
                                   variant="h5"
                                   component="div"
                                 >
-                                  {textitem.personName}
+                                  {textItems[index].personName}
                                 </Typography>
                                 <Typography
                                   variant="h6"
                                   color="text.secondary"
                                   sx={{ mb: 1 }}
                                 >
-                                  {textitem.personAge}
+                                  {textItems[index].personAge}
                                 </Typography>
                                 <Typography
                                   variant="body2"
                                   color="text.secondary"
                                 >
-                                  {textitem.characteristic}
+                                  {textItems[index].characteristic}
                                   {/* {imgItems[index].fileName} */}
                                   {/* {imgItems[0].targetPk} */}
                                 </Typography>
