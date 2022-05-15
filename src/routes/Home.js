@@ -611,7 +611,7 @@ function Home() {
                     divider={<Divider orientation="vertical" flexItem />}
                     spacing={2}
                   >
-                    {textItems &&
+                    {textItems[0] &&
                       imgItems.map(
                         (imgItem, index) => (
                           // <li >
