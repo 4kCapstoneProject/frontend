@@ -590,7 +590,7 @@ function Home() {
                         // <li >
 
                         <Item
-                          key={textItems[index].targetPk}
+                          // key={textItems[index].targetPk}
                           sx={{
                             width: 295,
                             bgcolor: "#86a8e7",
@@ -611,20 +611,23 @@ function Home() {
                                   variant="h5"
                                   component="div"
                                 >
-                                  {textItems[index].personName}
+                                  {/* {textItems[index].personName} */}
+                                  이름
                                 </Typography>
                                 <Typography
                                   variant="h6"
                                   color="text.secondary"
                                   sx={{ mb: 1 }}
                                 >
-                                  {textItems[index].personAge}
+                                  {/* {textItems[index].personAge} */}
+                                  나이
                                 </Typography>
                                 <Typography
                                   variant="body2"
                                   color="text.secondary"
                                 >
-                                  {textItems[index].characteristic}
+                                  {/* {textItems[index].characteristic} */}
+                                  특징
                                   {/* {imgItems[index].fileName} */}
                                   {/* {imgItems[0].targetPk} */}
                                 </Typography>
