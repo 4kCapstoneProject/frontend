@@ -635,7 +635,7 @@ function Home() {
                                   variant="h5"
                                   component="div"
                                 >
-                                  {textItems[index + 1].personName}
+                                  {textItems[index].personName}
                                   {/* 이름 */}
                                 </Typography>
                                 <Typography
@@ -643,14 +643,14 @@ function Home() {
                                   color="text.secondary"
                                   sx={{ mb: 1 }}
                                 >
-                                  {textItems[index + 1].personAge}
+                                  {textItems[index].personAge}
                                   {/* 나이 */}
                                 </Typography>
                                 <Typography
                                   variant="body2"
                                   color="text.secondary"
                                 >
-                                  {textItems[index + 1].characteristic}
+                                  {textItems[index].characteristic}
                                   {/* 특징 */}
                                   {/* {imgItems[index].fileName} */}
                                   {/* {imgItems[0].targetPk} */}
