@@ -64,7 +64,7 @@ function Home() {
   const [imgItems, setImgItems] = useState([]);
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
-  const [targetExist, setTargetExist] = React.useState(false);
+  const [targetExist, setTargetExist] = useState(false);
   const [test, setTest] = useState(false);
 
   // MUI Component Style ~ *******************************************************
@@ -332,6 +332,12 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
+    if (targetExist === true) {
+      targetListGet();
+    }
+    if (targetExist === false) {
+      console.log("왜 안돼");
+    }
   }, [textItems]);
 
   const titems = [
