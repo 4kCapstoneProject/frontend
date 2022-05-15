@@ -65,37 +65,37 @@ function Home() {
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
   const [testCount, setTestCount] = useState(0);
-  const [items, setItems] = useState(INITIAL_ITEMS);
+  const [items, setItems] = useState([]);
 
-  const INITIAL_ITEMS = [
-    {
-      targetPk: 0,
-      userId: "",
-      personName: "",
-      personAge: 0,
-      characteristic: "",
-      filePath: "",
-      fileName: "",
-    },
-    {
-      targetPk: 0,
-      userId: "",
-      personName: "",
-      personAge: 0,
-      characteristic: "",
-      filePath: "",
-      fileName: "",
-    },
-    {
-      targetPk: 0,
-      userId: "",
-      personName: "",
-      personAge: 0,
-      characteristic: "",
-      filePath: "",
-      fileName: "",
-    },
-  ];
+  // const INITIAL_ITEMS = [
+  //   {
+  //     targetPk: 0,
+  //     userId: "",
+  //     personName: "",
+  //     personAge: 0,
+  //     characteristic: "",
+  //     filePath: "",
+  //     fileName: "",
+  //   },
+  //   {
+  //     targetPk: 0,
+  //     userId: "",
+  //     personName: "",
+  //     personAge: 0,
+  //     characteristic: "",
+  //     filePath: "",
+  //     fileName: "",
+  //   },
+  //   {
+  //     targetPk: 0,
+  //     userId: "",
+  //     personName: "",
+  //     personAge: 0,
+  //     characteristic: "",
+  //     filePath: "",
+  //     fileName: "",
+  //   },
+  // ];
 
   // MUI Component Style ~ *******************************************************
   const style = {
