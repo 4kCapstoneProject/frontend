@@ -72,13 +72,37 @@ const INITIAL_IMGITEMS = [
   },
 ];
 
+const INITIAL_TEXTITEMS = [
+  {
+    targetPk: 0,
+    userId: "",
+    personName: "",
+    personAge: 0,
+    characteristic: "",
+  },
+  {
+    targetPk: 0,
+    userId: "",
+    personName: "",
+    personAge: 0,
+    characteristic: "",
+  },
+  {
+    targetPk: 0,
+    userId: "",
+    personName: "",
+    personAge: 0,
+    characteristic: "",
+  },
+];
+
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [testItems, setTestItems] = useState([]);
-  const [textItems, setTextItems] = useState([]);
+  const [textItems, setTextItems] = useState(INITIAL_TEXTITEMS);
   const [imgItems, setImgItems] = useState(INITIAL_IMGITEMS);
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(1);
