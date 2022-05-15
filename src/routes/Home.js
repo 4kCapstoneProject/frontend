@@ -637,8 +637,8 @@ function Home() {
                                   variant="h5"
                                   component="div"
                                 >
-                                  {/* {index} */}
-                                  textItems[index].personName
+                                  {index}
+                                  {/* {textItems[index].personName} */}
                                   {/* 이름 */}
                                 </Typography>
                                 <Typography
@@ -647,7 +647,7 @@ function Home() {
                                   sx={{ mb: 1 }}
                                 >
                                   {index}
-                                  {/* {textItems[index].personAge || ""} */}
+                                  {textItems[index].personAge || ""}
                                   {/* 나이 */}
                                 </Typography>
                                 <Typography
