@@ -223,7 +223,7 @@ function Home() {
       .then((res) => {
         console.log(res.data);
         console.log("텍스트 전송 성공!");
-        window.alert("텍스트 전송 성공");
+        // window.alert("텍스트 전송 성공");
 
         const imageFileList = new FormData();
         imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
@@ -249,7 +249,7 @@ function Home() {
           },
         })
           .then((res) => {
-            window.alert("이미지 전송 성공");
+            // window.alert("이미지 전송 성공");
 
             // console.log(res.data);
 
@@ -318,7 +318,7 @@ function Home() {
     })
       .then((res) => {
         console.log(res.data);
-        window.alert("타겟 조회 성공");
+        // window.alert("타겟 조회 성공");
         setTextItems(res.data.dtoList);
         setImgItems(res.data.imagePathDtoList);
         setCountItems(res.data.totalElement);
@@ -365,7 +365,7 @@ function Home() {
         } else {
           console.log("흠!");
         }
-        window.alert("타겟 리스트 유뮤 확인");
+        // window.alert("타겟 리스트 유뮤 확인");
       })
       .catch((error) => {
         window.alert(error);

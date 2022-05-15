@@ -265,7 +265,7 @@ input[type="search"] {
 }
 .content-container {
   width: 1000px;
-  height: 1000px;
+  height: 500px;
   line-height: 500px;
   margin: 0 auto;
   /* background-color: #5d4037; */
