@@ -585,7 +585,7 @@ function Home() {
                     divider={<Divider orientation="vertical" flexItem />}
                     spacing={2}
                   >
-                    {textItems.map((textitem) => (
+                    {textItems.map((textitem, index) => (
                       // <li >
                       <Item
                         key={textitem.targetPk}
@@ -600,7 +600,7 @@ function Home() {
                             <CardMedia
                               component="img"
                               height="250"
-                              image={imgItems[0].filePath}
+                              image={imgItems[index].filePath}
                               alt="타겟"
                             />
                             <CardContent>
@@ -623,7 +623,7 @@ function Home() {
                                 color="text.secondary"
                               >
                                 {/* {textitem.characteristic} */}
-                                {imgItems[0].fileName}
+                                {imgItems[index].fileName}
                                 {/* {imgItems[0].targetPk} */}
                               </Typography>
                             </CardContent>
