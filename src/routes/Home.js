@@ -319,6 +319,7 @@ function Home() {
         if (res.data === true) {
           setTargetExist(true);
         }
+        setTargetExist(true);
         console.log(targetExist);
         window.alert("타겟 리스트 유뮤 확인");
       })
