@@ -600,7 +600,7 @@ function Home() {
                             <CardMedia
                               component="img"
                               height="250"
-                              image={target}
+                              image={imgItems[0].filePath}
                               alt="타겟"
                             />
                             <CardContent>
@@ -623,8 +623,8 @@ function Home() {
                                 color="text.secondary"
                               >
                                 {/* {textitem.characteristic} */}
-                                {/* {imgItems[0].fileName} */}
-                                {imgItems[0].targetPk}
+                                {imgItems[0].fileName}
+                                {/* {imgItems[0].targetPk} */}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
