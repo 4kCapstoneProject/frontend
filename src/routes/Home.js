@@ -64,8 +64,7 @@ function Home() {
   const [imgItems, setImgItems] = useState([]);
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(0);
-  const [targetExist, setTargetExist] = useState(false);
-  const [test, setTest] = useState(false);
+  const [testCount, setTestCount] = useState(0);
 
   // MUI Component Style ~ *******************************************************
   const style = {
@@ -289,6 +288,9 @@ function Home() {
         setCountItems(res.data.totalElement);
         setCountPage(res.data.totalPage);
 
+        if (testCount !== res.data.totalElement) {
+          setTestCount(res.data.totalElement);
+        }
         console.log(textItems);
         console.log(imgItems);
         console.log(countItems);
@@ -333,7 +335,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [textItems]);
+  }, [testCount]);
 
   const titems = [
     {
