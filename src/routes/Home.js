@@ -54,6 +54,24 @@ import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { type } from "@testing-library/user-event/dist/type";
 
+const INITIAL_IMGITEMS = [
+  {
+    filePath: "",
+    fileName: "",
+    targetPk: 0,
+  },
+  {
+    filePath: "",
+    fileName: "",
+    targetPk: 0,
+  },
+  {
+    filePath: "",
+    fileName: "",
+    targetPk: 0,
+  },
+];
+
 function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
@@ -61,7 +79,7 @@ function Home() {
   const [open, setOpen] = React.useState(false);
   const [testItems, setTestItems] = useState([]);
   const [textItems, setTextItems] = useState([]);
-  const [imgItems, setImgItems] = useState([]);
+  const [imgItems, setImgItems] = useState(INITIAL_IMGITEMS);
   const [countItems, setCountItems] = useState(0);
   const [countPage, setCountPage] = useState(1);
   const [testCount, setTestCount] = useState(0);
