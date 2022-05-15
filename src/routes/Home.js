@@ -58,8 +58,12 @@ function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
   const [imageFiles, setImageFiles] = useState([]);
-  const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [testItems, setTestItems] = useState([]);
+  const [textItems, setTextItems] = useState([]);
+  const [imgItems, setImgItems] = useState([]);
+  const [countItems, setCountItems] = useState(0);
+  const [countPage, setCountPage] = useState(0);
 
   // MUI Component Style ~ *******************************************************
   const style = {
@@ -212,13 +216,11 @@ function Home() {
           },
         })
           .then((res) => {
-            window.alert("이미지 전송 성공 아라라");
-            console.log("아아아");
-            console.log("이미지 전송 성공! 아라라");
+            window.alert("이미지 전송 성공");
+
             // console.log(res.data);
-            console.log("test");
+
             targetListGet();
-            console.log("안녕안녕");
           })
           .catch((error) => {
             window.alert(error);
@@ -280,7 +282,15 @@ function Home() {
       .then((res) => {
         console.log(res.data);
         window.alert("타겟 조회 성공");
-        setItems(res.data);
+        setTextItems(res.data.dtoList);
+        setImgItems(res.data.imagePathDtoList);
+        setCountItems(res.data.totalElement);
+        setCountPage(res.data.totalPage);
+
+        console.log(textItems);
+        console.log(imgItems);
+        console.log(countItems);
+        console.log(countPage);
       })
       .catch((error) => {
         window.alert(error);
@@ -315,7 +325,31 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, []);
+  }, [textItems]);
+
+  const titems = [
+    {
+      id: 1,
+      age: 25,
+      name: "김정호",
+      feature: "안녕",
+      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    },
+    {
+      id: 2,
+      age: 26,
+      name: "김동균",
+      feature: "호호",
+      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    },
+    {
+      id: 3,
+      age: 26,
+      name: "김우혁",
+      feature: "하하하하",
+      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    },
+  ];
   // ~ Target 리스트 유무 확인 **********************************************************
 
   return (
@@ -459,6 +493,74 @@ function Home() {
             <div className="content-container">
               <div>
                 <Box sx={{ width: "100%", mb: 5 }}>
+                  <Stack
+                    direction="row"
+                    divider={<Divider orientation="vertical" flexItem />}
+                    spacing={2}
+                  >
+                    {textItems.map((textitem) => (
+                      // <li >
+                      <Item
+                        key={textitem.targetPk}
+                        sx={{
+                          width: 295,
+                          bgcolor: "#86a8e7",
+                          boxShadow: 10,
+                        }}
+                      >
+                        <Card sx={{ maxWidth: 345 }} className="targetImg">
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              height="250"
+                              image={imgItems[0].filePath}
+                              alt="타겟"
+                            />
+                            <CardContent>
+                              <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="div"
+                              >
+                                {textitem.personName}
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                color="text.secondary"
+                                sx={{ mb: 1 }}
+                              >
+                                {textitem.personAge}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                              >
+                                {textitem.characteristic}
+                              </Typography>
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
+                            <Button size="small" color="primary">
+                              타겟 찾기
+                            </Button>
+                            <Button
+                              size="small"
+                              sx={{
+                                color: "rgb(26, 188, 156)",
+                                pl: 19.8,
+                              }}
+                            >
+                              삭제
+                            </Button>
+                          </CardActions>
+                        </Card>
+                      </Item>
+                      // </li>
+                    ))}
+                  </Stack>
+                </Box>
+
+                {/* <Box sx={{ width: "100%", mb: 5 }}>
                   <Stack
                     direction="row"
                     divider={<Divider orientation="vertical" flexItem />}
@@ -779,7 +881,7 @@ function Home() {
                       </Card>
                     </Item>
                   </Stack>
-                </Box>
+                </Box> */}
               </div>
             </div>
           </div>
