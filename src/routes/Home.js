@@ -316,10 +316,7 @@ function Home() {
     })
       .then((res) => {
         console.log(res.data);
-        if (res.data === true) {
-          setTargetExist(true);
-        }
-        setTargetExist(true);
+
         console.log(targetExist);
         window.alert("타겟 리스트 유뮤 확인");
       })
@@ -330,10 +327,8 @@ function Home() {
   };
 
   useEffect(() => {
+    setTargetExist(true);
     targetListExist();
-    if (targetExist === true) {
-      targetListGet();
-    }
   }, [textItems]);
 
   const titems = [
