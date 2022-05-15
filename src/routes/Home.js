@@ -637,7 +637,8 @@ function Home() {
                                   variant="h5"
                                   component="div"
                                 >
-                                  {textItems[index].personName || ""}
+                                  {index}
+                                  {/* {textItems[index].personName || ""} */}
                                   {/* 이름 */}
                                 </Typography>
                                 <Typography
@@ -645,14 +646,16 @@ function Home() {
                                   color="text.secondary"
                                   sx={{ mb: 1 }}
                                 >
-                                  {textItems[index].personAge || ""}
+                                  {index}
+                                  {/* {textItems[index].personAge || ""} */}
                                   {/* 나이 */}
                                 </Typography>
                                 <Typography
                                   variant="body2"
                                   color="text.secondary"
                                 >
-                                  {textItems[index].characteristic || ""}
+                                  {index}
+                                  {/* {textItems[index].characteristic || ""} */}
                                   {/* 특징 */}
                                   {/* {imgItems[index].fileName} */}
                                   {/* {imgItems[0].targetPk} */}
