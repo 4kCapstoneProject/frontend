@@ -617,7 +617,7 @@ function Home() {
                           // <li >
 
                           <Item
-                            // key={textItems[index].targetPk}
+                            key={imgItem.targetPk}
                             sx={{
                               width: 295,
                               bgcolor: "#86a8e7",
