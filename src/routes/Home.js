@@ -631,7 +631,7 @@ function Home() {
                                   height="250"
                                   // image={imgItem.filePath}
                                   // image="../var/lib/docker/volumes/fkproject-volume/_data/fkprojectpicture/wh.jpg"
-                                  image="../imgs/${imgItem.fileName}"
+                                  image="../imgs/whmodel.jpg"
                                   alt="타겟"
                                 />
 
