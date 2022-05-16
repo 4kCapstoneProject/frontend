@@ -419,7 +419,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [testCount, page]);
+  }, [testCount, page, imgItems]);
 
   const titems = [
     {
@@ -613,8 +613,7 @@ function Home() {
                   >
                     {imgItems.map(
                       (imgItem, index) =>
-                        textItems[index] &&
-                        imgItem.fileName(
+                        textItems[index] && (
                           // <li >
 
                           <Item
