@@ -212,7 +212,8 @@ function Home() {
     e.preventDefault();
     const { name, value, type } = e.target;
     const imageFile = e.target.files[0];
-    setImageFiles([...imageFiles, { uploadedFile: imageFile }]);
+    // setImageFiles([...imageFiles, { uploadedFile: imageFile }]);
+    setImageFiles(imageFile);
     // handleTargetChange(name, sanitize(type, value));
 
     setValues((prevValues) => ({
@@ -268,7 +269,8 @@ function Home() {
         // window.alert("텍스트 전송 성공");
 
         const imageFileList = new FormData();
-        imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+        // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+        imageFileList.append("imageFileList", imageFiles);
         imageFileList.append("targetId", res.data);
         imageFileList.append("thumbNum", 1);
 
