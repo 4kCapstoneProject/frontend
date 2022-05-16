@@ -362,7 +362,7 @@ function Home() {
         console.log(res.data);
         // window.alert("타겟 조회 성공");
         setTextItems(res.data.dtoList);
-        setImgItems(res.data.imagePathDtoList);
+
         // setTextItems([...res.data.dtoList]);
         // setImgItems([...res.data.imagePathDtoList]);
         setCountItems(res.data.totalElement);
@@ -375,6 +375,7 @@ function Home() {
 
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
+          setImgItems(res.data.imagePathDtoList);
         }
         console.log(textItems);
         console.log(imgItems);
