@@ -629,8 +629,8 @@ function Home() {
                                 <CardMedia
                                   component="img"
                                   height="250"
-                                  // image={imgItem.filePath}
-                                  image="/var/lib/docker/volumes/fkproject-volume/_data/fkprojectpicture/wh.jpg"
+                                  image={imgItem.filePath}
+                                  // image="/var/lib/docker/volumes/fkproject-volume/_data/fkprojectpicture/wh.jpg"
                                   alt="타겟"
                                 />
                                 <CardContent>
