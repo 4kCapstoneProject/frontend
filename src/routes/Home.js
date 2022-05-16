@@ -612,73 +612,76 @@ function Home() {
                     spacing={2}
                   >
                     {imgItems.map(
-                      (imgItem, index) => (
-                        // <li >
+                      (imgItem, index) =>
+                        textItems[index] && (
+                          // <li >
 
-                        <Item
-                          // key={textItems[index].targetPk}
-                          sx={{
-                            width: 295,
-                            bgcolor: "#86a8e7",
-                            boxShadow: 10,
-                          }}
-                        >
-                          <Card sx={{ maxWidth: 345 }} className="targetImg">
-                            <CardActionArea>
-                              <CardMedia
-                                component="img"
-                                height="250"
-                                image={imgItem.filePath}
-                                alt="타겟"
-                              />
-                              <CardContent>
-                                <Typography
-                                  gutterBottom
-                                  variant="h5"
-                                  component="div"
-                                >
-                                  {/* {index} */}
-                                  {textItems[index].personName}
-                                  {/* 이름 */}
-                                </Typography>
-                                <Typography
-                                  variant="h6"
-                                  color="text.secondary"
-                                  sx={{ mb: 1 }}
-                                >
-                                  {/* {index} */}
-                                  {textItems[index].personAge || ""}
-                                  {/* 나이 */}
-                                </Typography>
-                                <Typography
-                                  variant="body2"
-                                  color="text.secondary"
-                                >
-                                  {/* {index} */}
-                                  {textItems[index].characteristic || ""}
-                                  {/* 특징 */}
-                                  {/* {imgItems[index].fileName} */}
-                                  {/* {imgItems[0].targetPk} */}
-                                </Typography>
-                              </CardContent>
-                            </CardActionArea>
-                            <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                              <Button size="small" color="primary">
-                                타겟 찾기
-                              </Button>
-                              <Button
-                                size="small"
-                                sx={{
-                                  color: "rgb(26, 188, 156)",
-                                  pl: 19.8,
-                                }}
+                          <Item
+                            // key={textItems[index].targetPk}
+                            sx={{
+                              width: 295,
+                              bgcolor: "#86a8e7",
+                              boxShadow: 10,
+                            }}
+                          >
+                            <Card sx={{ maxWidth: 345 }} className="targetImg">
+                              <CardActionArea>
+                                <CardMedia
+                                  component="img"
+                                  height="250"
+                                  image={imgItem.filePath}
+                                  alt="타겟"
+                                />
+                                <CardContent>
+                                  <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="div"
+                                  >
+                                    {/* {index} */}
+                                    {textItems[index].personName}
+                                    {/* 이름 */}
+                                  </Typography>
+                                  <Typography
+                                    variant="h6"
+                                    color="text.secondary"
+                                    sx={{ mb: 1 }}
+                                  >
+                                    {/* {index} */}
+                                    {textItems[index].personAge || ""}
+                                    {/* 나이 */}
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                  >
+                                    {/* {index} */}
+                                    {textItems[index].characteristic || ""}
+                                    {/* 특징 */}
+                                    {/* {imgItems[index].fileName} */}
+                                    {/* {imgItems[0].targetPk} */}
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                              <CardActions
+                                sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                                삭제
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        </Item>
-                      )
+                                <Button size="small" color="primary">
+                                  타겟 찾기
+                                </Button>
+                                <Button
+                                  size="small"
+                                  sx={{
+                                    color: "rgb(26, 188, 156)",
+                                    pl: 19.8,
+                                  }}
+                                >
+                                  삭제
+                                </Button>
+                              </CardActions>
+                            </Card>
+                          </Item>
+                        )
 
                       // </li>
                     )}
