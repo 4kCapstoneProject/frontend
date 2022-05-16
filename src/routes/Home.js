@@ -367,7 +367,7 @@ function Home() {
         // setImgItems([...res.data.imagePathDtoList]);
         setCountItems(res.data.totalElement);
         setCountPage(res.data.totalPage);
-
+        setImgItems(res.data.imagePathDtoList);
         //         setItems((prev)=> ({
         // ...prev,
         // [name]:
@@ -375,7 +375,6 @@ function Home() {
 
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
-          setImgItems(res.data.imagePathDtoList);
         }
         console.log(textItems);
         console.log(imgItems);
@@ -420,7 +419,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [testCount, page, imgItems]);
+  }, [testCount, page]);
 
   const titems = [
     {
