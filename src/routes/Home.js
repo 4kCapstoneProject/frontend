@@ -361,6 +361,12 @@ function Home() {
       .then((res) => {
         console.log(res.data);
         // window.alert("타겟 조회 성공");
+        setTextItems(res.data.dtoList);
+        setImgItems(res.data.imagePathDtoList);
+        // setTextItems([...res.data.dtoList]);
+        // setImgItems([...res.data.imagePathDtoList]);
+        setCountItems(res.data.totalElement);
+        setCountPage(res.data.totalPage);
 
         //         setItems((prev)=> ({
         // ...prev,
@@ -369,12 +375,6 @@ function Home() {
 
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
-          setTextItems(res.data.dtoList);
-          setImgItems(res.data.imagePathDtoList);
-          // setTextItems([...res.data.dtoList]);
-          // setImgItems([...res.data.imagePathDtoList]);
-          setCountItems(res.data.totalElement);
-          setCountPage(res.data.totalPage);
         }
         console.log(textItems);
         console.log(imgItems);
@@ -419,7 +419,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [testCount, page, textItems, imgItems]);
+  }, [testCount, page]);
 
   const titems = [
     {
