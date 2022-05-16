@@ -630,7 +630,8 @@ function Home() {
                                   component="img"
                                   height="250"
                                   // image={imgItem.filePath}
-                                  image="varrr/lib/docker/volumes/fkproject-volume/_data/fkprojectpicture/wh.jpg"
+                                  // image="var/lib/docker/volumes/fkproject-volume/_data/fkprojectpicture/wh.jpg"
+                                  image="/imgs/wh.jpg"
                                   alt="타겟"
                                 />
 
