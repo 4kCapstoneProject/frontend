@@ -613,7 +613,8 @@ function Home() {
                   >
                     {imgItems.map(
                       (imgItem, index) =>
-                        textItems[index] && (
+                        textItems[index] &&
+                        imgItem.fileName(
                           // <li >
 
                           <Item
