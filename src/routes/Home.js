@@ -693,6 +693,12 @@ function Home() {
                                     {/* {imgItems[index].fileName} */}
                                     {/* {imgItems[0].targetPk} */}
                                   </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                  >
+                                    {imgItem.targetPk}
+                                  </Typography>
                                 </CardContent>
                               </CardActionArea>
                               <CardActions
@@ -711,7 +717,7 @@ function Home() {
                                 >
                                   삭제
                                 </Button>
-                                <button onClick={targetDelete}>삭제</button>
+                                {/* <button onClick={targetDelete}>삭제</button> */}
                               </CardActions>
                             </Card>
                           </Item>
