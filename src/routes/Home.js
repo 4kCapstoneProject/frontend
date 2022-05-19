@@ -466,7 +466,7 @@ function Home() {
       },
     })
       .then((res) => {
-        targetListGet();
+        // targetListGet();
       })
       .catch((error) => {
         window.alert(error);
