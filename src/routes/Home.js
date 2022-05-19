@@ -448,6 +448,33 @@ function Home() {
   ];
   // ~ Target 리스트 유무 확인 **********************************************************
 
+  // 타겟 삭제 버튼 ~~~~ **********************************************************
+  const targetDelete = (e) => {
+    e.preventDefault();
+
+    axios({
+      method: "get",
+      url: "http://211.201.72.35:4000/api/target/delete",
+      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      data: {
+        targetPk: 2,
+      },
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        // "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+      },
+    })
+      .then((res) => {
+        targetListGet();
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+  };
+  // ~~~~ 타겟 삭제 버튼 **********************************************************
+
   // 페이지 네이션 ~ *****************************************************************
   const next = () => {
     setPage((currentPage) => Math.min(currentPage + 1, countPage));
@@ -680,6 +707,7 @@ function Home() {
                                     color: "rgb(26, 188, 156)",
                                     pl: 19.8,
                                   }}
+                                  onClick={targetDelete}
                                 >
                                   삭제
                                 </Button>
