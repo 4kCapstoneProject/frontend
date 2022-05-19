@@ -449,7 +449,7 @@ function Home() {
   // ~ Target 리스트 유무 확인 **********************************************************
 
   // 타겟 삭제 버튼 ~~~~ **********************************************************
-  const targetDelete = (e) => {
+  const targetDelete = async (e) => {
     e.preventDefault();
 
     axios({
@@ -466,7 +466,7 @@ function Home() {
       },
     })
       .then((res) => {
-        // targetListGet();
+        targetListGet();
       })
       .catch((error) => {
         window.alert(error);
