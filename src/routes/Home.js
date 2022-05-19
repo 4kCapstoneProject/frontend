@@ -457,7 +457,7 @@ function Home() {
       url: "http://211.201.72.35:4000/api/target/delete",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
-        targetPk: 2,
+        targetId: 2,
       },
       headers: {
         // "Content-Type": "multipart/form-data",
@@ -711,6 +711,7 @@ function Home() {
                                 >
                                   삭제
                                 </Button>
+                                <button onClick={targetDelete}>삭제</button>
                               </CardActions>
                             </Card>
                           </Item>
