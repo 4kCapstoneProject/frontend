@@ -54,17 +54,17 @@
   background-color: white;
 } */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .targetInfo {
   min-height: 100vh;
   position: relative;
   background-color: #313131;
 }
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
 
 .camera {
   position: relative;
@@ -118,7 +118,7 @@ button:hover {
   background-position: 100%;
 } */
 
-canvas {
+/* canvas {
   width: 100%;
   height: auto;
-}
+} */
