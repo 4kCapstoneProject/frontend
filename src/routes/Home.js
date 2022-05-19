@@ -452,12 +452,14 @@ function Home() {
   const targetDelete = async (e) => {
     e.preventDefault();
 
+    const { value } = e.target;
+
     await axios({
       method: "get",
-      url: "http://211.201.72.35:4000/api/target/delete?targetId=" + 2,
+      url: "http://211.201.72.35:4000/api/target/delete?targetId=" + value,
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
-        targetId: 2,
+        targetId: value,
       },
       headers: {
         // "Content-Type": "multipart/form-data",
@@ -713,6 +715,7 @@ function Home() {
                                     color: "rgb(26, 188, 156)",
                                     pl: 19.8,
                                   }}
+                                  value={imgItem.targetPk}
                                   onClick={targetDelete}
                                 >
                                   삭제
