@@ -87,12 +87,14 @@
 }
 
 video {
-  width: 100%;
+  /* width: 100%;
   max-width: 100%;
-  height: auto;
+  height: auto; */
+  width: 1000px;
+  height: 800px;
 }
 
-button {
+/* button {
   position: absolute;
   bottom: 20px;
   left: 20px;
@@ -114,10 +116,9 @@ button {
 
 button:hover {
   background-position: 100%;
-}
+} */
 
 canvas {
-  width: 1000px;
-  height: 800px;
+  width: 100%;
   height: auto;
 }
