@@ -102,14 +102,16 @@ function Targetinfo() {
   const [hasphoto, setHasPhoto] = useState(false);
 
   const getVideo = () => {
+    var constraints = { audio: true, video: { width: 1280, height: 720 } };
+
     navigator.mediaDevices
-      .getUserMedia({
-        video: { width: 1920, height: 1080 },
-      })
-      .then((stream) => {
-        let video = videoRef.current;
-        video.srcObject = stream;
-        video.play();
+      .getUserMedia(constraints)
+      .then(function (mediaStream) {
+        var video = document.querySelector("video");
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = function (e) {
+          video.play();
+        };
       })
       .catch((err) => {
         console.error(err);
