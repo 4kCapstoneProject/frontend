@@ -713,7 +713,7 @@ function Home() {
                                   size="small"
                                   sx={{
                                     color: "rgb(26, 188, 156)",
-                                    pl: 21,
+                                    pl: 19.8,
                                   }}
                                   value={imgItem.targetPk}
                                   onClick={targetDelete}
