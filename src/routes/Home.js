@@ -452,9 +452,9 @@ function Home() {
   const targetDelete = async (e) => {
     e.preventDefault();
 
-    axios({
+    await axios({
       method: "get",
-      url: "http://211.201.72.35:4000/api/target/delete",
+      url: "http://211.201.72.35:4000/api/target/delete?targetId=" + 2,
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         targetId: 2,
