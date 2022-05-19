@@ -1,4 +1,4 @@
-#targetInfo_wrap {
+/* #targetInfo_wrap {
   margin: 0 auto;
   color: orange;
   font-size: 40px;
@@ -18,18 +18,17 @@
   margin: 0 auto;
   margin-top: 30px;
   text-align: center;
-  /* background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); */
+  
 }
 .targetInfo_logo {
   height: 150px;
   width: 150px;
   position: relative;
-  /* right: 420px; */
-  /* right: 120px; */
+ 
 }
 .targetinfoLogoutBtn {
   position: relative;
-  /* left: 390px; */
+ 
   left: 90px;
   bottom: 85px;
 }
@@ -53,4 +52,71 @@
   cursor: pointer;
   color: rgb(26, 188, 156);
   background-color: white;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.targetInfo {
+  min-height: 100vh;
+  position: relative;
+  background-color: #313131;
+}
+
+.camera {
+  position: relative;
+}
+
+.result {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: 0.4;
+}
+
+.result.hasPhoto {
+  left: 0;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+
+  appearance: none;
+  border: none;
+  outline: none;
+
+  padding: 8px 16px;
+  background-image: linear-gradient(to right, #844fff 50%, #ff4f84 50%);
+  background-position: 0%;
+  background-size: 200%;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-position: 100%;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
 }

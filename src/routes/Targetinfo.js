@@ -94,6 +94,7 @@
 // export default Targetinfo;
 
 import React, { useRef, useEffect, useState } from "react";
+import "./Targetinfo.css";
 
 function Targetinfo() {
   const videoRef = useRef(null);
