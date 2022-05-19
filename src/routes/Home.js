@@ -522,7 +522,7 @@ function Home() {
               >
                 <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
                   <DialogTitle className="uploadDialogTitle">
-                    타겟 정보 업로드
+                    타겟 정보업로드
                   </DialogTitle>
                   <DialogContent dividers>
                     <DialogContentText>
