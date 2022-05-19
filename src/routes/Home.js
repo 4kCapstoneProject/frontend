@@ -695,12 +695,12 @@ function Home() {
                                     {/* {imgItems[index].fileName} */}
                                     {/* {imgItems[0].targetPk} */}
                                   </Typography>
-                                  <Typography
+                                  {/* <Typography
                                     variant="body2"
                                     color="text.secondary"
                                   >
                                     {imgItem.targetPk}
-                                  </Typography>
+                                  </Typography> */}
                                 </CardContent>
                               </CardActionArea>
                               <CardActions
