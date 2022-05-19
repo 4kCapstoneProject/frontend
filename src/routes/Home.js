@@ -452,7 +452,7 @@ function Home() {
   const targetDelete = async (e) => {
     e.preventDefault();
 
-    const { value } = e.target;
+    const { value } = e.target; // 삭제버튼에서 미리 value값을 targetPk로 지정해줬음
 
     await axios({
       method: "get",
