@@ -143,7 +143,7 @@ function Targetinfo() {
     getVideo();
   }, [videoRef]);
   return (
-    <div className="App">
+    <div className="targetInfo">
       <div className="camera">
         <video ref={videoRef}></video>
         <button onClick={takePhoto}>SNAP!</button>
