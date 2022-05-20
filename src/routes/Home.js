@@ -656,9 +656,9 @@ function Home() {
                 placeholder="Search..."
                 className="targetSearch"
                 type="search"
+                value={text}
                 onChange={textChange}
                 onKeyPress={enterPress}
-                value={text}
               />
               <a className="searchIcon">
                 <FaSearch className="fa" color="white" />
