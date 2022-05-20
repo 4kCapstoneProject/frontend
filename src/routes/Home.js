@@ -459,7 +459,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [testCount, page]);
+  }, [testCount, page, text]);
 
   const titems = [
     {
