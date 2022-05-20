@@ -109,6 +109,43 @@ function Home() {
   const [testCount, setTestCount] = useState(0);
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
+  const [text, setText] = useState("");
+
+  const textChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const enterPress = (e) => {
+    e.preventDefault();
+
+    if (e.key == "Enter") {
+    }
+  };
+
+  const targetSearch = async (e) => {
+    e.preventDefault();
+
+    await axios({
+      method: "get",
+      url: "http://211.201.72.35:4000/api/target/searchName?searchName=" + text,
+      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+      data: {
+        searchName: text,
+      },
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        // "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+      },
+    })
+      .then((res) => {
+        targetListGet();
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+  };
 
   // const INITIAL_ITEMS = [
   //   {
@@ -618,6 +655,9 @@ function Home() {
                 placeholder="Search..."
                 className="targetSearch"
                 type="search"
+                onChange={textChange}
+                onKeyPress={enterPress}
+                value={text}
               />
               <a className="searchIcon">
                 <FaSearch className="fa" color="white" />
