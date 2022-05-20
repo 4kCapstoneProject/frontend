@@ -116,15 +116,14 @@ function Home() {
   };
 
   const enterPress = (e) => {
-    e.preventDefault();
-
+    // e.preventDefault();
     if (e.key == "Enter") {
       targetSearch();
     }
   };
 
   const targetSearch = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     await axios({
       method: "get",
@@ -655,7 +654,8 @@ function Home() {
               <input
                 placeholder="Search..."
                 className="targetSearch"
-                type="search"
+                // type="search"
+                type="text"
                 value={text}
                 onChange={textChange}
                 onKeyPress={enterPress}
