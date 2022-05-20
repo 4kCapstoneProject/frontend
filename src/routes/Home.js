@@ -116,14 +116,14 @@ function Home() {
   };
 
   const enterPress = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (e.key == "Enter") {
       targetSearch();
     }
   };
 
   const targetSearch = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     await axios({
       method: "get",
@@ -139,6 +139,7 @@ function Home() {
       },
     })
       .then((res) => {
+        console.log(res.data);
         targetListGet();
       })
       .catch((error) => {
