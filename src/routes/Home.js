@@ -654,8 +654,8 @@ function Home() {
               <input
                 placeholder="Search..."
                 className="targetSearch"
-                // type="search"
-                type="text"
+                type="search"
+                // type="text"
                 value={text}
                 onChange={textChange}
                 onKeyPress={enterPress}
