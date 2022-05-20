@@ -119,6 +119,7 @@ function Home() {
     e.preventDefault();
 
     if (e.key == "Enter") {
+      targetSearch();
     }
   };
 
