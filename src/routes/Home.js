@@ -116,14 +116,14 @@ function Home() {
   };
 
   const enterPress = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (e.key == "Enter") {
       targetSearch();
     }
   };
 
   const targetSearch = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     await axios({
       method: "get",
@@ -459,7 +459,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [testCount, page, text]);
+  }, [testCount, page]);
 
   const titems = [
     {
