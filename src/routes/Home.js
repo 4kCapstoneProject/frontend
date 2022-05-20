@@ -272,7 +272,7 @@ function Home() {
         // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
         imageFileList.append("imageFileList", imageFiles);
         imageFileList.append("targetId", res.data);
-        imageFileList.append("thumbNum", 1);
+        imageFileList.append("isUploadFile", 1);
 
         for (let key of imageFileList.keys()) {
           console.log(key);
@@ -347,7 +347,7 @@ function Home() {
     await axios({
       method: "get",
       url:
-        "http://211.201.72.35:4000/api/target/view?method=personAge&page=" +
+        "http://211.201.72.35:4000/api/target/viewTarget?method=personAge&page=" +
         page,
       // url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
 
@@ -394,7 +394,7 @@ function Home() {
   const targetListExist = async () => {
     await axios({
       method: "get",
-      url: "http://211.201.72.35:4000/api/target/exist",
+      url: "http://211.201.72.35:4000/api/target/existData",
       // data: {
 
       // },
@@ -456,7 +456,8 @@ function Home() {
 
     await axios({
       method: "get",
-      url: "http://211.201.72.35:4000/api/target/delete?targetId=" + value,
+      url:
+        "http://211.201.72.35:4000/api/target/deleteTarget?targetId=" + value,
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         targetId: value,
