@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./Streaming.css";
 import logo_black from "./img/logo_black.png";
 import Card from "@mui/material/Card";
@@ -24,6 +24,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 // import SwipeableViews from "react-swipe";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import html2canvas from "html2canvas";
 
 function Streaming() {
   // 영상 옆 타겟 이미지 style
@@ -77,6 +78,62 @@ function Streaming() {
     setActiveStep(step);
   };
   // ~ swipeable views  *******************************************************************
+
+  // 스트리밍 ~~~~~~  ***********************************************************************
+  const videoRef = useRef(null);
+  const photoRef = useRef(null);
+  const [hasphoto, setHasPhoto] = useState(false);
+
+  const getVideo = () => {
+    navigator.mediaDevices
+      .getUserMedia({
+        video: { width: 1920, height: 1080 },
+      })
+      .then((stream) => {
+        let video = videoRef.current;
+        video.srcObject = stream;
+        video.play();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const takePhoto = () => {
+    const width = 414;
+    const height = width / (16 / 9);
+
+    let video = videoRef.current;
+    let photo = photoRef.current;
+
+    photo.width = width;
+    photo.height = height;
+
+    let ctx = photo.getContext("2d");
+    ctx.drawImage(video, 0, 0, width, height);
+    setHasPhoto(true);
+  };
+
+  const takeCapture = () => {
+    html2canvas(document.querySelector(".camera")).then((canvas) => {
+      let myImage = canvas.toDataURL();
+      downloadURI(myImage, "captureImg.png");
+    });
+  };
+
+  const downloadURI = (uri, name) => {
+    let link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+  };
+
+  useEffect(() => {
+    getVideo();
+  }, [videoRef]);
+  // ~ 스트리밍  *******************************************************************
+
   return (
     <div id="streaming_wrap">
       <div id="streaming_header">
@@ -100,7 +157,17 @@ function Streaming() {
         </div>
       </div>
       <div id="streaming_body_wrap">
-        <div id="streaming_contents2">video</div>
+        <div id="streaming_contents2">
+          <div className="camera">
+            <video ref={videoRef}></video>
+          </div>
+          <div className="actionBtnDiv">
+            <button onClick={takeCapture} className="actionBtn ">
+              캡처!
+            </button>
+            <button className="actionBtn">업로드 </button>
+          </div>
+        </div>
 
         <hr className="streaming_hr"></hr>
         <div id="streaming_side">

@@ -140,7 +140,20 @@ function Home() {
     })
       .then((res) => {
         console.log(res.data);
-        targetListGet();
+        setTextItems(res.data.dtoList);
+        setImgItems(res.data.imagePathDtoList);
+        // setCountItems(res.data.totalElement);
+        // setCountPage(res.data.totalPage);
+
+        if (testCount !== res.data.totalElement) {
+          setTestCount(res.data.totalElement);
+        }
+        // console.log(textItems);
+        // console.log(imgItems);
+        // console.log(countItems);
+        // console.log(countPage);
+
+        // setPage(1);
       })
       .catch((error) => {
         window.alert(error);

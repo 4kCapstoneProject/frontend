@@ -60,13 +60,9 @@
   background-color: #313131;
 }
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
+/* -------------------------------------------------------------------- */
 
-.camera {
+/* .camera {
   position: relative;
 }
 
@@ -87,12 +83,12 @@
 }
 
 video {
-  /* width: 100%;
-  max-width: 100%;
-  height: auto; */
+  
   width: 1000px;
   height: 800px;
-}
+} */
+
+/* -------------------------------------------------------------------- */
 
 /* button {
   position: absolute;
