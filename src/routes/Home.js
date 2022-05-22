@@ -635,15 +635,15 @@ function Home() {
                                     variant="h5"
                                     component="div"
                                   >
-                                    {textItems[index].personName} (NO.
-                                    {imgItem.targetPk})
+                                    {textItems[index].personName} (
+                                    {textItems[index].personAge || ""})
                                   </Typography>
                                   <Typography
                                     variant="h6"
                                     color="text.secondary"
                                     sx={{ mb: 1 }}
                                   >
-                                    {textItems[index].personAge || ""}
+                                    (NO.imgItem.targetPk})
                                   </Typography>
                                   <Typography
                                     variant="body2"
