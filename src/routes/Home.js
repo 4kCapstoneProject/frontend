@@ -129,8 +129,8 @@ function Home() {
     await axios({
       method: "get",
       url:
-        "http://211.201.72.35:4000/api/target/searchName?searchName=a" +
-        // text +
+        "http://211.201.72.35:4000/api/target/searchName?searchName=" +
+        text +
         "?method=personAge" +
         "?page=1",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
