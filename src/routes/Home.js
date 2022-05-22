@@ -655,7 +655,7 @@ function Home() {
                                     size="small"
                                     color="primary"
                                     value={imgItem.targetPk}
-                                    onClick={exportPk}
+                                    // onClick={exportPk}
                                   >
                                     타겟 찾기
                                   </Button>
