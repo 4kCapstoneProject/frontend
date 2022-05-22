@@ -25,10 +25,10 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import html2canvas from "html2canvas";
-import { pk } from "./Home";
+import { exPk } from "./Home";
 
 function Streaming() {
-  console.log(pk);
+  console.log(exPk);
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
