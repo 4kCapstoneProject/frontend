@@ -25,8 +25,19 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import html2canvas from "html2canvas";
+import axios from "axios";
+import { getCookie, removeCookie, setCookie } from "../shared/cookie";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
 
 function Streaming() {
+  const [imageFiles, setImageFiles] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -134,6 +145,117 @@ function Streaming() {
   }, [videoRef]);
   // ~ 스트리밍  *******************************************************************
 
+  // 업로드 Dialog ~ *****************************************************************
+  const onLoadImgFile = (e) => {
+    e.preventDefault();
+    const { name, value, type } = e.target;
+    const imageFile = e.target.files[0];
+    // setImageFiles([...imageFiles, { uploadedFile: imageFile }]);
+    setImageFiles(imageFile);
+    // handleTargetChange(name, sanitize(type, value));
+  };
+
+  const INITIAL_VALUES = {
+    imgFile: null,
+    name: "",
+    age: "",
+    feature: "",
+  };
+
+  const [values, setValues] = useState(INITIAL_VALUES);
+
+  const handleTargetSubmit = async (e) => {
+    e.preventDefault();
+
+    let targetInfo = {
+      personName: values.name,
+      personAge: values.age,
+      userId: "oldaim",
+      characteristic: values.feature,
+      targetPk: 1,
+    };
+
+    const targetInfoDto = JSON.stringify(targetInfo);
+
+    await axios({
+      method: "post",
+      url: "http://211.201.72.35:4000/api/target/uploadTargetInfo",
+      data: targetInfoDto,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("텍스트 전송 성공!");
+
+        const imageFileList = new FormData();
+        // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+        imageFileList.append("imageFileList", imageFiles);
+        imageFileList.append("targetId", res.data);
+        imageFileList.append("isUploadFile", 1);
+
+        for (let key of imageFileList.keys()) {
+          console.log(key);
+        }
+        for (let value of imageFileList.values()) {
+          console.log(value);
+        }
+
+        axios({
+          method: "post",
+          url: "http://211.201.72.35:4000/api/target/uploadImage",
+
+          data: imageFileList,
+          headers: {
+            Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+          },
+        })
+          .then((res) => {
+            // targetListGet();
+          })
+          .catch((error) => {
+            window.alert(error);
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+    setOpen(false);
+    setValues(INITIAL_VALUES);
+  };
+
+  function sanitize(type, value) {
+    switch (type) {
+      case "number":
+        return Number(value) || 0;
+
+      default:
+        return value;
+    }
+  }
+  const handleTargetChange = (name, value) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+  const handleTargetInputChange = (e) => {
+    const { name, value, type } = e.target;
+    handleTargetChange(name, sanitize(type, value));
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // ~ 업로드 Dialog *****************************************************************
+
   return (
     <div id="streaming_wrap">
       <div id="streaming_header">
@@ -165,7 +287,83 @@ function Streaming() {
             <button onClick={takeCapture} className="actionBtn ">
               캡처!
             </button>
-            <button className="actionBtn">업로드 </button>
+            <button onClick={handleClickOpen} className="actionBtn">
+              업로드{" "}
+            </button>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              onSubmit={handleTargetSubmit}
+            >
+              <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
+                <DialogTitle className="uploadDialogTitle">
+                  타겟 정보업로드
+                </DialogTitle>
+                <DialogContent dividers>
+                  <DialogContentText>
+                    <Typography className="uploadDialogContent">
+                      찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
+                    </Typography>
+                    <Typography gutterBottom></Typography>
+                    <Typography>특징 예시) 갸름한 얼굴 , 쳐진 눈매</Typography>
+                  </DialogContentText>
+                  <Typography gutterBottom></Typography>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="이름"
+                    type="email"
+                    fullWidth
+                    variant="standard"
+                    name="name"
+                    value={values.name || ""}
+                    onChange={handleTargetInputChange}
+                  />
+                  <TextField
+                    margin="dense"
+                    id="name"
+                    label="나이"
+                    type="email"
+                    fullWidth
+                    variant="standard"
+                    name="age"
+                    value={values.age || ""}
+                    onChange={handleTargetInputChange}
+                  />
+                  <TextField
+                    margin="dense"
+                    id="name"
+                    label="특징"
+                    type="email"
+                    fullWidth
+                    variant="standard"
+                    name="feature"
+                    value={values.feature || ""}
+                    onChange={handleTargetInputChange}
+                  />
+
+                  <label htmlFor="imgFile" className="imgInput">
+                    사진 업로드
+                  </label>
+                  <input
+                    type="file"
+                    id="imgFile"
+                    accept="img/*"
+                    name="imgFile"
+                    onChange={onLoadImgFile}
+                    style={{ display: "none" }}
+                  />
+                </DialogContent>
+
+                <DialogActions>
+                  <Button type="submit" onClick={handleTargetSubmit}>
+                    저장
+                  </Button>
+                  <Button onClick={handleClose}>취소</Button>
+                </DialogActions>
+              </form>
+            </Dialog>
           </div>
         </div>
 
