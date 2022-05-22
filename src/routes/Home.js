@@ -530,7 +530,7 @@ function Home() {
                     </Button> */}
                     {/* <div className="imgInputContainer"> */}
                     <label htmlFor="imgFile" className="imgInput">
-                      업로드
+                      사진 업로드
                     </label>
                     <input
                       type="file"
