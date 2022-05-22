@@ -621,20 +621,20 @@ function Home() {
                                     component="div"
                                   >
                                     {textItems[index].personName} (
-                                    {textItems[index].personAge || ""}살)
+                                    {textItems[index].personAge || ""})
                                   </Typography>
                                   <Typography
                                     variant="h6"
                                     color="text.secondary"
                                     sx={{ mb: 1 }}
                                   >
-                                    NO.{imgItem.targetPk}
+                                    {textItems[index].characteristic || ""}
                                   </Typography>
                                   <Typography
                                     variant="body2"
                                     color="text.secondary"
                                   >
-                                    {textItems[index].characteristic || ""}
+                                    NO.{imgItem.targetPk}
                                   </Typography>
                                 </CardContent>
                               </CardActionArea>
