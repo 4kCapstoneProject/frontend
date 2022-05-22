@@ -90,7 +90,9 @@ function Login({ userAdd }) {
                 value={id}
                 onChange={onEmailHandler}
               />
-              <label htmlFor="username">아이디</label>
+              <label htmlFor="username" className="loginRegisterLabel">
+                아이디
+              </label>
             </div>
             <div className="input-box">
               <input
@@ -100,7 +102,9 @@ function Login({ userAdd }) {
                 value={password}
                 onChange={onPasswordHandler}
               />
-              <label htmlFor="password">비밀번호</label>
+              <label htmlFor="password" className="loginRegisterLabel">
+                비밀번호
+              </label>
             </div>
 
             <div>

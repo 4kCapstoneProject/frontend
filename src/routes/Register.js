@@ -81,7 +81,9 @@ function Register({ userAdd }) {
             value={userId}
             onChange={onNameHandler}
           />
-          <label htmlFor="create_username">아이디</label>
+          <label htmlFor="create_username" className="loginRegisterLabel">
+            아이디
+          </label>
         </div>
         <div className="input-box">
           <input
@@ -91,7 +93,9 @@ function Register({ userAdd }) {
             value={userEmail}
             onChange={onEmailHandler}
           />
-          <label htmlFor="create_useremail">이메일</label>
+          <label htmlFor="create_useremail" className="loginRegisterLabel">
+            이메일
+          </label>
         </div>
         <div className="input-box">
           <input
@@ -101,7 +105,9 @@ function Register({ userAdd }) {
             value={userPassword}
             onChange={onPasswordHandler}
           />
-          <label htmlFor="create_userpassword">비밀번호</label>
+          <label htmlFor="create_userpassword" className="loginRegisterLabel">
+            비밀번호
+          </label>
         </div>
 
         <div className="input-box">
@@ -112,7 +118,9 @@ function Register({ userAdd }) {
             value={confirmPassword}
             onChange={onConfirmPasswordHandler}
           />
-          <label htmlFor="check_password">비밀번호 확인</label>
+          <label htmlFor="check_password" className="loginRegisterLabel">
+            비밀번호 확인
+          </label>
         </div>
         <div className="input-box">
           {/* 버튼? or input? */}

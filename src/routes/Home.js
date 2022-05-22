@@ -528,6 +528,10 @@ function Home() {
                     >
                       사진 업로드
                     </Button> */}
+                    {/* <div className="imgInputContainer"> */}
+                    <label htmlFor="imgFile" className="imgInput">
+                      업로드
+                    </label>
                     <input
                       type="file"
                       id="imgFile"
@@ -538,10 +542,9 @@ function Home() {
                       onChange={onLoadImgFile}
                       style={{ display: "none" }}
                     />
-                    <label htmlFor="imgFile" className="imgInput">
-                      업로드
-                    </label>
+                    {/* </div> */}
                   </DialogContent>
+
                   <DialogActions>
                     <Button
                       type="submit"
