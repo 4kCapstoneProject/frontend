@@ -636,14 +636,14 @@ function Home() {
                                     component="div"
                                   >
                                     {textItems[index].personName} (
-                                    {textItems[index].personAge || ""})
+                                    {textItems[index].personAge || ""}살)
                                   </Typography>
                                   <Typography
                                     variant="h6"
                                     color="text.secondary"
                                     sx={{ mb: 1 }}
                                   >
-                                    (NO.imgItem.targetPk})
+                                    NO.{imgItem.targetPk}
                                   </Typography>
                                   <Typography
                                     variant="body2"
