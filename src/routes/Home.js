@@ -94,7 +94,12 @@ function Home() {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("personAge");
   const [exportTargetPk, setExportTargetPk] = useState(0);
+  const [isStreaming, setIsStreaming] = useState(false);
 
+  const onStreaming = (e) => {
+    e.preventDefault();
+    setIsStreaming(true);
+  };
   // category 변환
   const categoryChange = (e) => {
     if (e.target.value === "age") {
@@ -630,7 +635,8 @@ function Home() {
                                     variant="h5"
                                     component="div"
                                   >
-                                    {textItems[index].personName}
+                                    {textItems[index].personName} (NO.
+                                    {imgItem.targetPk})
                                   </Typography>
                                   <Typography
                                     variant="h6"
@@ -650,16 +656,16 @@ function Home() {
                               <CardActions
                                 sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                                <Link to="/streaming">
-                                  <Button
-                                    size="small"
-                                    color="primary"
-                                    value={imgItem.targetPk}
-                                    // onClick={exportPk}
-                                  >
-                                    타겟 찾기
-                                  </Button>
-                                </Link>
+                                {/* <Link to="/streaming"> */}
+                                <Button
+                                  size="small"
+                                  color="primary"
+                                  value={imgItem.targetPk}
+                                  onClick={onStreaming}
+                                >
+                                  타겟 찾기
+                                </Button>
+                                {/* </Link> */}
                                 <Button
                                   size="small"
                                   sx={{
