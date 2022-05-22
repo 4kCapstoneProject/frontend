@@ -93,6 +93,7 @@ function Home() {
   const [page, setPage] = useState(1);
   const [text, setText] = useState("");
   const [category, setCategory] = useState("personAge");
+  const [exportTargetPk, setExportTargetPk] = useState(0);
 
   // category 변환
   const categoryChange = (e) => {
@@ -649,9 +650,15 @@ function Home() {
                               <CardActions
                                 sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                                <Button size="small" color="primary">
-                                  타겟 찾기
-                                </Button>
+                                <Link to="/streaming">
+                                  <Button
+                                    size="small"
+                                    color="primary"
+                                    value={imgItem.targetPk}
+                                  >
+                                    타겟 찾기
+                                  </Button>
+                                </Link>
                                 <Button
                                   size="small"
                                   sx={{
@@ -672,329 +679,6 @@ function Home() {
                     )}
                   </Stack>
                 </Box>
-
-                {/* <Box sx={{ width: "100%", mb: 5 }}>
-                  <Stack
-                    direction="row"
-                    divider={<Divider orientation="vertical" flexItem />}
-                    spacing={2}
-                  >
-                    <Item
-                      sx={{
-                        width: 295,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              김정호
-                            </Typography>
-                            <Typography
-                              variant="h6"
-                              color="text.secondary"
-                              sx={{ mb: 1 }}
-                            >
-                              25
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              키 173정도
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                          <Button
-                            size="small"
-                            sx={{
-                              color: "rgb(26, 188, 156)",
-                              pl: 19.8,
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 295,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={dk}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              김동균
-                            </Typography>
-                            <Typography
-                              variant="h6"
-                              color="text.secondary"
-                              sx={{ mb: 1 }}
-                            >
-                              44
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              둥근 얼굴
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                          <Button
-                            size="small"
-                            sx={{
-                              color: "rgb(26, 188, 156)",
-                              pl: 19.8,
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 295,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={wh}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              김우혁
-                            </Typography>
-                            <Typography
-                              variant="h6"
-                              color="text.secondary"
-                              sx={{ mb: 1 }}
-                            >
-                              26
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              다리털 없음
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                          <Button
-                            size="small"
-                            sx={{
-                              color: "rgb(26, 188, 156)",
-                              pl: 19.8,
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                  </Stack>
-                </Box>
-                <Box sx={{ width: "100%", mb: 5 }}>
-                  <Stack
-                    direction="row"
-                    divider={<Divider orientation="vertical" flexItem />}
-                    spacing={2}
-                  >
-                    <Item
-                      sx={{
-                        width: 295,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              김정호
-                            </Typography>
-                            <Typography
-                              variant="h6"
-                              color="text.secondary"
-                              sx={{ mb: 1 }}
-                            >
-                              25
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              통통한 체형, 둥근 얼굴
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                          <Button
-                            size="small"
-                            sx={{
-                              color: "rgb(26, 188, 156)",
-                              pl: 19.8,
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 295,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              김정호
-                            </Typography>
-                            <Typography
-                              variant="h6"
-                              color="text.secondary"
-                              sx={{ mb: 1 }}
-                            >
-                              25
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              통통한 체형, 둥근 얼굴
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                          <Button
-                            size="small"
-                            sx={{
-                              color: "rgb(26, 188, 156)",
-                              pl: 19.8,
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                    <Item
-                      sx={{
-                        width: 295,
-                        bgcolor: "#86a8e7",
-                        boxShadow: 10,
-                      }}
-                    >
-                      <Card sx={{ maxWidth: 345 }} className="targetImg">
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={target}
-                            alt="타겟"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              김정호
-                            </Typography>
-                            <Typography
-                              variant="h6"
-                              color="text.secondary"
-                              sx={{ mb: 1 }}
-                            >
-                              25
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              통통한 체형, 둥근 얼굴
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions sx={{ bgcolor: "rgb(236, 240, 241)" }}>
-                          <Button size="small" color="primary">
-                            타겟 찾기
-                          </Button>
-                          <Button
-                            size="small"
-                            sx={{
-                              color: "rgb(26, 188, 156)",
-                              pl: 19.8,
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Item>
-                  </Stack>
-                </Box> */}
               </div>
             </div>
           </div>
@@ -1020,6 +704,7 @@ function Home() {
   );
 }
 
+export let pk = 1;
 export default Home;
 
 //////////////////////////////////////////////////////////////////////////
