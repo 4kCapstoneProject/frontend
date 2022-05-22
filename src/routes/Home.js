@@ -54,24 +54,6 @@ import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { type } from "@testing-library/user-event/dist/type";
 
-const INITIAL_IMGITEMS = [
-  {
-    filePath: "",
-    fileName: "",
-    targetPk: 0,
-  },
-  {
-    filePath: "",
-    fileName: "",
-    targetPk: 0,
-  },
-  {
-    filePath: "",
-    fileName: "",
-    targetPk: 0,
-  },
-];
-
 const INITIAL_TEXTITEMS = [
   {
     targetPk: 0,
@@ -112,6 +94,7 @@ function Home() {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("personAge");
 
+  // category 변환
   const categoryChange = (e) => {
     if (e.target.value === "age") {
       setCategory("personAge");
@@ -121,12 +104,13 @@ function Home() {
       console.log(category);
     }
   };
+
+  // 검색창 ~ **********************************************************************8
   const textChange = (e) => {
     setText(e.target.value);
   };
 
   const enterPress = (e) => {
-    // e.preventDefault();
     if (e.key == "Enter") {
       setPage(1);
       targetSearch();
@@ -134,8 +118,6 @@ function Home() {
   };
 
   const targetSearch = async (e) => {
-    // e.preventDefault();
-
     await axios({
       method: "get",
       url:
@@ -145,15 +127,12 @@ function Home() {
         category +
         "&page=" +
         page,
-      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         searchName: text,
         method: category,
         page: page,
       },
       headers: {
-        // "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
@@ -167,48 +146,13 @@ function Home() {
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
         }
-        // console.log(textItems);
-        // console.log(imgItems);
-        // console.log(countItems);
-        // console.log(countPage);
-
-        // setPage(1);
       })
       .catch((error) => {
         window.alert(error);
         console.log(error);
       });
   };
-
-  // const INITIAL_ITEMS = [
-  //   {
-  //     targetPk: 0,
-  //     userId: "",
-  //     personName: "",
-  //     personAge: 0,
-  //     characteristic: "",
-  //     filePath: "",
-  //     fileName: "",
-  //   },
-  //   {
-  //     targetPk: 0,
-  //     userId: "",
-  //     personName: "",
-  //     personAge: 0,
-  //     characteristic: "",
-  //     filePath: "",
-  //     fileName: "",
-  //   },
-  //   {
-  //     targetPk: 0,
-  //     userId: "",
-  //     personName: "",
-  //     personAge: 0,
-  //     characteristic: "",
-  //     filePath: "",
-  //     fileName: "",
-  //   },
-  // ];
+  // ~~~ 검색창 ************************************************************************8
 
   // MUI Component Style ~ *******************************************************
   const style = {
@@ -314,21 +258,11 @@ function Home() {
 
     const targetInfoDto = JSON.stringify(targetInfo);
 
-    // const targetInfoDto = new FormData();
-    // formData.append("imageFileList", imageFileList[0].uploadedFile);
-    // targetInfoDto.append("personName", values.name);
-    // targetInfoDto.append("personAge", values.age);
-    // targetInfoDto.append("userId", "oldaim");
-    // targetInfoDto.append("characteristic", values.feature);
-    // targetInfoDto.append("targetPk", 1);
-
     await axios({
       method: "post",
       url: "http://211.201.72.35:4000/api/target/uploadTargetInfo",
-      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: targetInfoDto,
       headers: {
-        // "Content-Type": "multipart/form-data",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
@@ -336,7 +270,6 @@ function Home() {
       .then((res) => {
         console.log(res.data);
         console.log("텍스트 전송 성공!");
-        // window.alert("텍스트 전송 성공");
 
         const imageFileList = new FormData();
         // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
@@ -354,26 +287,19 @@ function Home() {
         axios({
           method: "post",
           url: "http://211.201.72.35:4000/api/target/uploadImage",
-          //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
+
           data: imageFileList,
           headers: {
-            // "Content-Type": "multipart/form-data",
-            // "Content-Type": "application/json",
             Authorization: `Bearer ${getCookie("loginAccessToken")}`,
           },
         })
           .then((res) => {
-            // window.alert("이미지 전송 성공");
-
-            // console.log(res.data);
-
             targetListGet();
           })
           .catch((error) => {
             window.alert(error);
             console.log(error);
           });
-        // targetListGet();
       })
       .catch((error) => {
         window.alert(error);
@@ -412,7 +338,6 @@ function Home() {
   // ~ 업로드 Dialog *****************************************************************
 
   // Target 배열 바뀔때마다 렌더링 ~  *****************************************************
-
   const targetListGet = async () => {
     if (text === "") {
       await axios({
@@ -422,39 +347,23 @@ function Home() {
           category +
           "&page=" +
           page,
-        // url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
-
         data: {
           method: category,
           page: page,
         },
         headers: {
           Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-          // "Content-Type": "multipart/form-data",
         },
       })
         .then((res) => {
-          // console.log(res.data);
-          // window.alert("타겟 조회 성공");
           setTextItems(res.data.dtoList);
-
-          // setTextItems([...res.data.dtoList]);
-          // setImgItems([...res.data.imagePathDtoList]);
           setCountItems(res.data.totalElement);
           setCountPage(res.data.totalPage);
           setImgItems(res.data.imagePathDtoList);
-          //         setItems((prev)=> ({
-          // ...prev,
-          // [name]:
-          //         }));
 
           if (testCount !== res.data.totalElement) {
             setTestCount(res.data.totalElement);
           }
-          // console.log(textItems);
-          // console.log(imgItems);
-          // console.log(countItems);
-          // console.log(countPage);
         })
         .catch((error) => {
           window.alert(error);
@@ -463,7 +372,6 @@ function Home() {
       targetSearch();
     }
   };
-
   // ~ Target 배열 바뀔때마다 렌더링 *****************************************************
 
   // Target 리스트 유무 확인 ~~~ *****************************************************
@@ -471,23 +379,16 @@ function Home() {
     await axios({
       method: "get",
       url: "http://211.201.72.35:4000/api/target/existData",
-      // data: {
-
-      // },
       headers: {
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        // "Content-Type": "multipart/form-data",
       },
     })
       .then((res) => {
-        // console.log(res.data);
-
         if (res.data === true) {
           targetListGet();
         } else {
           console.log("흠!");
         }
-        // window.alert("타겟 리스트 유뮤 확인");
       })
       .catch((error) => {
         window.alert(error);
@@ -498,30 +399,6 @@ function Home() {
   useEffect(() => {
     targetListExist();
   }, [testCount, page, category]);
-
-  const titems = [
-    {
-      id: 1,
-      age: 25,
-      name: "김정호",
-      feature: "안녕",
-      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      id: 2,
-      age: 26,
-      name: "김동균",
-      feature: "호호",
-      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      id: 3,
-      age: 26,
-      name: "김우혁",
-      feature: "하하하하",
-      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-  ];
   // ~ Target 리스트 유무 확인 **********************************************************
 
   // 타겟 삭제 버튼 ~~~~ **********************************************************
@@ -534,13 +411,10 @@ function Home() {
       method: "get",
       url:
         "http://211.201.72.35:4000/api/target/deleteTarget?targetId=" + value,
-      //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         targetId: value,
       },
       headers: {
-        // "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
@@ -570,7 +444,6 @@ function Home() {
     setPage(p);
     targetListGet();
   };
-
   // ~ 페이지네이션 **********************************************************
 
   return (
@@ -694,7 +567,6 @@ function Home() {
                 placeholder="Search..."
                 className="targetSearch"
                 type="search"
-                // type="text"
                 value={text}
                 onChange={textChange}
                 onKeyPress={enterPress}
@@ -741,8 +613,6 @@ function Home() {
                                 <CardMedia
                                   component="img"
                                   height="250"
-                                  // image={imgItem.filePath}
-                                  // image="../var/lib/docker/volumes/fkproject-volume/_data/fkprojectpicture/wh.jpg"
                                   image={"../imgs/" + imgItem.fileName}
                                   alt="타겟"
                                 />
@@ -753,35 +623,21 @@ function Home() {
                                     variant="h5"
                                     component="div"
                                   >
-                                    {/* {index} */}
                                     {textItems[index].personName}
-                                    {/* 이름 */}
                                   </Typography>
                                   <Typography
                                     variant="h6"
                                     color="text.secondary"
                                     sx={{ mb: 1 }}
                                   >
-                                    {/* {index} */}
                                     {textItems[index].personAge || ""}
-                                    {/* 나이 */}
                                   </Typography>
                                   <Typography
                                     variant="body2"
                                     color="text.secondary"
                                   >
-                                    {/* {index} */}
                                     {textItems[index].characteristic || ""}
-                                    {/* 특징 */}
-                                    {/* {imgItems[index].fileName} */}
-                                    {/* {imgItems[0].targetPk} */}
                                   </Typography>
-                                  {/* <Typography
-                                    variant="body2"
-                                    color="text.secondary"
-                                  >
-                                    {imgItem.targetPk}
-                                  </Typography> */}
                                 </CardContent>
                               </CardActionArea>
                               <CardActions
@@ -801,7 +657,6 @@ function Home() {
                                 >
                                   삭제
                                 </Button>
-                                {/* <button onClick={targetDelete}>삭제</button> */}
                               </CardActions>
                             </Card>
                           </Item>
