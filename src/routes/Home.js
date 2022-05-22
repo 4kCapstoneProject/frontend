@@ -455,278 +455,7 @@ function Home() {
 
   return (
     <>
-      {() => {
-        if (isLogin) {
-          if (isStreaming) {
-            return <Streaming />;
-          } else {
-            return (
-              <div id="wrap">
-                <div id="header-wrap">
-                  <div className="header-container">
-                    <img src={logo_black} className="logoImg" />
-                  </div>
-                </div>
-
-                <div id="banner-wrap">
-                  <div className="banner-container">
-                    <button
-                      id="upload"
-                      onClick={handleClickOpen}
-                      className="w-btn-outline w-btn-blue-outline"
-                      type="button"
-                    >
-                      타겟 추가
-                    </button>
-
-                    <Dialog
-                      open={open}
-                      onClose={handleClose}
-                      onSubmit={handleTargetSubmit}
-                    >
-                      <form
-                        onSumbit={handleTargetSubmit}
-                        entype="multipart/formdata"
-                      >
-                        <DialogTitle className="uploadDialogTitle">
-                          타겟 정보업로드
-                        </DialogTitle>
-                        <DialogContent dividers>
-                          <DialogContentText>
-                            <Typography className="uploadDialogContent">
-                              찾으려하는 타겟의 이름, 나이, 특징을 간단히
-                              적어주세요!
-                            </Typography>
-                            <Typography gutterBottom></Typography>
-                            <Typography>
-                              특징 예시) 갸름한 얼굴 , 쳐진 눈매
-                            </Typography>
-                          </DialogContentText>
-                          <Typography gutterBottom></Typography>
-                          <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="이름"
-                            type="email"
-                            fullWidth
-                            variant="standard"
-                            name="name"
-                            value={values.name || ""}
-                            onChange={handleTargetInputChange}
-                          />
-                          <TextField
-                            margin="dense"
-                            id="name"
-                            label="나이"
-                            type="email"
-                            fullWidth
-                            variant="standard"
-                            name="age"
-                            value={values.age || ""}
-                            onChange={handleTargetInputChange}
-                          />
-                          <TextField
-                            margin="dense"
-                            id="name"
-                            label="특징"
-                            type="email"
-                            fullWidth
-                            variant="standard"
-                            name="feature"
-                            value={values.feature || ""}
-                            onChange={handleTargetInputChange}
-                          />
-                          {/* <Button
-                          type="file"
-                          sx={{ mt: 5, mb: 2, minWidth: 120 }}
-                          variant="contained"
-                        >
-                          사진 업로드
-                        </Button> */}
-                          {/* <div className="imgInputContainer"> */}
-                          <label htmlFor="imgFile" className="imgInput">
-                            사진 업로드
-                          </label>
-                          <input
-                            type="file"
-                            id="imgFile"
-                            accept="img/*"
-                            name="imgFile"
-                            // value={values.imgFile}
-                            // onChange={handleTargetChange}
-                            onChange={onLoadImgFile}
-                            style={{ display: "none" }}
-                          />
-                          {/* </div> */}
-                        </DialogContent>
-
-                        <DialogActions>
-                          <Button
-                            type="submit"
-                            // onClick={handleClose}
-                            onClick={handleTargetSubmit}
-                          >
-                            저장
-                          </Button>
-                          <Button onClick={handleClose}>취소</Button>
-                        </DialogActions>
-                      </form>
-                    </Dialog>
-
-                    <select className="selectInput" onChange={categoryChange}>
-                      <option selected disabled>
-                        Category
-                      </option>
-                      <option value="age">나이순</option>
-                      <option value="name">이름순</option>
-                    </select>
-                    <div className="select-button">
-                      <div className="small-arrow-down"></div>
-                    </div>
-
-                    <input
-                      placeholder="Search..."
-                      className="targetSearch"
-                      type="search"
-                      value={text}
-                      onChange={textChange}
-                      onKeyPress={enterPress}
-                    />
-                    <a className="searchIcon">
-                      <FaSearch className="fa" color="white" />
-                    </a>
-
-                    <button
-                      id="logout"
-                      onClick={onClickLogout}
-                      className="w-btn-outline w-btn-blue-outline"
-                      type="button"
-                    >
-                      로그 아웃
-                    </button>
-                  </div>
-                </div>
-
-                <div id="content-wrap">
-                  <div className="content-container">
-                    <div>
-                      <Box sx={{ width: "100%", mb: 5 }}>
-                        <Stack
-                          direction="row"
-                          divider={<Divider orientation="vertical" flexItem />}
-                          spacing={2}
-                        >
-                          {imgItems.map(
-                            (imgItem, index) =>
-                              textItems[index] && (
-                                // <li >
-
-                                <Item
-                                  key={imgItem.targetPk}
-                                  sx={{
-                                    width: 295,
-                                    bgcolor: "#86a8e7",
-                                    boxShadow: 10,
-                                  }}
-                                >
-                                  <Card
-                                    sx={{ maxWidth: 345 }}
-                                    className="targetImg"
-                                  >
-                                    <CardActionArea>
-                                      <CardMedia
-                                        component="img"
-                                        height="250"
-                                        image={"../imgs/" + imgItem.fileName}
-                                        alt="타겟"
-                                      />
-
-                                      <CardContent>
-                                        <Typography
-                                          gutterBottom
-                                          variant="h5"
-                                          component="div"
-                                        >
-                                          {textItems[index].personName} (
-                                          {textItems[index].personAge || ""}
-                                          살)
-                                        </Typography>
-                                        <Typography
-                                          variant="h6"
-                                          color="text.secondary"
-                                          sx={{ mb: 1 }}
-                                        >
-                                          NO.{imgItem.targetPk}
-                                        </Typography>
-                                        <Typography
-                                          variant="body2"
-                                          color="text.secondary"
-                                        >
-                                          {textItems[index].characteristic ||
-                                            ""}
-                                        </Typography>
-                                      </CardContent>
-                                    </CardActionArea>
-                                    <CardActions
-                                      sx={{ bgcolor: "rgb(236, 240, 241)" }}
-                                    >
-                                      {/* <Link to="/streaming"> */}
-                                      <Button
-                                        size="small"
-                                        color="primary"
-                                        value={imgItem.targetPk}
-                                        onClick={onStreaming}
-                                      >
-                                        타겟 찾기
-                                      </Button>
-                                      {/* </Link> */}
-                                      <Button
-                                        size="small"
-                                        sx={{
-                                          color: "rgb(26, 188, 156)",
-                                          pl: 19.8,
-                                        }}
-                                        value={imgItem.targetPk}
-                                        onClick={targetDelete}
-                                      >
-                                        삭제
-                                      </Button>
-                                    </CardActions>
-                                  </Card>
-                                </Item>
-                              )
-
-                            // </li>
-                          )}
-                        </Stack>
-                      </Box>
-                    </div>
-                  </div>
-                </div>
-                <div id="footer-wrap">
-                  <div className="footer-container">
-                    <Pagination
-                      className="pagination"
-                      color="primary"
-                      count={countPage}
-                      size="large"
-                      page={page}
-                      variant="outlined"
-                      shape="rounded"
-                      onChange={handlePageChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        } else {
-          <Login />;
-        }
-      }}
-
-      {/* {isLogin ? (
+      {isLogin ? (
         <div id="wrap">
           <div id="header-wrap">
             <div className="header-container">
@@ -799,7 +528,7 @@ function Home() {
                       value={values.feature || ""}
                       onChange={handleTargetInputChange}
                     />
-                   
+
                     <label htmlFor="imgFile" className="imgInput">
                       사진 업로드
                     </label>
@@ -808,19 +537,13 @@ function Home() {
                       id="imgFile"
                       accept="img/*"
                       name="imgFile"
-                
                       onChange={onLoadImgFile}
                       style={{ display: "none" }}
                     />
-                   
                   </DialogContent>
 
                   <DialogActions>
-                    <Button
-                      type="submit"
-                     
-                      onClick={handleTargetSubmit}
-                    >
+                    <Button type="submit" onClick={handleTargetSubmit}>
                       저장
                     </Button>
                     <Button onClick={handleClose}>취소</Button>
@@ -874,8 +597,6 @@ function Home() {
                     {imgItems.map(
                       (imgItem, index) =>
                         textItems[index] && (
-                         
-
                           <Item
                             key={imgItem.targetPk}
                             sx={{
@@ -920,7 +641,6 @@ function Home() {
                               <CardActions
                                 sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                               
                                 <Button
                                   size="small"
                                   color="primary"
@@ -929,7 +649,7 @@ function Home() {
                                 >
                                   타겟 찾기
                                 </Button>
-                                
+
                                 <Button
                                   size="small"
                                   sx={{
@@ -945,8 +665,6 @@ function Home() {
                             </Card>
                           </Item>
                         )
-
-                      
                     )}
                   </Stack>
                 </Box>
@@ -970,7 +688,7 @@ function Home() {
         </div>
       ) : (
         <Login />
-      )} */}
+      )}
     </>
   );
 }
