@@ -112,6 +112,15 @@ function Home() {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("personAge");
 
+  const categoryChange = (e) => {
+    if (e.target.value === "age") {
+      setCategory("personAge");
+      console.log(category);
+    } else if (e.target.value === "name") {
+      setCategory("personName");
+      console.log(category);
+    }
+  };
   const textChange = (e) => {
     setText(e.target.value);
   };
@@ -667,12 +676,12 @@ function Home() {
                 </form>
               </Dialog>
 
-              <select className="selectInput">
+              <select className="selectInput" onChange={categoryChange}>
                 <option selected disabled>
                   Category
                 </option>
-                <option>나이순</option>
-                <option>이름순</option>
+                <option value="age">나이순</option>
+                <option value="name">이름순</option>
               </select>
               <div className="select-button">
                 <div className="small-arrow-down"></div>
