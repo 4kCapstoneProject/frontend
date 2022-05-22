@@ -141,13 +141,14 @@ function Home() {
       url:
         "http://211.201.72.35:4000/api/target/searchName?searchName=" +
         text +
-        "&method=personAge" +
+        "&method=" +
+        category +
         "&page=" +
         page,
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         searchName: text,
-        method: "personAge",
+        method: category,
         page: page,
       },
       headers: {
@@ -417,12 +418,14 @@ function Home() {
       await axios({
         method: "get",
         url:
-          "http://211.201.72.35:4000/api/target/viewTarget?method=personAge&page=" +
+          "http://211.201.72.35:4000/api/target/viewTarget?method=" +
+          category +
+          "&page=" +
           page,
         // url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
 
         data: {
-          method: "personAge",
+          method: category,
           page: page,
         },
         headers: {
@@ -494,7 +497,7 @@ function Home() {
 
   useEffect(() => {
     targetListExist();
-  }, [testCount, page]);
+  }, [testCount, page, category]);
 
   const titems = [
     {
