@@ -536,9 +536,11 @@ function Home() {
                       // value={values.imgFile}
                       // onChange={handleTargetChange}
                       onChange={onLoadImgFile}
-                      className="imgInput"
+                      style={{ display: "none" }}
                     />
-                    <label htmlFor="imgFile"></label>
+                    <label htmlFor="imgFile" className="imgInput">
+                      업로드
+                    </label>
                   </DialogContent>
                   <DialogActions>
                     <Button

@@ -178,7 +178,7 @@ input[type="search"] {
   text-transform: capitalize;
 }
 
-input[type="file"] {
+.imgInput {
   text-align: center;
 
   margin: 10px 0px;
@@ -192,7 +192,7 @@ input[type="file"] {
   height: 35px;
   font-size: 12pt;
 }
-input[type="file"]:hover {
+.imgInput:hover {
   background: #5c7cfa;
 }
 
