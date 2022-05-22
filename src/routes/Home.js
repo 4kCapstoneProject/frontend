@@ -110,6 +110,7 @@ function Home() {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [text, setText] = useState("");
+  const [category, setCategory] = useState("personAge");
 
   const textChange = (e) => {
     setText(e.target.value);
@@ -127,7 +128,11 @@ function Home() {
 
     await axios({
       method: "get",
-      url: "http://211.201.72.35:4000/api/target/searchName?searchName=" + text,
+      url:
+        "http://211.201.72.35:4000/api/target/searchName?searchName=" +
+        text +
+        "?method=personAge" +
+        "?page=1",
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         searchName: text,
