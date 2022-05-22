@@ -450,9 +450,11 @@ function Home() {
   // ~ 페이지네이션 **********************************************************
 
   const exportPk = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setExportTargetPk(e.target.value);
+    console.log(exportTargetPk);
     exPk = exportTargetPk;
+    console.log(exPk);
   };
 
   return (
