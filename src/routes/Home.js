@@ -149,11 +149,12 @@ function Home() {
         console.log(res.data);
         setTextItems(res.data.dtoList);
         setImgItems(res.data.imagePathDtoList);
-        // setCountItems(res.data.totalElement);
-        // setCountPage(res.data.totalPage);
+        setCountItems(res.data.totalElement);
+        setCountPage(res.data.totalPage);
 
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
+          setPage(1);
         }
         // console.log(textItems);
         // console.log(imgItems);
