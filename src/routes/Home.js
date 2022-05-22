@@ -131,6 +131,8 @@ function Home() {
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         searchName: text,
+        method: "personAge",
+        page: 1,
       },
       headers: {
         // "Content-Type": "multipart/form-data",
