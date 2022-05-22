@@ -119,6 +119,7 @@ function Home() {
   const enterPress = (e) => {
     // e.preventDefault();
     if (e.key == "Enter") {
+      setPage(1);
       targetSearch();
     }
   };
@@ -132,12 +133,13 @@ function Home() {
         "http://211.201.72.35:4000/api/target/searchName?searchName=" +
         text +
         "&method=personAge" +
-        "&page=1",
+        "&page=" +
+        page,
       //   url: "https://db775448-41ed-4080-94f9-f461abfe0d4a.mock.pstmn.io/test",
       data: {
         searchName: text,
         method: "personAge",
-        page: 1,
+        page: page,
       },
       headers: {
         // "Content-Type": "multipart/form-data",
@@ -154,7 +156,6 @@ function Home() {
 
         if (testCount !== res.data.totalElement) {
           setTestCount(res.data.totalElement);
-          setPage(1);
         }
         // console.log(textItems);
         // console.log(imgItems);
@@ -403,48 +404,52 @@ function Home() {
   // Target 배열 바뀔때마다 렌더링 ~  *****************************************************
 
   const targetListGet = async () => {
-    await axios({
-      method: "get",
-      url:
-        "http://211.201.72.35:4000/api/target/viewTarget?method=personAge&page=" +
-        page,
-      // url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
+    if (text === "") {
+      await axios({
+        method: "get",
+        url:
+          "http://211.201.72.35:4000/api/target/viewTarget?method=personAge&page=" +
+          page,
+        // url: "http://211.201.72.35:4000/api/target/view?method=personAge&page=1",
 
-      data: {
-        method: "personAge",
-        page: page,
-      },
-      headers: {
-        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        // "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((res) => {
-        console.log(res.data);
-        // window.alert("타겟 조회 성공");
-        setTextItems(res.data.dtoList);
-
-        // setTextItems([...res.data.dtoList]);
-        // setImgItems([...res.data.imagePathDtoList]);
-        setCountItems(res.data.totalElement);
-        setCountPage(res.data.totalPage);
-        setImgItems(res.data.imagePathDtoList);
-        //         setItems((prev)=> ({
-        // ...prev,
-        // [name]:
-        //         }));
-
-        if (testCount !== res.data.totalElement) {
-          setTestCount(res.data.totalElement);
-        }
-        console.log(textItems);
-        console.log(imgItems);
-        console.log(countItems);
-        console.log(countPage);
+        data: {
+          method: "personAge",
+          page: page,
+        },
+        headers: {
+          Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+          // "Content-Type": "multipart/form-data",
+        },
       })
-      .catch((error) => {
-        window.alert(error);
-      });
+        .then((res) => {
+          console.log(res.data);
+          // window.alert("타겟 조회 성공");
+          setTextItems(res.data.dtoList);
+
+          // setTextItems([...res.data.dtoList]);
+          // setImgItems([...res.data.imagePathDtoList]);
+          setCountItems(res.data.totalElement);
+          setCountPage(res.data.totalPage);
+          setImgItems(res.data.imagePathDtoList);
+          //         setItems((prev)=> ({
+          // ...prev,
+          // [name]:
+          //         }));
+
+          if (testCount !== res.data.totalElement) {
+            setTestCount(res.data.totalElement);
+          }
+          // console.log(textItems);
+          // console.log(imgItems);
+          // console.log(countItems);
+          // console.log(countPage);
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
+    } else {
+      targetSearch();
+    }
   };
 
   // ~ Target 배열 바뀔때마다 렌더링 *****************************************************
