@@ -646,7 +646,7 @@ function Home() {
                                     size="small"
                                     color="primary"
                                     value={imgItem.targetPk}
-                                    onClick={onStreaming}
+                                    // onClick={onStreaming}
                                   >
                                     타겟 찾기
                                   </Button>
