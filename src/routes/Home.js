@@ -641,15 +641,16 @@ function Home() {
                               <CardActions
                                 sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                                <Button
-                                  size="small"
-                                  color="primary"
-                                  value={imgItem.targetPk}
-                                  onClick={onStreaming}
-                                >
-                                  타겟 찾기
-                                </Button>
-
+                                <Link to="/streaming">
+                                  <Button
+                                    size="small"
+                                    color="primary"
+                                    value={imgItem.targetPk}
+                                    onClick={onStreaming}
+                                  >
+                                    타겟 찾기
+                                  </Button>
+                                </Link>
                                 <Button
                                   size="small"
                                   sx={{
