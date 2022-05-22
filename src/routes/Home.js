@@ -54,8 +54,6 @@ import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { type } from "@testing-library/user-event/dist/type";
 
-let exPk = 0;
-
 const INITIAL_TEXTITEMS = [
   {
     targetPk: 0,
@@ -449,14 +447,6 @@ function Home() {
   };
   // ~ 페이지네이션 **********************************************************
 
-  const exportPk = (e) => {
-    // e.preventDefault();
-    setExportTargetPk(e.target.value);
-    console.log(exportTargetPk);
-    exPk = exportTargetPk;
-    console.log(exPk);
-  };
-
   return (
     <>
       {isLogin ? (
@@ -715,7 +705,6 @@ function Home() {
   );
 }
 
-export { exPk, Home };
 export default Home;
 
 //////////////////////////////////////////////////////////////////////////
