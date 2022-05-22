@@ -177,6 +177,25 @@ input[type="search"] {
 
   text-transform: capitalize;
 }
+
+input[type="file"] {
+  text-align: center;
+
+  margin: 10px 0px;
+  margin-left: 20px;
+  background: #91a7ff;
+  color: #fff;
+
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  height: 35px;
+  font-size: 12pt;
+}
+input[type="file"]:hover {
+  background: #5c7cfa;
+}
+
 #upload {
   /* color: #0097e6;
   background-color: white; */

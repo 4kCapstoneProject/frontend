@@ -536,6 +536,7 @@ function Home() {
                       // value={values.imgFile}
                       // onChange={handleTargetChange}
                       onChange={onLoadImgFile}
+                      className="imgInput"
                     />
                     <label htmlFor="imgFile"></label>
                   </DialogContent>
