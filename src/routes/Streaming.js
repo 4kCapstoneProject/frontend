@@ -34,10 +34,34 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 
+const images = [
+  {
+    label: "Capture 1",
+    imgPath: wh_model,
+    // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+  },
+  {
+    label: "Bird",
+    imgPath:
+      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
+  },
+  {
+    label: "Bali, Indonesia",
+    imgPath:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80",
+  },
+  {
+    label: "Goč, Serbia",
+    imgPath:
+      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
+  },
+];
+
 function Streaming() {
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
+  const [modelTargetInfo, setModelTargetInfo] = useState(images);
 
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
@@ -51,32 +75,10 @@ function Streaming() {
   // swipeable views ~ *******************************************************************
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-  const images = [
-    {
-      label: "Capture 1",
-      imgPath: wh_model,
-      // "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      label: "Bird",
-      imgPath:
-        "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      label: "Bali, Indonesia",
-      imgPath:
-        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80",
-    },
-    {
-      label: "Goč, Serbia",
-      imgPath:
-        "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-  ];
-
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  // const maxSteps = images.length;
+  const maxSteps = modelTargetInfo.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -387,7 +389,7 @@ function Streaming() {
                 color: "white",
               }}
             >
-              <Typography>{images[activeStep].label}</Typography>
+              <Typography>{modelTargetInfo[activeStep].label}</Typography>
             </Paper>
             <AutoPlaySwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -395,7 +397,7 @@ function Streaming() {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {images.map((step, index) => (
+              {modelTargetInfo.map((step, index) => (
                 <div key={step.label}>
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
