@@ -312,7 +312,7 @@ function Streaming() {
                     type="email"
                     fullWidth
                     variant="standard"
-                    name="name"
+                    name="targetPk"
                     value={values.targetPk || ""}
                     onChange={handleTargetInputChange}
                   />
