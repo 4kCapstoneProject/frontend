@@ -57,12 +57,30 @@ const images = [
   },
 ];
 
+const INITIAL_IMGS = [
+  {
+    // imgPath: wh_model,
+    imgPath:
+      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+  },
+];
+
+const testImg = [
+  {
+    imgPath: wh_model,
+  },
+];
 function Streaming() {
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
-  const [modelTargetInfo, setModelTargetInfo] = useState(images);
+  const [modelTargetInfo, setModelTargetInfo] = useState(INITIAL_IMGS);
 
+  const captureTransform = (e) => {
+    e.preventDefault();
+
+    setModelTargetInfo(testImg);
+  };
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -159,7 +177,7 @@ function Streaming() {
   };
 
   const INITIAL_VALUES = {
-    targetPk: 0,
+    targetPk: targetPk,
   };
 
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -167,54 +185,30 @@ function Streaming() {
   const handleTargetSubmit = async (e) => {
     e.preventDefault();
 
-    let targetInfo = {
-      targetPk: targetPk,
-    };
+    const imageFileList = new FormData();
+    // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
+    imageFileList.append("imageFileList", imageFiles);
+    imageFileList.append("targetId", targetPk);
+    imageFileList.append("isUploadFile", 0);
 
-    const targetInfoDto = JSON.stringify(targetInfo);
+    for (let key of imageFileList.keys()) {
+      console.log(key);
+    }
+    for (let value of imageFileList.values()) {
+      console.log(value);
+    }
 
-    await axios({
+    axios({
       method: "post",
-      url: "http://211.201.72.35:4000/api/target/uploadTargetInfo",
-      data: targetInfoDto,
+      url: "http://211.201.72.35:4000/api/target/uploadCaptureImage",
+
+      data: imageFileList,
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("loginAccessToken")}`,
       },
     })
       .then((res) => {
-        console.log(res.data);
-        console.log("PK 전송!");
-
-        const imageFileList = new FormData();
-        // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
-        imageFileList.append("imageFileList", imageFiles);
-        imageFileList.append("targetId", res.data);
-        imageFileList.append("isUploadFile", 0);
-
-        for (let key of imageFileList.keys()) {
-          console.log(key);
-        }
-        for (let value of imageFileList.values()) {
-          console.log(value);
-        }
-
-        axios({
-          method: "post",
-          url: "http://211.201.72.35:4000/api/target/uploadImage",
-
-          data: imageFileList,
-          headers: {
-            Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-          },
-        })
-          .then((res) => {
-            // targetListGet();
-          })
-          .catch((error) => {
-            window.alert(error);
-            console.log(error);
-          });
+        // targetListGet();
       })
       .catch((error) => {
         window.alert(error);
@@ -234,6 +228,7 @@ function Streaming() {
     }
   }
   const handleTargetChange = (name, value) => {
+    setTargetPk(value);
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -286,7 +281,9 @@ function Streaming() {
             <button onClick={handleClickOpen} className="actionBtn">
               업로드{" "}
             </button>
-            <button className="actionBtn">전송</button>
+            <button onClick={captureTransform} className="actionBtn">
+              전송
+            </button>
             <Dialog
               open={open}
               onClose={handleClose}
@@ -389,7 +386,8 @@ function Streaming() {
                 color: "white",
               }}
             >
-              <Typography>{modelTargetInfo[activeStep].label}</Typography>
+              {/* <Typography>{modelTargetInfo[activeStep].label}</Typography> */}
+              <Typography>복원된 사진</Typography>
             </Paper>
             <AutoPlaySwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
