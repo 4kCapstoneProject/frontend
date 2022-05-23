@@ -79,7 +79,7 @@ const INITIAL_TEXTITEMS = [
   },
 ];
 
-function Home({ users, userAdd }) {
+function Home({ users, addPk }) {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
   const [imageFiles, setImageFiles] = useState([]);
@@ -260,7 +260,7 @@ function Home({ users, userAdd }) {
   const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleTargetSubmit = async (e) => {
-    userAdd(exportTargetPk);
+    addPk(exportTargetPk);
 
     e.preventDefault();
 
@@ -711,7 +711,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addPk: (pk) => dispatch(userAdd(pk)),
+    addPk: (exportTargetPk) => dispatch(userAdd(exportTargetPk)),
   };
 }
 
