@@ -99,6 +99,7 @@ function Home({ users, addPk }) {
 
   const savePk = (e) => {
     // e.preventDefault();
+    console.log(e.target.value);
     setExportTargetPk(e.target.value);
     addPk(exportTargetPk);
     console.log(users);
