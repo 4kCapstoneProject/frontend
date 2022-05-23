@@ -77,7 +77,7 @@ const testImg = [
   },
 ];
 function Streaming({ users, addPk }) {
-  console.log(users.pk);
+  console.log(users);
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);

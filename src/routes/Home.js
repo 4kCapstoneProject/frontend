@@ -101,7 +101,7 @@ function Home({ users, addPk }) {
     // e.preventDefault();
     console.log(e.target.value);
     setExportTargetPk(e.target.value);
-    addPk(exportTargetPk);
+    addPk(e.target.value);
     console.log(users);
   };
   const onStreaming = (e) => {
