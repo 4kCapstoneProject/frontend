@@ -99,10 +99,9 @@ function Home({ users, addPk }) {
 
   const savePk = (e) => {
     // e.preventDefault();
-
-    setCookie("targetPk", e.target.value, {
-      path: "/streaming",
-    });
+    setExportTargetPk(e.target.value);
+    addPk(exportTargetPk);
+    console.log(users);
   };
   const onStreaming = (e) => {
     e.preventDefault();
@@ -260,10 +259,10 @@ function Home({ users, addPk }) {
   const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleTargetSubmit = async (e) => {
-    addPk(exportTargetPk);
-    addPk(6);
-    console.log(users);
-    console.log(users.pk);
+    // addPk(exportTargetPk);
+    // addPk(6);
+    // console.log(users);
+    // console.log(users.pk);
 
     e.preventDefault();
 
@@ -659,7 +658,7 @@ function Home({ users, addPk }) {
                                     color="primary"
                                     value={imgItem.targetPk}
                                     // onClick={onStreaming}
-                                    // onClick={savePk}
+                                    onClick={savePk}
                                   >
                                     타겟 찾기
                                   </Button>
