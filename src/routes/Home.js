@@ -261,6 +261,9 @@ function Home({ users, addPk }) {
 
   const handleTargetSubmit = async (e) => {
     addPk(exportTargetPk);
+    addPk(6);
+    console.log(users);
+    console.log(users.pk);
 
     e.preventDefault();
 
