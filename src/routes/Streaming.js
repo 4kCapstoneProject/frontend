@@ -168,7 +168,7 @@ function Streaming() {
     e.preventDefault();
 
     let targetInfo = {
-      targetPk: 1,
+      targetPk: targetPk,
     };
 
     const targetInfoDto = JSON.stringify(targetInfo);
@@ -184,13 +184,13 @@ function Streaming() {
     })
       .then((res) => {
         console.log(res.data);
-        console.log("텍스트 전송 성공!");
+        console.log("PK 전송!");
 
         const imageFileList = new FormData();
         // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
         imageFileList.append("imageFileList", imageFiles);
         imageFileList.append("targetId", res.data);
-        imageFileList.append("isUploadFile", 1);
+        imageFileList.append("isUploadFile", 0);
 
         for (let key of imageFileList.keys()) {
           console.log(key);
@@ -313,7 +313,7 @@ function Streaming() {
                     fullWidth
                     variant="standard"
                     name="name"
-                    value={values.name || ""}
+                    value={values.targetPk || ""}
                     onChange={handleTargetInputChange}
                   />
                   <Typography gutterBottom></Typography>
