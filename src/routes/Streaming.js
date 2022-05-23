@@ -77,11 +77,14 @@ const testImg = [
   },
 ];
 function Streaming({ users, addPk }) {
-  console.log(users);
+  console.log(users[0].pk);
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
   const [modelTargetInfo, setModelTargetInfo] = useState(INITIAL_IMGS);
+  const [getPk, setGetPk] = useState(users[0].pk);
+
+  console.log(getPk);
 
   const captureTransform = (e) => {
     e.preventDefault();
@@ -363,7 +366,7 @@ function Streaming({ users, addPk }) {
                     김우혁 (26)
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    다리털 없음
+                    {/* 다리털 없음 */}
                   </Typography>
                 </CardContent>
               </CardActionArea>
