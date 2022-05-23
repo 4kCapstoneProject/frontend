@@ -5,14 +5,10 @@ const users = createSlice({
   initialState: [],
   reducers: {
     userAdd: (state, action) => {
-      // action에 부가적으로 필요한 값은 payload에 담아짐 (여기선 사용자가 input으로 타이핑한 text값을 받게 됨)
-      state.push({
-        // id: action.payload.userId,
-        // password: action.payload.userPw,
-        // auth: action.payload.auth,
-        // email: action.payload.email,
-        pk: action.payload,
-      });
+      // state.push({
+      //   pk: action.payload,
+      // });
+      return [{ pk: action.payload }];
     },
 
     // remove: (state, action) =>
