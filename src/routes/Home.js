@@ -79,7 +79,7 @@ const INITIAL_TEXTITEMS = [
   },
 ];
 
-function Home() {
+function Home({ users, userAdd }) {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
   const [imageFiles, setImageFiles] = useState([]);
@@ -94,7 +94,7 @@ function Home() {
   const [page, setPage] = useState(1);
   const [text, setText] = useState("");
   const [category, setCategory] = useState("personAge");
-  const [exportTargetPk, setExportTargetPk] = useState(0);
+  const [exportTargetPk, setExportTargetPk] = useState(5);
   const [isStreaming, setIsStreaming] = useState(false);
 
   const savePk = (e) => {
@@ -260,6 +260,8 @@ function Home() {
   const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleTargetSubmit = async (e) => {
+    userAdd(exportTargetPk);
+
     e.preventDefault();
 
     let targetInfo = {
@@ -702,7 +704,18 @@ function Home() {
   );
 }
 
-export default Home;
+// export default Home;
+function mapStateToProps(state) {
+  return { users: state };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addPk: (pk) => dispatch(userAdd(pk)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 //////////////////////////////////////////////////////////////////////////
 // const handleChange = (event) => {

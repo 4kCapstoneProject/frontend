@@ -33,6 +33,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { userAdd } from "../redux/user";
+import { connect } from "react-redux"; // connect함수 쓰기위해 import
 
 const images = [
   {
@@ -74,7 +76,8 @@ const testImg = [
       "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
   },
 ];
-function Streaming() {
+function Streaming({ users, addPk }) {
+  console.log(users.pk);
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
@@ -461,4 +464,16 @@ function Streaming() {
   );
 }
 
-export default Streaming;
+function mapStateToProps(state) {
+  return { users: state };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addPk: (pk) => dispatch(userAdd(pk)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Streaming);
+
+// export default Streaming;
