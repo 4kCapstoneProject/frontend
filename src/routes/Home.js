@@ -508,7 +508,7 @@ function Home({ users, addPk }) {
                       margin="dense"
                       id="name"
                       label="이름"
-                      type="email"
+                      type="text"
                       fullWidth
                       variant="standard"
                       name="name"
@@ -519,7 +519,7 @@ function Home({ users, addPk }) {
                       margin="dense"
                       id="name"
                       label="나이"
-                      type="email"
+                      type="text"
                       fullWidth
                       variant="standard"
                       name="age"
@@ -530,7 +530,7 @@ function Home({ users, addPk }) {
                       margin="dense"
                       id="name"
                       label="특징"
-                      type="email"
+                      type="text"
                       fullWidth
                       variant="standard"
                       name="feature"
