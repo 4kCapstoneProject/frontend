@@ -69,6 +69,10 @@ const testImg = [
   {
     imgPath: wh_model,
   },
+  {
+    imgPath:
+      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+  },
 ];
 function Streaming() {
   const [imageFiles, setImageFiles] = useState([]);

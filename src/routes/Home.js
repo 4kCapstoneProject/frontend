@@ -98,10 +98,10 @@ function Home() {
   const [isStreaming, setIsStreaming] = useState(false);
 
   const savePk = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     setCookie("targetPk", e.target.value, {
-      path: "/",
+      path: "/streaming",
     });
   };
   const onStreaming = (e) => {
@@ -654,7 +654,7 @@ function Home() {
                                     color="primary"
                                     value={imgItem.targetPk}
                                     // onClick={onStreaming}
-                                    onClick={savePk}
+                                    // onClick={savePk}
                                   >
                                     타겟 찾기
                                   </Button>
