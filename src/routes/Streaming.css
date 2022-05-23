@@ -157,7 +157,8 @@
   /* color: rgb(26, 188, 156);
   background-color: white; */
 }
-.actionBtn:first-child {
+.actionBtn:first-child,
+.actionBtn:nth-child(2) {
   margin-right: 35px;
 }
 

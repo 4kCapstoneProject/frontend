@@ -37,6 +37,7 @@ import TextField from "@mui/material/TextField";
 function Streaming() {
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [targetPk, setTargetPk] = useState(0);
 
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
@@ -156,10 +157,7 @@ function Streaming() {
   };
 
   const INITIAL_VALUES = {
-    imgFile: null,
-    name: "",
-    age: "",
-    feature: "",
+    targetPk: 0,
   };
 
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -168,10 +166,6 @@ function Streaming() {
     e.preventDefault();
 
     let targetInfo = {
-      personName: values.name,
-      personAge: values.age,
-      userId: "oldaim",
-      characteristic: values.feature,
       targetPk: 1,
     };
 
@@ -290,6 +284,7 @@ function Streaming() {
             <button onClick={handleClickOpen} className="actionBtn">
               업로드{" "}
             </button>
+            <button className="actionBtn">전송</button>
             <Dialog
               open={open}
               onClose={handleClose}
@@ -297,22 +292,21 @@ function Streaming() {
             >
               <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
                 <DialogTitle className="uploadDialogTitle">
-                  타겟 정보업로드
+                  타겟 사진 복원
                 </DialogTitle>
                 <DialogContent dividers>
                   <DialogContentText>
                     <Typography className="uploadDialogContent">
-                      찾으려하는 타겟의 이름, 나이, 특징을 간단히 적어주세요!
+                      마스크를 쓰고 있는 타겟의 사진과 타겟 넘버를 적어주세요.
                     </Typography>
                     <Typography gutterBottom></Typography>
-                    <Typography>특징 예시) 갸름한 얼굴 , 쳐진 눈매</Typography>
                   </DialogContentText>
                   <Typography gutterBottom></Typography>
                   <TextField
                     autoFocus
                     margin="dense"
-                    id="name"
-                    label="이름"
+                    id="targetPk"
+                    label="No."
                     type="email"
                     fullWidth
                     variant="standard"
@@ -320,29 +314,7 @@ function Streaming() {
                     value={values.name || ""}
                     onChange={handleTargetInputChange}
                   />
-                  <TextField
-                    margin="dense"
-                    id="name"
-                    label="나이"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    name="age"
-                    value={values.age || ""}
-                    onChange={handleTargetInputChange}
-                  />
-                  <TextField
-                    margin="dense"
-                    id="name"
-                    label="특징"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    name="feature"
-                    value={values.feature || ""}
-                    onChange={handleTargetInputChange}
-                  />
-
+                  <Typography gutterBottom></Typography>
                   <label htmlFor="imgFile" className="imgInput">
                     사진 업로드
                   </label>
@@ -384,13 +356,6 @@ function Streaming() {
                   <Typography gutterBottom variant="h5" component="div">
                     김우혁 (26)
                   </Typography>
-                  {/* <Typography
-                    variant="h6"
-                    color="text.secondary"
-                    sx={{ mb: 1 }}
-                  >
-                    25
-                  </Typography> */}
                   <Typography variant="body2" color="text.secondary">
                     다리털 없음
                   </Typography>
