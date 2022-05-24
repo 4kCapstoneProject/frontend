@@ -79,7 +79,7 @@ const INITIAL_TEXTITEMS = [
   },
 ];
 
-function Home({ users, addPk, addUser }) {
+function Home({ users, addPk, userAdd }) {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
   const [imageFiles, setImageFiles] = useState([]);
@@ -718,7 +718,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addPk: (exportTargetPk) => dispatch(userAdd(exportTargetPk)),
-    addUser: (userInfo) => dispatch(userAdd(userInfo)),
+    userAdd: (userInfo) => dispatch(userAdd(userInfo)),
   };
 }
 
