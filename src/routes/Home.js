@@ -98,11 +98,12 @@ function Home({ users, addPk, userAdd }) {
   const [isStreaming, setIsStreaming] = useState(false);
 
   const saveUserInfo = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     // console.log(e.target.value);
     // setExportTargetPk(e.target.value);
     // addPk(e.target.value);
 
+    console.log("hi");
     let idx = e.target.value;
     let userArray = [users.user.dtoList[idx], users.user.imagePathDtoList[idx]];
     userAdd(userArray);
