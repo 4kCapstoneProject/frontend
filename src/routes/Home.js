@@ -97,11 +97,16 @@ function Home({ users, addPk, userAdd }) {
   const [exportTargetPk, setExportTargetPk] = useState(5);
   const [isStreaming, setIsStreaming] = useState(false);
 
-  const savePk = (e) => {
+  const saveUserInfo = (e) => {
     // e.preventDefault();
-    console.log(e.target.value);
-    setExportTargetPk(e.target.value);
-    addPk(e.target.value);
+    // console.log(e.target.value);
+    // setExportTargetPk(e.target.value);
+    // addPk(e.target.value);
+
+    let idx = e.target.value;
+    let userArray = [users.user.dtoList[idx], users.user.imagePathDtoList[idx]];
+    userAdd(userArray);
+
     console.log(users);
   };
   const onStreaming = (e) => {
@@ -660,9 +665,9 @@ function Home({ users, addPk, userAdd }) {
                                   <Button
                                     size="small"
                                     color="primary"
-                                    value={imgItem.targetPk}
+                                    value={index}
                                     // onClick={onStreaming}
-                                    // onClick={savePk}
+                                    onClick={saveUserInfo}
                                   >
                                     타겟 찾기
                                   </Button>
