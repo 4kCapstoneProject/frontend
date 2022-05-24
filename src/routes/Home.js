@@ -383,6 +383,8 @@ function Home({ users, addPk }) {
           if (testCount !== res.data.totalElement) {
             setTestCount(res.data.totalElement);
           }
+          console.log(res.data);
+          // addPk(e.target.value);
         })
         .catch((error) => {
           window.alert(error);
