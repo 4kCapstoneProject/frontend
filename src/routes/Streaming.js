@@ -84,9 +84,10 @@ function Streaming({ users, addPk }) {
   const [modelTargetInfo, setModelTargetInfo] = useState(INITIAL_IMGS);
   const [getPk, setGetPk] = useState(users[0].pk);
   const [baseTargetText, setBaseTargetText] = useState(users[0].user[0]);
+  const [baseTargetPk, setBaseTargetPk] = useState(baseTargetText.targetPk);
   const [baseTargetImg, setBaseTargetImg] = useState(users[0].user[1]);
 
-  // console.log(getPk);
+  console.log(baseTargetPk);
 
   const captureTransform = (e) => {
     e.preventDefault();
