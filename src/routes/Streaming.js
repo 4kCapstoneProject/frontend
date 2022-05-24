@@ -366,7 +366,7 @@ function Streaming({ users, addPk }) {
                   component="img"
                   height="450"
                   //  image={wh}
-                  image={"../imgs/" + baseTargetImg.filePath}
+                  image={"../imgs/" + baseTargetImg.fileName}
                   alt="타겟"
                 />
                 <CardContent>
