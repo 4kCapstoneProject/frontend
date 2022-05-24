@@ -77,14 +77,15 @@ const testImg = [
   },
 ];
 function Streaming({ users, addPk }) {
-  console.log(users[0].pk);
+  // console.log(users[0].pk);
+  console.log(users);
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
   const [modelTargetInfo, setModelTargetInfo] = useState(INITIAL_IMGS);
   const [getPk, setGetPk] = useState(users[0].pk);
 
-  console.log(getPk);
+  // console.log(getPk);
 
   const captureTransform = (e) => {
     e.preventDefault();
