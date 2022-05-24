@@ -10,7 +10,6 @@ const users = createSlice({
       // });
 
       // return [{ pk: action.payload }];
-
       return [{ user: action.payload }];
     },
 
