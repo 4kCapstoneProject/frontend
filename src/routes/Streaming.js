@@ -367,7 +367,7 @@ function Streaming({ users, addPk }) {
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {/* 다리털 없음 */}
-                    {getPk}
+                    {/* {getPk} */}
                   </Typography>
                 </CardContent>
               </CardActionArea>

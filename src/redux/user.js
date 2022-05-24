@@ -8,7 +8,10 @@ const users = createSlice({
       // state.push({
       //   pk: action.payload,
       // });
-      return [{ pk: action.payload }];
+
+      // return [{ pk: action.payload }];
+
+      return [users];
     },
 
     // remove: (state, action) =>

@@ -79,7 +79,7 @@ const INITIAL_TEXTITEMS = [
   },
 ];
 
-function Home({ users, addPk }) {
+function Home({ users, addPk, addUser }) {
   const [isLogin, setIsLogin] = useState(true);
   const [age, setAge] = React.useState("");
   const [imageFiles, setImageFiles] = useState([]);
@@ -385,6 +385,7 @@ function Home({ users, addPk }) {
           }
           console.log(res.data);
           // addPk(e.target.value);
+          userAdd(res.data);
         })
         .catch((error) => {
           window.alert(error);
@@ -661,7 +662,7 @@ function Home({ users, addPk }) {
                                     color="primary"
                                     value={imgItem.targetPk}
                                     // onClick={onStreaming}
-                                    onClick={savePk}
+                                    // onClick={savePk}
                                   >
                                     타겟 찾기
                                   </Button>
@@ -717,6 +718,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addPk: (exportTargetPk) => dispatch(userAdd(exportTargetPk)),
+    addUser: (userInfo) => dispatch(userAdd(userInfo)),
   };
 }
 
