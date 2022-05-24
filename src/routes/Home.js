@@ -105,7 +105,10 @@ function Home({ users, addPk, userAdd }) {
 
     console.log("hi");
     let idx = e.target.value;
-    let userArray = [users.user.dtoList[idx], users.user.imagePathDtoList[idx]];
+    let userArray = [
+      users[0].user.dtoList[idx],
+      users[0].user.imagePathDtoList[idx],
+    ];
     userAdd(userArray);
 
     console.log(users);
