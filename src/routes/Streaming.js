@@ -77,13 +77,14 @@ const testImg = [
   },
 ];
 function Streaming({ users, addPk }) {
-  // console.log(users[0].pk);
   console.log(users);
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
   const [modelTargetInfo, setModelTargetInfo] = useState(INITIAL_IMGS);
   const [getPk, setGetPk] = useState(users[0].pk);
+  const [baseTargetText, setBaseTargetText] = useState(users[0].user[0]);
+  const [baseTargetImg, setBaseTargetImg] = useState(users[0].user[1]);
 
   // console.log(getPk);
 
@@ -361,10 +362,16 @@ function Streaming({ users, addPk }) {
           >
             <Card sx={{ width: 450, boxShadow: 10 }} className="targetImg">
               <CardActionArea>
-                <CardMedia component="img" height="450" image={wh} alt="타겟" />
+                <CardMedia
+                  component="img"
+                  height="450"
+                  //  image={wh}
+                  image={"../imgs/" + baseTargetImg.filePath}
+                  alt="타겟"
+                />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    김우혁 (26)
+                    {baseTargetText.personName} {baseTargetText.personAge}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {/* 다리털 없음 */}
