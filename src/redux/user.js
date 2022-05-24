@@ -11,7 +11,7 @@ const users = createSlice({
 
       // return [{ pk: action.payload }];
 
-      return [users];
+      return [{ user: action.payload }];
     },
 
     // remove: (state, action) =>
