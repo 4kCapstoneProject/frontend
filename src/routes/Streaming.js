@@ -305,24 +305,26 @@ function Streaming({ users, addPk }) {
             <button onClick={takeCapture} className="actionBtn ">
               캡처!
             </button>
-            <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
-              {/* <button onClick={handleClickOpen} className="actionBtn">
+            {/* <form onSumbit={handleTargetSubmit} entype="multipart/formdata"> */}
+            {/* <button onClick={handleClickOpen} className="actionBtn">
               업로드{" "}
             </button> */}
 
-              <label htmlFor="imgFile" className="imgInput">
-                사진 업로드
-              </label>
-              <input
-                type="file"
-                id="imgFile"
-                accept="img/*"
-                name="imgFile"
-                onChange={onLoadImgFile}
-                // style={{ display: "none" }}
-              />
-              <button onClick={handleTargetSubmit}>사진 전송</button>
-            </form>
+            <label htmlFor="imgFile" className="imgInput">
+              사진 업로드
+            </label>
+            <input
+              type="file"
+              id="imgFile"
+              accept="img/*"
+              name="imgFile"
+              onChange={onLoadImgFile}
+              // style={{ display: "none" }}
+            />
+            <button onClick={handleTargetSubmit} className="actionBtn">
+              사진 전송
+            </button>
+            {/* </form> */}
             <button onClick={captureTransform} className="actionBtn">
               복원 사진 가져오기
             </button>
