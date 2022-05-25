@@ -644,21 +644,20 @@ function Home({ users, addPk, userAdd }) {
                                     variant="h5"
                                     component="div"
                                   >
-                                    {textItems[index].personName} (
-                                    {textItems[index].personAge || ""})
+                                    {textItems[index].personName}
                                   </Typography>
                                   <Typography
                                     variant="h6"
                                     color="text.secondary"
                                     sx={{ mb: 1 }}
                                   >
-                                    {textItems[index].characteristic || ""}
+                                    {textItems[index].personAge || ""}
                                   </Typography>
                                   <Typography
                                     variant="body2"
                                     color="text.secondary"
                                   >
-                                    NO.{imgItem.targetPk}
+                                    {textItems[index].characteristic || ""}
                                   </Typography>
                                 </CardContent>
                               </CardActionArea>

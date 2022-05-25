@@ -372,11 +372,13 @@ function Streaming({ users, addPk }) {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {baseTargetText.personName} {baseTargetText.personAge}
+                    {baseTargetText.personName}
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary">
+                    {baseTargetText.personAge}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {/* 다리털 없음 */}
-                    {/* {getPk} */}
+                    {baseTargetText.characteristic}
                   </Typography>
                 </CardContent>
               </CardActionArea>
