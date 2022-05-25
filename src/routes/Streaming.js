@@ -319,7 +319,7 @@ function Streaming({ users, addPk }) {
               accept="img/*"
               name="imgFile"
               onChange={onLoadImgFile}
-              // style={{ display: "none" }}
+              style={{ display: "none" }}
             />
             <button onClick={handleTargetSubmit} className="actionBtn">
               사진 전송
