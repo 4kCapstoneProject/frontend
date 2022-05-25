@@ -92,7 +92,7 @@ function Streaming({ users, addPk }) {
 
   // ~ 로그아웃 ***********************************************************************
   const onClickLogout = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     removeCookie("loginAccessToken");
     removeCookie("loginRefreshToken");
   };
