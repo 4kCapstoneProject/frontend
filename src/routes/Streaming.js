@@ -89,6 +89,13 @@ function Streaming({ users, addPk }) {
 
   console.log(baseTargetPk);
 
+  // ~ 로그아웃 ***********************************************************************
+  const onClickLogout = (event) => {
+    event.preventDefault();
+    removeCookie("loginAccessToken");
+    removeCookie("loginRefreshToken");
+  };
+  // 로그아웃 ~ ***********************************************************************
   const captureTransform = (e) => {
     e.preventDefault();
 
@@ -274,7 +281,7 @@ function Streaming({ users, addPk }) {
           </button>
           <button
             id="streaming_logout"
-            // // onClick={onClickLogout}
+            onClick={onClickLogout}
             className="logoutBtn streamingBtn"
             type="button"
           >
@@ -374,7 +381,11 @@ function Streaming({ users, addPk }) {
                   <Typography gutterBottom variant="h5" component="div">
                     {baseTargetText.personName}
                   </Typography>
-                  <Typography variant="h6" color="text.secondary">
+                  <Typography
+                    variant="h6"
+                    color="text.secondary"
+                    sx={{ mb: 1 }}
+                  >
                     {baseTargetText.personAge}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
