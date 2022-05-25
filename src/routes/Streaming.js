@@ -195,6 +195,7 @@ function Streaming({ users, addPk }) {
     // setImageFiles([...imageFiles, { uploadedFile: imageFile }]);
     setImageFiles(imageFile);
     // handleTargetChange(name, sanitize(type, value));
+    console.log(imageFiles);
   };
 
   const INITIAL_VALUES = {
@@ -209,7 +210,7 @@ function Streaming({ users, addPk }) {
     const imageFileList = new FormData();
     // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
     imageFileList.append("imageFileList", imageFiles);
-    imageFileList.append("targetId", targetPk);
+    imageFileList.append("targetId", baseTargetPk);
     imageFileList.append("isUploadFile", 0);
 
     for (let key of imageFileList.keys()) {
@@ -304,23 +305,28 @@ function Streaming({ users, addPk }) {
             <button onClick={takeCapture} className="actionBtn ">
               캡처!
             </button>
-            <button onClick={handleClickOpen} className="actionBtn">
+            <form onSumbit={handleTargetSubmit} entype="multipart/formdata">
+              {/* <button onClick={handleClickOpen} className="actionBtn">
               업로드{" "}
-            </button>
+            </button> */}
+
+              <label htmlFor="imgFile" className="imgInput">
+                사진 업로드
+              </label>
+              <input
+                type="file"
+                id="imgFile"
+                accept="img/*"
+                name="imgFile"
+                onChange={onLoadImgFile}
+                // style={{ display: "none" }}
+              />
+              <button onClick={handleTargetSubmit}>사진 전송</button>
+            </form>
             <button onClick={captureTransform} className="actionBtn">
-              전송
+              복원 사진 가져오기
             </button>
-            <label htmlFor="imgFile" className="imgInput">
-              사진 업로드
-            </label>
-            <input
-              type="file"
-              id="imgFile"
-              accept="img/*"
-              name="imgFile"
-              onChange={onLoadImgFile}
-              // style={{ display: "none" }}
-            />
+
             {/* <Dialog
               open={open}
               onClose={handleClose}
