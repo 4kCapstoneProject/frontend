@@ -273,13 +273,16 @@ function Streaming({ users, addPk }) {
       <div id="streaming_header">
         <div id="streaming_header_container">
           <img src={logo_black} className="streaming_logo" />
-          <button
-            id="confirmInfo"
-            className="confirmInfoBtn streamingBtn"
-            type="button"
-          >
-            타겟 정보 확인
-          </button>
+          <Link to="/Home">
+            <button
+              id="confirmInfo"
+              className="confirmInfoBtn streamingBtn"
+              type="button"
+            >
+              타겟 정보 확인
+            </button>
+          </Link>
+
           <Link to="/Login">
             <button
               id="streaming_logout"
