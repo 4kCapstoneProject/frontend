@@ -310,6 +310,9 @@ function Streaming({ users, addPk }) {
             <button onClick={captureTransform} className="actionBtn">
               전송
             </button>
+            <label htmlFor="imgFile" className="imgInput">
+              사진 업로드
+            </label>
             <input
               type="file"
               id="imgFile"
