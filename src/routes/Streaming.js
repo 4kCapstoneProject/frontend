@@ -310,7 +310,15 @@ function Streaming({ users, addPk }) {
             <button onClick={captureTransform} className="actionBtn">
               전송
             </button>
-            <Dialog
+            <input
+              type="file"
+              id="imgFile"
+              accept="img/*"
+              name="imgFile"
+              onChange={onLoadImgFile}
+              // style={{ display: "none" }}
+            />
+            {/* <Dialog
               open={open}
               onClose={handleClose}
               onSubmit={handleTargetSubmit}
@@ -360,7 +368,7 @@ function Streaming({ users, addPk }) {
                   <Button onClick={handleClose}>취소</Button>
                 </DialogActions>
               </form>
-            </Dialog>
+            </Dialog> */}
           </div>
         </div>
 
