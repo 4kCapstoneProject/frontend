@@ -35,6 +35,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import { userAdd } from "../redux/user";
 import { connect } from "react-redux"; // connect함수 쓰기위해 import
+import { Link } from "react-router-dom";
 
 const images = [
   {
@@ -279,14 +280,16 @@ function Streaming({ users, addPk }) {
           >
             타겟 정보 확인
           </button>
-          <button
-            id="streaming_logout"
-            onClick={onClickLogout}
-            className="logoutBtn streamingBtn"
-            type="button"
-          >
-            로그 아웃
-          </button>
+          <Link to="/Login">
+            <button
+              id="streaming_logout"
+              onClick={onClickLogout}
+              className="logoutBtn streamingBtn"
+              type="button"
+            >
+              로그 아웃
+            </button>
+          </Link>
         </div>
       </div>
       <div id="streaming_body_wrap">
