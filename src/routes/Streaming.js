@@ -97,10 +97,49 @@ function Streaming({ users, addPk }) {
     removeCookie("loginRefreshToken");
   };
   // 로그아웃 ~ ***********************************************************************
-  const captureTransform = (e) => {
+  const captureTransform = async (e) => {
     e.preventDefault();
 
-    setModelTargetInfo(testImg);
+    const captureTransformGet = async (e) => {
+      e.preventDefault();
+
+      await axios({
+        method: "get",
+        url:
+          "http://211.201.72.35:4000/api/return/modelInfoList?targetId=" +
+          baseTargetPk,
+        headers: {
+          Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          window.alert(error);
+          console.log(error);
+        });
+    };
+
+    await axios({
+      method: "get",
+      url:
+        "http://211.201.72.35:4000/api/return/transmitToModel?targetId=" +
+        baseTargetPk,
+      headers: {
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+
+        captureTransformGet();
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
+    // setModelTargetInfo(testImg);
   };
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
@@ -230,7 +269,7 @@ function Streaming({ users, addPk }) {
       },
     })
       .then((res) => {
-        // targetListGet();
+        console.log(res.data);
       })
       .catch((error) => {
         window.alert(error);
