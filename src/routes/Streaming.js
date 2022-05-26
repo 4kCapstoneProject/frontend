@@ -131,8 +131,8 @@ function Streaming({ users, addPk }) {
       },
     })
       .then((res) => {
-        console.log(res.data);
-
+        // console.log(res.data);
+        console.log("모델로 이미지 전송");
         captureTransformGet();
       })
       .catch((error) => {
@@ -269,7 +269,7 @@ function Streaming({ users, addPk }) {
       },
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((error) => {
         window.alert(error);
