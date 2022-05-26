@@ -134,6 +134,8 @@ function Streaming({ users, addPk }) {
     })
       .then((res) => {
         console.log(res.data);
+
+        setModelTargetInfo(res.data[0]);
       })
       .catch((error) => {
         window.alert(error);
@@ -486,7 +488,7 @@ function Streaming({ users, addPk }) {
               }}
             >
               {/* <Typography>{modelTargetInfo[activeStep].label}</Typography> */}
-              <Typography>복원된 사진</Typography>
+              <Typography>{modelTargetInfo.lpipsList}</Typography>
             </Paper>
             <AutoPlaySwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -494,7 +496,7 @@ function Streaming({ users, addPk }) {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {modelTargetInfo.map((step, index) => (
+              {modelTargetInfo.imagePathDto.map((step, index) => (
                 <div key={step.label}>
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
@@ -507,7 +509,8 @@ function Streaming({ users, addPk }) {
                         overflow: "hidden",
                         width: "100%",
                       }}
-                      src={step.imgPath}
+                      // src={step.imgPath}
+                      src={"../imgs/" + step.fileName}
                       alt={step.label}
                     />
                   ) : null}
