@@ -496,7 +496,7 @@ function Streaming({ users, addPk }) {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {modelTargetInfo.imagePathDto.map((step, index) => (
+              {modelTargetInfo.map((step, index) => (
                 <div key={step.label}>
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
@@ -510,7 +510,7 @@ function Streaming({ users, addPk }) {
                         width: "100%",
                       }}
                       // src={step.imgPath}
-                      src={"../imgs/" + step.fileName}
+                      src={"../imgs/" + step.imgPathDtoList.fileName}
                       alt={step.label}
                     />
                   ) : null}
