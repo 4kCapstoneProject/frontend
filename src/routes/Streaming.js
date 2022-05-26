@@ -100,27 +100,6 @@ function Streaming({ users, addPk }) {
   const captureTransform = async (e) => {
     e.preventDefault();
 
-    const captureTransformGet = async (e) => {
-      e.preventDefault();
-
-      await axios({
-        method: "get",
-        url:
-          "http://211.201.72.35:4000/api/return/modelInfoList?targetId=" +
-          baseTargetPk,
-        headers: {
-          Authorization: `Bearer ${getCookie("loginAccessToken")}`,
-        },
-      })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((error) => {
-          window.alert(error);
-          console.log(error);
-        });
-    };
-
     await axios({
       method: "get",
       url:
@@ -133,13 +112,33 @@ function Streaming({ users, addPk }) {
       .then((res) => {
         // console.log(res.data);
         console.log("모델로 이미지 전송");
-        captureTransformGet();
       })
       .catch((error) => {
         window.alert(error);
         console.log(error);
       });
     // setModelTargetInfo(testImg);
+  };
+
+  const captureTransformGet = async (e) => {
+    e.preventDefault();
+
+    await axios({
+      method: "get",
+      url:
+        "http://211.201.72.35:4000/api/return/modelInfoList?targetId=" +
+        baseTargetPk,
+      headers: {
+        Authorization: `Bearer ${getCookie("loginAccessToken")}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        window.alert(error);
+        console.log(error);
+      });
   };
   // 영상 옆 타겟 이미지 style
   const Item = styled(Paper)(({ theme }) => ({
@@ -366,6 +365,9 @@ function Streaming({ users, addPk }) {
             {/* </form> */}
             <button onClick={captureTransform} className="actionBtn">
               복원 사진 가져오기
+            </button>
+            <button onClick={captureTransformGet} className="actionBtn">
+              로로로
             </button>
 
             {/* <Dialog
