@@ -248,7 +248,7 @@ function Streaming({ users, addPk }) {
 
     const imageFileList = new FormData();
     // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
-    imageFileList.append("imageFileList", imageFiles);
+    imageFileList.append("captureImage", imageFiles);
     imageFileList.append("targetId", baseTargetPk);
     imageFileList.append("isUploadFile", 0);
 
