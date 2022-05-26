@@ -488,7 +488,8 @@ function Streaming({ users, addPk }) {
               }}
             >
               {/* <Typography>{modelTargetInfo[activeStep].label}</Typography> */}
-              <Typography>{modelTargetInfo.lpipsList}</Typography>
+              {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
+              <Typography>복원 사진</Typography>
             </Paper>
             <AutoPlaySwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
