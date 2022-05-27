@@ -224,6 +224,9 @@ function Streaming({ users, addPk }) {
 
   useEffect(() => {
     getVideo();
+    if (modelTargetInfo) {
+      console.log(modelTargetInfo);
+    }
   }, [videoRef, modelTargetInfo]);
   // ~ 스트리밍  *******************************************************************
 
