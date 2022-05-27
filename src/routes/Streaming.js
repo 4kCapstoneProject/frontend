@@ -514,7 +514,7 @@ function Streaming({ users, addPk }) {
                         width: "100%",
                       }}
                       // src={step.imgPath}
-                      src={"../imgs/" + step.imagePathDto[0].fileName}
+                      // src={"../imgs/" + step.imagePathDto[0].fileName}
                       alt={step.lpipsList}
                     />
                   ) : null}
