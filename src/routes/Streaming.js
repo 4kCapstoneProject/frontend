@@ -61,10 +61,21 @@ const images = [
 ];
 
 const INITIAL_IMGS = [
+  // {
+  //   // imgPath: wh_model,
+  //   imgPath:
+  //     "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+  // },
   {
-    // imgPath: wh_model,
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    imagePathDto: [
+      {
+        fileName: "",
+        filePath:
+          "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+        targetpk: 0,
+      },
+    ],
+    lpipsList: 0,
   },
 ];
 
@@ -224,8 +235,8 @@ function Streaming({ users, addPk }) {
 
   useEffect(() => {
     getVideo();
-    if (modelTargetInfo) {
-      console.log(modelTargetInfo);
+    if (modelTargetInfo && modelTargetInfo.length > 0) {
+      console.log(modelTargetInfo[0]);
     }
   }, [videoRef, modelTargetInfo]);
   // ~ 스트리밍  *******************************************************************
