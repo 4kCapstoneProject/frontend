@@ -497,7 +497,7 @@ function Streaming({ users, addPk }) {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {modelTargetInfo.map((step, index) => (
+              {INITIAL_IMGS.map((step, index) => (
                 <div key={step.label}>
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
