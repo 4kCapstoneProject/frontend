@@ -135,7 +135,7 @@ function Streaming({ users, addPk }) {
       .then((res) => {
         console.log(res.data);
 
-        setModelTargetInfo(res.data[0]);
+        setModelTargetInfo(res.data);
       })
       .catch((error) => {
         window.alert(error);
@@ -497,7 +497,7 @@ function Streaming({ users, addPk }) {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {INITIAL_IMGS.map((step, index) => (
+              {modelTargetInfo.map((step, index) => (
                 <div key={step.label}>
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
@@ -511,10 +511,11 @@ function Streaming({ users, addPk }) {
                         width: "100%",
                       }}
                       // src={step.imgPath}
-                      // src={"../imgs/" + step.imgPathDtoList[0].fileName}
-                      alt={step.label}
+                      src={"../imgs/" + step.imagePathDtoList[0].fileName}
+                      alt={step.lpipsList}
                     />
                   ) : null}
+                  <div>{step.lpipsList}</div>
                 </div>
               ))}
             </AutoPlaySwipeableViews>
