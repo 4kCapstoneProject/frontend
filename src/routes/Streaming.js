@@ -110,7 +110,7 @@ function Streaming({ users, addPk }) {
   // 로그아웃 ~ ***********************************************************************
   const captureTransform = async (e) => {
     // e.preventDefault();
-    console.log("시작");
+    // console.log("시작");
     await axios({
       method: "get",
       url:
@@ -123,6 +123,7 @@ function Streaming({ users, addPk }) {
       .then((res) => {
         // console.log(res.data);
         console.log("모델로 이미지 전송");
+        captureTransformGet();
       })
       .catch((error) => {
         window.alert(error);
@@ -132,8 +133,9 @@ function Streaming({ users, addPk }) {
   };
 
   const captureTransformGet = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
+    console.log("시작");
     await axios({
       method: "get",
       url:
@@ -145,7 +147,6 @@ function Streaming({ users, addPk }) {
     })
       .then((res) => {
         console.log(res.data);
-
         setModelTargetInfo(res.data);
       })
       .catch((error) => {
