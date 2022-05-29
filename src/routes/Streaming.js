@@ -259,7 +259,7 @@ function Streaming({ users, addPk }) {
   const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleTargetSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const imageFileList = new FormData();
     // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
@@ -274,7 +274,7 @@ function Streaming({ users, addPk }) {
       console.log(value);
     }
 
-    axios({
+    await axios({
       method: "post",
       url: "http://211.201.72.35:4000/api/target/uploadCaptureImage",
 
