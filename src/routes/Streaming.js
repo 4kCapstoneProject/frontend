@@ -284,7 +284,7 @@ function Streaming({ users, addPk }) {
       },
     })
       .then((res) => {
-        // console.log(res.data);
+        captureTransform();
       })
       .catch((error) => {
         window.alert(error);
