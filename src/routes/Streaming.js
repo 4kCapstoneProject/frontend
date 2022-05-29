@@ -109,7 +109,7 @@ function Streaming({ users, addPk }) {
   };
   // 로그아웃 ~ ***********************************************************************
   const captureTransform = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     await axios({
       method: "get",
