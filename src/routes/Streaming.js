@@ -284,6 +284,7 @@ function Streaming({ users, addPk }) {
       },
     })
       .then((res) => {
+        console.log(" 서버로 이미지 전송 성공");
         captureTransform();
       })
       .catch((error) => {
