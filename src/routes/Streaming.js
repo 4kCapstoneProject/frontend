@@ -108,10 +108,10 @@ function Streaming({ users, addPk }) {
     removeCookie("loginRefreshToken");
   };
   // 로그아웃 ~ ***********************************************************************
-  const captureTransform = async (e) => {
+  const captureTransform = (e) => {
     // e.preventDefault();
     console.log("시작");
-    await axios({
+    axios({
       method: "get",
       url:
         "http://211.201.72.35:4000/api/return/transmitToModel?targetId=" +
