@@ -108,10 +108,10 @@ function Streaming({ users, addPk }) {
     removeCookie("loginRefreshToken");
   };
   // 로그아웃 ~ ***********************************************************************
-  const captureTransform = (e) => {
+  const captureTransform = async (e) => {
     // e.preventDefault();
     console.log("시작");
-    axios({
+    await axios({
       method: "get",
       url:
         "http://211.201.72.35:4000/api/return/transmitToModel?targetId=" +
@@ -258,7 +258,7 @@ function Streaming({ users, addPk }) {
 
   const [values, setValues] = useState(INITIAL_VALUES);
 
-  const handleTargetSubmit = (e) => {
+  const handleTargetSubmit = async (e) => {
     // e.preventDefault();
 
     const imageFileList = new FormData();
@@ -274,7 +274,7 @@ function Streaming({ users, addPk }) {
       console.log(value);
     }
 
-    axios({
+    await axios({
       method: "post",
       url: "http://211.201.72.35:4000/api/target/uploadCaptureImage",
 
@@ -286,7 +286,8 @@ function Streaming({ users, addPk }) {
       .then((res) => {
         console.log(" 서버로 이미지 전송 성공");
 
-        setTimeout(captureTransform, 5000);
+        // setTimeout(captureTransform, 5000);
+        captureTransform();
       })
       .catch((error) => {
         window.alert(error);
