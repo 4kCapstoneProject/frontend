@@ -110,7 +110,7 @@ function Streaming({ users, addPk }) {
   // 로그아웃 ~ ***********************************************************************
   const captureTransform = async (e) => {
     // e.preventDefault();
-
+    console.log("시작");
     await axios({
       method: "get",
       url:
@@ -285,7 +285,8 @@ function Streaming({ users, addPk }) {
     })
       .then((res) => {
         console.log(" 서버로 이미지 전송 성공");
-        captureTransform();
+
+        setTimeout(captureTransform, 5000);
       })
       .catch((error) => {
         window.alert(error);
