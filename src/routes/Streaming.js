@@ -222,7 +222,7 @@ function Streaming({ users, addPk }) {
   const takeCapture = () => {
     html2canvas(document.querySelector(".camera")).then((canvas) => {
       let myImage = canvas.toDataURL();
-      downloadURI(myImage, "captureImg.png");
+      downloadURI(myImage, "captureImg.jpg");
     });
   };
 
