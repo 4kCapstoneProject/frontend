@@ -21,17 +21,11 @@ select {
 
 .select-button {
   background-color: #33b3a2;
-  /* right: 0;
-  top: 0; */
-  position: absolute;
+  /* position: absolute;
   right: 62%;
-  margin-top: 12px;
+  margin-top: 12px; */
   height: 47px;
-
-  /* width: 100px; */
-  /* pointer-events: none; */
   padding: 0 0.3em;
-  /* height: 100%; */
 }
 
 .small-arrow-down {
@@ -48,11 +42,11 @@ select {
   right: 28%;
 }
 .selectInput {
-  position: absolute;
+  /* position: absolute;
   left: 26%;
-  width: 160px;
+  margin-top: 13px; */
+  width: 100px;
   height: 45px;
-  margin-top: 13px;
 }
 .uploadDialogTitle {
   background-color: #6aafe6;
@@ -66,13 +60,13 @@ select {
   /* font-weight: 700; */
 }
 .searchIcon {
-  position: absolute;
+  /* position: absolute;
   right: 30%;
   margin-top: 12px;
+  line-height: 28px; */
+  padding: 6px;
+  height: 36px;
   background-color: rgb(26, 188, 156);
-  /* border: 2px solid rgb(26, 188, 156); */
-  padding: 24px;
-  line-height: 28px;
 }
 .logoImg {
   height: 170px;
@@ -82,11 +76,9 @@ select {
   /* left: 13%; */
 }
 .fa {
-  position: absolute;
+  /* position: absolute;
   right: 10%;
-  bottom: 10%;
-  /* margin-top: 15px; */
-  /* margin-bottom: 50px; */
+  bottom: 10%; */
 }
 .bannerBorder {
   border: 1px solid rgb(26, 188, 156);
@@ -100,7 +92,7 @@ select {
   color: black;
 }
 .targetSearch {
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 .targetSearch2 {
   /* align-items: center;
@@ -142,53 +134,32 @@ select {
   margin: 10px;
 }
 input[type="search"] {
-  position: absolute;
+  /* position: absolute;
   margin-top: 12px;
-  left: 37%;
+  left: 37%; */
   width: 400px;
   height: 48px;
 
-  /* font-size: 15px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: #6aafe6;
-  border: 3px solid black;
-  color: white; */
-  /* border-right: 0px; */
-
   border: 3px solid rgb(26, 188, 156);
-  /* color: rgb(26, 188, 156); */
   background-color: white;
-
-  /* border: 3px solid white;
-  color: white;
-  background-color: rgb(26, 188, 156); */
-  /* border: 3px solid #6aafe6;
-  background-color: white;
-  color: #6aafe6; */
 
   outline: none;
   height: 48px;
   padding: 8px;
   font-size: 18px;
-  /* color: #0097e6; */
 
   text-transform: capitalize;
 }
 
 #upload {
-  /* color: #0097e6;
-  background-color: white; */
   color: white;
   background-color: rgb(26, 188, 156);
-  position: absolute;
+  /* position: absolute;
   left: 15%;
   right: 80%;
+  margin-top: 10px; */
   width: 130px;
   height: 50px;
-  margin-top: 10px;
 }
 #upload:hover {
   /* color: white;
@@ -256,13 +227,13 @@ input[type="search"] {
   /* background-color: #d4dfe6; */
 }
 .banner-container {
-  width: 1000px;
+  width: 900px;
   height: 100px;
   line-height: 300px;
   margin: 0 auto;
-  /* background-color: #4e342e; */
-  /* background-color: white; */
-  /* background-color: #d4dfe6; */
+
+  display: flex;
+  justify-content: space-between;
 }
 .content-container {
   width: 1000px;
@@ -291,13 +262,13 @@ input[type="search"] {
   transform: scale(1.5);
 }
 .w-btn-outline:hover {
-  letter-spacing: 2px;
-  transform: scale(1.2);
+  /* letter-spacing: 2px; */
+  /* transform: scale(1.2); */
   cursor: pointer;
 }
 .w-btn-blue-outline:hover {
   background-color: #6aafe6;
-
+  border: 3px solid rgb(26, 188, 156);
   color: #d4dfe6;
 }
 .w-btn-blue-outline {
@@ -307,26 +278,22 @@ input[type="search"] {
   color: #6e6e6e;
 }
 .w-btn-outline {
-  position: relative;
-  left: 400px; /* 버튼 위치 */
+  /* position: relative; */
+  /* left: 400px; 버튼 위치 */
   padding: 15px 30px;
   border-radius: 15px;
   font-family: "paybooc-Light", sans-serif;
-  /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); */
   text-decoration: none;
   font-weight: 600;
   transition: 0.25s;
 }
 
 #logout {
-  /* color: #0097e6;
-  background-color: white; */
   color: white;
   background-color: rgb(26, 188, 156);
-  position: absolute;
-  /* right: 50%; */
+  /* position: absolute;
   left: 77%;
-  margin-top: 10px;
+  margin-top: 10px; */
 }
 #logout:hover {
   /* color: white;
@@ -432,4 +399,24 @@ input[type="search"] {
 .imgInput:hover {
   background: #5c7cfa;
   cursor: pointer;
+}
+
+.select_container {
+  display: flex;
+}
+.uploadBtn {
+  display: flex;
+}
+.select-button {
+  display: flex;
+}
+.input_container {
+  display: flex;
+}
+.logoutbtn {
+  display: flex;
+  height: 50px;
+}
+.searchIcon {
+  display: flex;
 }

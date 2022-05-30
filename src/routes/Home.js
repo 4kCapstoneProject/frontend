@@ -489,14 +489,17 @@ function Home({ users, addPk, userAdd }) {
 
           <div id="banner-wrap">
             <div className="banner-container">
-              <button
-                id="upload"
-                onClick={handleClickOpen}
-                className="w-btn-outline w-btn-blue-outline"
-                type="button"
-              >
-                타겟 추가
-              </button>
+              <div className="uploadBtn">
+                {" "}
+                <button
+                  id="upload"
+                  onClick={handleClickOpen}
+                  className="w-btn-outline w-btn-blue-outline"
+                  type="button"
+                >
+                  타겟 추가
+                </button>
+              </div>
 
               <Dialog
                 open={open}
@@ -575,37 +578,44 @@ function Home({ users, addPk, userAdd }) {
                 </form>
               </Dialog>
 
-              <select className="selectInput" onChange={categoryChange}>
-                <option selected disabled>
-                  Category
-                </option>
-                <option value="age">나이순</option>
-                <option value="name">이름순</option>
-              </select>
-              <div className="select-button">
-                <div className="small-arrow-down"></div>
+              <div className="select_container">
+                <select className="selectInput" onChange={categoryChange}>
+                  <option selected disabled>
+                    Category
+                  </option>
+                  <option value="age">나이순</option>
+                  <option value="name">이름순</option>
+                </select>
+                <div className="select-button">
+                  <div className="small-arrow-down"></div>
+                </div>
               </div>
 
-              <input
-                placeholder="Search..."
-                className="targetSearch"
-                type="search"
-                value={text}
-                onChange={textChange}
-                onKeyPress={enterPress}
-              />
-              <a className="searchIcon">
-                <FaSearch className="fa" color="white" />
-              </a>
+              <div className="input_container">
+                {" "}
+                <input
+                  placeholder="Search..."
+                  className="targetSearch"
+                  type="search"
+                  value={text}
+                  onChange={textChange}
+                  onKeyPress={enterPress}
+                />
+                <a className="searchIcon">
+                  <FaSearch className="fa" color="white" />
+                </a>
+              </div>
 
-              <button
-                id="logout"
-                onClick={onClickLogout}
-                className="w-btn-outline w-btn-blue-outline"
-                type="button"
-              >
-                로그 아웃
-              </button>
+              <div className="logoutbtn">
+                <button
+                  id="logout"
+                  onClick={onClickLogout}
+                  className="w-btn-outline w-btn-blue-outline"
+                  type="button"
+                >
+                  로그 아웃
+                </button>
+              </div>
             </div>
           </div>
 
