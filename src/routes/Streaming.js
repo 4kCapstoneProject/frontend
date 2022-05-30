@@ -383,12 +383,13 @@ function Streaming({ users, addPk }) {
               사진 전송
             </button>
             {/* </form> */}
-            <button onClick={captureTransform} className="actionBtn">
+
+            {/* <button onClick={captureTransform} className="actionBtn">
               복원 사진 가져오기
             </button>
             <button onClick={captureTransformGet} className="actionBtn">
               로로로
-            </button>
+            </button> */}
 
             {/* <Dialog
               open={open}
