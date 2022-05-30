@@ -533,7 +533,7 @@ function Streaming({ users, addPk }) {
                       alt={step.lpipsList}
                     />
                   ) : null}
-                  <div>{step.lpipsList}</div>
+                  {/* <div>{step.lpipsList}</div> */}
                 </div>
               ))}
             </AutoPlaySwipeableViews>
