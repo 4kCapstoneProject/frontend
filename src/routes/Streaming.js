@@ -75,7 +75,7 @@ const INITIAL_IMGS = [
         targetpk: 0,
       },
     ],
-    lpipsList: 0,
+    // lpipsList: 0,
   },
 ];
 
@@ -530,7 +530,7 @@ function Streaming({ users, addPk }) {
                       }}
                       // src={step.imgPath}
                       src={"../imgs/" + step.imagePathDto[0].fileName}
-                      alt={step.lpipsList}
+                      // alt={step.lpipsList}
                     />
                   ) : null}
                   {/* <div>{step.lpipsList}</div> */}
