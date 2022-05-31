@@ -530,9 +530,7 @@ function Streaming({ users, addPk }) {
                     }}
                   >
                     {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
-                    <Typography>
-                      유사도 : {modelTargetInfo.scoreList}%
-                    </Typography>
+                    <Typography>유사도 : {step.scoreList}%</Typography>
                   </Paper>
 
                   {Math.abs(activeStep - index) <= 2 ? (
