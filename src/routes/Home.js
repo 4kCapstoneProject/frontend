@@ -643,7 +643,7 @@ function Home({ users, addPk, userAdd }) {
                               <CardActionArea>
                                 <CardMedia
                                   component="img"
-                                  height="250"
+                                  height="350"
                                   image={"../imgs/" + imgItem.fileName}
                                   alt="타겟"
                                 />
