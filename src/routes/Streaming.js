@@ -75,7 +75,7 @@ const INITIAL_IMGS = [
         targetpk: 0,
       },
     ],
-    score: "",
+    scoreList: "",
   },
 ];
 
@@ -493,7 +493,7 @@ function Streaming({ users, addPk }) {
               // height: 450,
             }}
           >
-            <Paper
+            {/* <Paper
               square
               elevation={0}
               sx={{
@@ -506,9 +506,8 @@ function Streaming({ users, addPk }) {
                 color: "white",
               }}
             >
-              {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
               <Typography>복원 사진</Typography>
-            </Paper>
+            </Paper> */}
             <AutoPlaySwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
               index={activeStep}
@@ -531,7 +530,9 @@ function Streaming({ users, addPk }) {
                     }}
                   >
                     {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
-                    <Typography>유사도 : {modelTargetInfo.score}%</Typography>
+                    <Typography>
+                      유사도 : {modelTargetInfo.scoreList}%
+                    </Typography>
                   </Paper>
 
                   {Math.abs(activeStep - index) <= 2 ? (
