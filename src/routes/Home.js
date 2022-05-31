@@ -626,8 +626,6 @@ function Home({ users, addPk, userAdd }) {
                   sx={{
                     width: "100%",
                     mb: 5,
-                    boxShadow:
-                      "0px 2px 1px -1px #86a8e7, 0px 1px 1px 0px #86a8e7, 0px 1px 3px 0px #86a8e7",
                   }}
                 >
                   <Stack
@@ -650,7 +648,14 @@ function Home({ users, addPk, userAdd }) {
                               boxShadow: 10,
                             }}
                           >
-                            <Card sx={{ maxWidth: 345 }} className="targetImg">
+                            <Card
+                              sx={{
+                                maxWidth: 345,
+                                boxShadow:
+                                  "0px 2px 1px -1px #86a8e7, 0px 1px 1px 0px #86a8e7, 0px 1px 3px 0px #86a8e7",
+                              }}
+                              className="targetImg"
+                            >
                               <CardActionArea>
                                 <CardMedia
                                   component="img"
