@@ -102,6 +102,7 @@ function Streaming({ users, addPk }) {
   const [baseTargetPk, setBaseTargetPk] = useState(baseTargetText.targetPk);
   const [baseTargetImg, setBaseTargetImg] = useState(users[0].user[1]);
   const [isLoading, setIsLoading] = useState(false);
+  const [colorBorder, setColorBorder] = useState("red");
   // console.log(baseTargetPk);
 
   function CircularIndeterminate() {
@@ -518,7 +519,7 @@ function Streaming({ users, addPk }) {
                 // height: 450,
                 // border: 3px solid red,
                 border: 3,
-                borderColor: "red",
+                borderColor: colorBorder,
               }}
             >
               <AutoPlaySwipeableViews
