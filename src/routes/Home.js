@@ -647,7 +647,7 @@ function Home({ users, addPk, userAdd }) {
                               p: 2,
                               // boxShadow: 10,
                               boxShadow:
-                                "0px 3px 5px -1px #86a8e7, 0px 3px 3px 3px #86a8e7, 0px 3px 3px 3px #86a8e7",
+                                "0px 2px 1px -1px #86a8e7, 0px 1px 1px 0px #86a8e7, 0px 1px 3px 0px #86a8e7",
                             }}
                           >
                             <Card
