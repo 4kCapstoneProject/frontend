@@ -36,6 +36,7 @@ import TextField from "@mui/material/TextField";
 import { userAdd } from "../redux/user";
 import { connect } from "react-redux"; // connect함수 쓰기위해 import
 import { Link } from "react-router-dom";
+import altTarget from "./img/altTarget.png";
 
 const images = [
   {
@@ -546,7 +547,7 @@ function Streaming({ users, addPk }) {
                       }}
                       // src={step.imgPath}
                       src={"../imgs/" + step.imagePathDto[0].fileName}
-                      // alt={step.lpipsList}
+                      alt={altTarget}
                     />
                   ) : null}
                   {/* <div>{step.lpipsList}</div> */}
