@@ -547,7 +547,7 @@ function Streaming({ users, addPk }) {
                       pl: 2,
                       // bgcolor: "#6aafe6",
                       bgcolor: "#EBE8EA",
-                      color: "white",
+                      // color: "white",
                     }}
                   >
                     {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
