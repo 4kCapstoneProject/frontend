@@ -105,9 +105,9 @@ function Streaming({ users, addPk }) {
 
   function CircularIndeterminate() {
     return (
-      <Box sx={{ display: "flex" }}>
-        <CircularProgress />
-      </Box>
+      // <Box sx={{ display: "flex" }}>
+      <CircularProgress />
+      // </Box>
     );
   }
   // ~ 로그아웃 ***********************************************************************
