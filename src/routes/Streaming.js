@@ -549,9 +549,9 @@ function Streaming({ users, addPk }) {
                       alignItems: "center",
                       height: 50,
                       pl: 2,
-                      // bgcolor: "#6aafe6",
-                      bgcolor: "#EBE8EA",
-                      // color: "white",
+                      bgcolor: "#6aafe6",
+                      color: "white",
+                      // bgcolor: "#EBE8EA",
                     }}
                   >
                     {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
