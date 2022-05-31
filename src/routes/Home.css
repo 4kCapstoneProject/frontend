@@ -259,9 +259,9 @@ input[type="search"] {
 
 /* 버튼 */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-.w-btn-outline:active {
+/* .w-btn-outline:active {
   transform: scale(1.5);
-}
+} */
 .w-btn-outline:hover {
   /* letter-spacing: 2px; */
   /* transform: scale(1.2); */
