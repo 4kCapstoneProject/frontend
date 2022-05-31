@@ -516,9 +516,9 @@ function Streaming({ users, addPk }) {
                 maxWidth: 800,
                 flexGrow: 1,
                 boxShadow: 10,
-                // height: 450,
-                // border: 3,
-                // borderColor: colorBorder,
+                height: 450,
+                border: 3,
+                borderColor: colorBorder,
               }}
             >
               <AutoPlaySwipeableViews
