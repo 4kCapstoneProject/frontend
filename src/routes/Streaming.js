@@ -453,7 +453,8 @@ function Streaming({ users, addPk }) {
               // width: 400,
               bgcolor: "none",
               boxShadow: 10,
-              bgcolor: "#6aafe6",
+              // bgcolor: "#6aafe6",
+              bgcolor: "#EBE8EA",
             }}
           >
             <Card sx={{ width: 450, boxShadow: 10 }} className="targetImg">
@@ -517,23 +518,6 @@ function Streaming({ users, addPk }) {
             >
               {modelTargetInfo.map((step, index) => (
                 <div key={step.label}>
-                  <Paper
-                    square
-                    elevation={0}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: 50,
-                      pl: 2,
-                      // bgcolor: "background.default",
-                      bgcolor: "#6aafe6",
-                      color: "white",
-                    }}
-                  >
-                    {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
-                    <Typography>유사도 : {step.scoreList} (%)</Typography>
-                  </Paper>
-
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
                       component="img"
@@ -551,6 +535,22 @@ function Streaming({ users, addPk }) {
                     />
                   ) : null}
                   {/* <div>{step.lpipsList}</div> */}
+                  <Paper
+                    square
+                    elevation={0}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: 50,
+                      pl: 2,
+                      bgcolor: "#6aafe6",
+                      // bgcolor: "#EBE8EA",
+                      color: "white",
+                    }}
+                  >
+                    {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
+                    <Typography>유사도 : {step.scoreList} (%)</Typography>
+                  </Paper>
                 </div>
               ))}
             </AutoPlaySwipeableViews>
