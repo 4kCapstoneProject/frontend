@@ -72,7 +72,7 @@ const INITIAL_IMGS = [
   {
     imagePathDto: [
       {
-        fileName: "altTarget3.png",
+        fileName: "altTarget7.png",
         filePath:
           "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
         targetpk: 0,
