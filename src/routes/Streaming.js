@@ -547,7 +547,7 @@ function Streaming({ users, addPk }) {
                       }}
                       // src={step.imgPath}
                       src={"../imgs/" + step.imagePathDto[0].fileName}
-                      alt={wh_model}
+                      alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-PLoRMWL5UoMYj-AsLi880s6SfHMHtEhdYA&usqp=CAU"
                     />
                   ) : null}
                   {/* <div>{step.lpipsList}</div> */}
