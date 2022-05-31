@@ -622,7 +622,14 @@ function Home({ users, addPk, userAdd }) {
           <div id="content-wrap">
             <div className="content-container">
               <div>
-                <Box sx={{ width: "100%", mb: 5 }}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    mb: 5,
+                    boxShadow:
+                      "0px 2px 1px -1px #86a8e7, 0px 1px 1px 0px #86a8e7, 0px 1px 3px 0px #86a8e7",
+                  }}
+                >
                   <Stack
                     direction="row"
                     divider={<Divider orientation="vertical" flexItem />}
