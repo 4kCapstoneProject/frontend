@@ -75,7 +75,7 @@ const INITIAL_IMGS = [
         targetpk: 0,
       },
     ],
-    // lpipsList: 0,
+    score: "",
   },
 ];
 
@@ -531,7 +531,7 @@ function Streaming({ users, addPk }) {
                     }}
                   >
                     {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
-                    <Typography>테스트</Typography>
+                    <Typography>유사도 : {modelTargetInfo.score}%</Typography>
                   </Paper>
 
                   {Math.abs(activeStep - index) <= 2 ? (
