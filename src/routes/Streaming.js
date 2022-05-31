@@ -156,6 +156,7 @@ function Streaming({ users, addPk }) {
     })
       .then((res) => {
         console.log(res.data);
+        setIsLoading(false);
         setModelTargetInfo(res.data);
       })
       .catch((error) => {
@@ -272,6 +273,8 @@ function Streaming({ users, addPk }) {
 
   const handleTargetSubmit = async (e) => {
     // e.preventDefault();
+
+    setIsLoading(true);
 
     const imageFileList = new FormData();
     // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
