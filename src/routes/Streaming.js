@@ -38,6 +38,7 @@ import { connect } from "react-redux"; // connect함수 쓰기위해 import
 import { Link } from "react-router-dom";
 import altTarget from "./img/altTarget.png";
 import CircularProgress from "@mui/material/CircularProgress";
+import { red } from "@mui/material/colors";
 
 const images = [
   {
@@ -515,6 +516,9 @@ function Streaming({ users, addPk }) {
                 flexGrow: 1,
                 boxShadow: 10,
                 // height: 450,
+                // border: 3px solid red,
+                border: 3,
+                borderColor: "red",
               }}
             >
               <AutoPlaySwipeableViews
