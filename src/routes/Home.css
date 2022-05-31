@@ -204,7 +204,7 @@ input[type="search"] {
   margin-bottom: 30px;
 }
 #content-wrap {
-  width: 1000px;
+  width: 1100px;
   margin: auto;
   padding: 10px;
 
@@ -236,7 +236,7 @@ input[type="search"] {
   justify-content: space-between;
 }
 .content-container {
-  width: 1000px;
+  width: 1100px;
   height: 600px;
   line-height: 600px;
   margin: 0 auto;
@@ -423,4 +423,7 @@ input[type="search"] {
 
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.css-19g2b3d-MuiPaper-root {
   padding: 3px;
+}
+.css-sp0t1e-MuiButtonBase-root-MuiButton-root {
+  padding-left: 200px;
 }
