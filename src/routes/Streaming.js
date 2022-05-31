@@ -165,7 +165,9 @@ function Streaming({ users, addPk }) {
   }));
 
   // swipeable views ~ *******************************************************************
-  const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+  // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+  const AutoPlaySwipeableViews = SwipeableViews;
 
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -468,18 +470,18 @@ function Streaming({ users, addPk }) {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {baseTargetText.personName}
+                    {baseTargetText.personName} ({baseTargetText.personAge}세)
                   </Typography>
                   <Typography
                     variant="h6"
                     color="text.secondary"
                     sx={{ mb: 1 }}
                   >
-                    {baseTargetText.personAge}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
                     {baseTargetText.characteristic}
                   </Typography>
+                  {/* <Typography variant="body2" color="text.secondary">
+                    
+                  </Typography> */}
                 </CardContent>
               </CardActionArea>
             </Card>
@@ -543,8 +545,8 @@ function Streaming({ users, addPk }) {
                       alignItems: "center",
                       height: 50,
                       pl: 2,
-                      bgcolor: "#6aafe6",
-                      // bgcolor: "#EBE8EA",
+                      // bgcolor: "#6aafe6",
+                      bgcolor: "#EBE8EA",
                       color: "white",
                     }}
                   >
