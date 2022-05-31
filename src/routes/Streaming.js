@@ -364,7 +364,7 @@ function Streaming({ users, addPk }) {
           </div>
           <div className="actionBtnDiv">
             <button onClick={takeCapture} className="actionBtn ">
-              캡처!
+              타겟 캡처
             </button>
             {/* <form onSumbit={handleTargetSubmit} entype="multipart/formdata"> */}
             {/* <button onClick={handleClickOpen} className="actionBtn">
@@ -387,7 +387,7 @@ function Streaming({ users, addPk }) {
               style={{ display: "none" }}
             />
             <button onClick={handleTargetSubmit} className="actionBtn">
-              사진 전송
+              타겟 복원
             </button>
             {/* </form> */}
 
