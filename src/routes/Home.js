@@ -696,7 +696,7 @@ function Home({ users, addPk, userAdd }) {
                                   size="small"
                                   sx={{
                                     color: "rgb(26, 188, 156)",
-                                    // pl: 19.8,
+                                    pl: 19.8,
                                   }}
                                   value={imgItem.targetPk}
                                   onClick={targetDelete}
