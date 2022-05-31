@@ -643,8 +643,11 @@ function Home({ users, addPk, userAdd }) {
                               boxShadow: 10,
                             }}
                           >
-                            <Card sx={{ maxWidth: 345 }} className="targetImg">
-                              <CardActionArea>
+                            <Card
+                              sx={{ maxWidth: 345, padding: 2, p: 2 }}
+                              className="targetImg"
+                            >
+                              <CardActionArea sx={{ padding: 2, p: 2 }}>
                                 <CardMedia
                                   component="img"
                                   height="350"
