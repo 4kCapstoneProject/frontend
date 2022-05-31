@@ -371,7 +371,11 @@ function Streaming({ users, addPk }) {
               업로드{" "}
             </button> */}
 
-            <label htmlFor="imgFile" className="imgInput">
+            <label
+              htmlFor="imgFile"
+              //  className="imgInput"
+              className="actionBtn"
+            >
               사진 업로드
             </label>
             <input
