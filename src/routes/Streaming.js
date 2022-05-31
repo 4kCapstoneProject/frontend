@@ -100,7 +100,7 @@ function Streaming({ users, addPk }) {
   const [baseTargetText, setBaseTargetText] = useState(users[0].user[0]);
   const [baseTargetPk, setBaseTargetPk] = useState(baseTargetText.targetPk);
   const [baseTargetImg, setBaseTargetImg] = useState(users[0].user[1]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   // console.log(baseTargetPk);
 
   function CircularIndeterminate() {
