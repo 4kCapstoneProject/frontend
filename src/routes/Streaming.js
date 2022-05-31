@@ -506,7 +506,6 @@ function Streaming({ users, addPk }) {
                 color: "white",
               }}
             >
-              {/* <Typography>{modelTargetInfo[activeStep].label}</Typography> */}
               {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
               <Typography>복원 사진</Typography>
             </Paper>
@@ -518,6 +517,23 @@ function Streaming({ users, addPk }) {
             >
               {modelTargetInfo.map((step, index) => (
                 <div key={step.label}>
+                  <Paper
+                    square
+                    elevation={0}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: 50,
+                      pl: 2,
+                      // bgcolor: "background.default",
+                      bgcolor: "#6aafe6",
+                      color: "white",
+                    }}
+                  >
+                    {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
+                    <Typography>테스트</Typography>
+                  </Paper>
+
                   {Math.abs(activeStep - index) <= 2 ? (
                     <Box
                       component="img"
