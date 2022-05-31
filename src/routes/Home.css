@@ -420,3 +420,7 @@ input[type="search"] {
 .searchIcon {
   display: flex;
 }
+
+.css-19g2b3d-MuiPaper-root {
+  padding: 3px;
+}
