@@ -503,7 +503,9 @@ function Streaming({ users, addPk }) {
           </Item>
         </div>
         {isLoading ? (
-          <CircularIndeterminate />
+          <div id="loading_streaming_contents">
+            <CircularIndeterminate />
+          </div>
         ) : (
           <div id="streaming_contents">
             <Box

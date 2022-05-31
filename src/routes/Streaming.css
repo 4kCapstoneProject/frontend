@@ -31,6 +31,13 @@
 
   /* margin: 0 auto; */
 }
+#loading_streaming_contents {
+  margin-top: 10px;
+  float: right;
+  width: 480px;
+  height: 500px;
+  line-height: 500px;
+}
 
 #streaming_side {
   margin-top: 10px;
