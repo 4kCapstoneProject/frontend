@@ -135,10 +135,10 @@
 .actionBtnDiv {
   display: flex;
   justify-content: center;
-  border: 3px solid #86a8e7;
+  border: 5px doulbe #86a8e7;
   border-radius: 30px;
-  width: 500px;
-  padding: 5px;
+  width: 550px;
+  padding: 9px;
   margin: 0 auto;
 }
 .actionBtn {
