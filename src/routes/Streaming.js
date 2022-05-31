@@ -547,7 +547,7 @@ function Streaming({ users, addPk }) {
                       }}
                       // src={step.imgPath}
                       src={"../imgs/" + step.imagePathDto[0].fileName}
-                      alt={altTarget}
+                      alt={wh_model}
                     />
                   ) : null}
                   {/* <div>{step.lpipsList}</div> */}
