@@ -674,7 +674,10 @@ function Home({ users, addPk, userAdd }) {
                               <CardActions
                                 sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                                <Link to="/streaming">
+                                <Link
+                                  to="/streaming"
+                                  style={{ textDecoration: "none" }}
+                                >
                                   <Button
                                     size="small"
                                     color="primary"
