@@ -463,19 +463,19 @@ function Streaming({ users, addPk }) {
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="450"
+                  height="455"
                   //  image={wh}
                   image={"../imgs/" + baseTargetImg.fileName}
                   alt="타겟"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography variant="h5" component="div">
                     {baseTargetText.personName} ({baseTargetText.personAge}세)
                   </Typography>
                   <Typography
                     variant="h6"
                     color="text.secondary"
-                    sx={{ mb: 1 }}
+                    // sx={{ mb: 1 }}
                   >
                     {baseTargetText.characteristic}
                   </Typography>
