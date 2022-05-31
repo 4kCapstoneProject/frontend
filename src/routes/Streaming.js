@@ -37,6 +37,7 @@ import { userAdd } from "../redux/user";
 import { connect } from "react-redux"; // connect함수 쓰기위해 import
 import { Link } from "react-router-dom";
 import altTarget from "./img/altTarget.png";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const images = [
   {
@@ -99,9 +100,16 @@ function Streaming({ users, addPk }) {
   const [baseTargetText, setBaseTargetText] = useState(users[0].user[0]);
   const [baseTargetPk, setBaseTargetPk] = useState(baseTargetText.targetPk);
   const [baseTargetImg, setBaseTargetImg] = useState(users[0].user[1]);
-
+  const [isLoading, setIsLoading] = useState(false);
   // console.log(baseTargetPk);
 
+  function CircularIndeterminate() {
+    return (
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
   // ~ 로그아웃 ***********************************************************************
   const onClickLogout = (event) => {
     // event.preventDefault();
@@ -491,111 +499,96 @@ function Streaming({ users, addPk }) {
             </Card>
           </Item>
         </div>
-        <div id="streaming_contents">
-          <Box
-            className="capture"
-            sx={{
-              maxWidth: 800,
-              flexGrow: 1,
-              boxShadow: 10,
-              // height: 450,
-            }}
-          >
-            {/* <Paper
-              square
-              elevation={0}
+        {isLoading ? (
+          <CircularIndeterminate />
+        ) : (
+          <div id="streaming_contents">
+            <Box
+              className="capture"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                height: 50,
-                pl: 2,
-                // bgcolor: "background.default",
-                bgcolor: "#6aafe6",
-                color: "white",
+                maxWidth: 800,
+                flexGrow: 1,
+                boxShadow: 10,
+                // height: 450,
               }}
             >
-              <Typography>복원 사진</Typography>
-            </Paper> */}
-            <AutoPlaySwipeableViews
-              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-              index={activeStep}
-              onChangeIndex={handleStepChange}
-              enableMouseEvents
-            >
-              {modelTargetInfo.map((step, index) => (
-                <div key={step.label}>
-                  {Math.abs(activeStep - index) <= 2 ? (
-                    <Box
-                      component="img"
-                      sx={{
-                        // height: 255,
-                        height: 480,
-                        display: "block",
-                        maxWidth: 800,
-                        overflow: "hidden",
-                        width: "100%",
-                      }}
-                      // src={step.imgPath}
-                      src={"../imgs/" + step.imagePathDto[0].fileName}
-                      alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-PLoRMWL5UoMYj-AsLi880s6SfHMHtEhdYA&usqp=CAU"
-                    />
-                  ) : null}
-                  {/* <div>{step.lpipsList}</div> */}
-                  <Paper
-                    square
-                    elevation={0}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: 50,
-                      pl: 2,
-                      bgcolor: "#6aafe6",
-                      color: "white",
-                      // bgcolor: "#EBE8EA",
-                    }}
-                  >
-                    {/* <Typography>{modelTargetInfo.lpipsList}</Typography> */}
-                    <Typography>유사도 : {step.scoreList} (%)</Typography>
-                  </Paper>
-                </div>
-              ))}
-            </AutoPlaySwipeableViews>
-            <MobileStepper
-              steps={maxSteps}
-              position="static"
-              activeStep={activeStep}
-              nextButton={
-                <Button
-                  size="small"
-                  onClick={handleNext}
-                  disabled={activeStep === maxSteps - 1}
-                >
-                  Next
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowLeft />
-                  ) : (
-                    <KeyboardArrowRight />
-                  )}
-                </Button>
-              }
-              backButton={
-                <Button
-                  size="small"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}
-                >
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowRight />
-                  ) : (
-                    <KeyboardArrowLeft />
-                  )}
-                  Back
-                </Button>
-              }
-            />
-          </Box>
-        </div>
+              <AutoPlaySwipeableViews
+                axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+                index={activeStep}
+                onChangeIndex={handleStepChange}
+                enableMouseEvents
+              >
+                {modelTargetInfo.map((step, index) => (
+                  <div key={step.label}>
+                    {Math.abs(activeStep - index) <= 2 ? (
+                      <Box
+                        component="img"
+                        sx={{
+                          height: 480,
+                          display: "block",
+                          maxWidth: 800,
+                          overflow: "hidden",
+                          width: "100%",
+                        }}
+                        src={"../imgs/" + step.imagePathDto[0].fileName}
+                        alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-PLoRMWL5UoMYj-AsLi880s6SfHMHtEhdYA&usqp=CAU"
+                      />
+                    ) : null}
 
+                    <Paper
+                      square
+                      elevation={0}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        height: 50,
+                        pl: 2,
+                        bgcolor: "#6aafe6",
+                        color: "white",
+                        // bgcolor: "#EBE8EA",
+                      }}
+                    >
+                      <Typography>유사도 : {step.scoreList} (%)</Typography>
+                    </Paper>
+                  </div>
+                ))}
+              </AutoPlaySwipeableViews>
+              <MobileStepper
+                steps={maxSteps}
+                position="static"
+                activeStep={activeStep}
+                nextButton={
+                  <Button
+                    size="small"
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                  >
+                    Next
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowLeft />
+                    ) : (
+                      <KeyboardArrowRight />
+                    )}
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    size="small"
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                  >
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowRight />
+                    ) : (
+                      <KeyboardArrowLeft />
+                    )}
+                    Back
+                  </Button>
+                }
+              />
+            </Box>
+          </div>
+        )}
         {/* <div id="streaming_footer">footer</div> */}
       </div>
     </div>
