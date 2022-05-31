@@ -634,8 +634,12 @@ function Home({ users, addPk, userAdd }) {
                           <Item
                             key={imgItem.targetPk}
                             sx={{
-                              width: 295,
-                              bgcolor: "#86a8e7",
+                              // width: 295,
+                              // bgcolor: "#86a8e7",
+                              width: 330,
+                              bgcolor: "#EBE8EA",
+                              padding: 2,
+                              p: 2,
                               boxShadow: 10,
                             }}
                           >
@@ -661,7 +665,7 @@ function Home({ users, addPk, userAdd }) {
                                     color="text.secondary"
                                     sx={{ mb: 1 }}
                                   >
-                                    {textItems[index].personAge || ""}
+                                    {textItems[index].personAge || ""}세
                                   </Typography>
                                   <Typography
                                     variant="body2"
