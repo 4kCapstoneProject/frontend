@@ -569,12 +569,10 @@ function Streaming({ users, addPk }) {
                     >
                       <Typography
                         sx={{
-                          textAlign: "center",
+                          align: "center",
                         }}
                       >
-                        <p className="scoreList">
-                          유사도 : {step.scoreList} (%)
-                        </p>
+                        유사도 : {step.scoreList} (%)
                       </Typography>
                     </Paper>
                   </div>
