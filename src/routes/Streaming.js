@@ -92,7 +92,6 @@ const testImg = [
   },
 ];
 function Streaming({ users, addPk }) {
-  // console.log(users);
   const [imageFiles, setImageFiles] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [targetPk, setTargetPk] = useState(0);
@@ -103,7 +102,9 @@ function Streaming({ users, addPk }) {
   const [baseTargetImg, setBaseTargetImg] = useState(users[0].user[1]);
   const [isLoading, setIsLoading] = useState(false);
   const [colorBorder, setColorBorder] = useState("none");
-  // console.log(baseTargetPk);
+
+  console.log(users);
+  console.log(baseTargetPk);
 
   function CircularIndeterminate() {
     return (
