@@ -91,6 +91,7 @@ const testImg = [
       "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
   },
 ];
+
 function Streaming({ users, addPk }) {
   console.log(users);
   const [imageFiles, setImageFiles] = useState([]);
@@ -567,11 +568,7 @@ function Streaming({ users, addPk }) {
                         // bgcolor: "#EBE8EA",
                       }}
                     >
-                      <Typography
-                        sx={{
-                          align: "center",
-                        }}
-                      >
+                      <Typography align="center">
                         유사도 : {step.scoreList} (%)
                       </Typography>
                     </Paper>
