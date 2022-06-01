@@ -103,6 +103,7 @@ function Home({ users, addPk, userAdd }) {
     // setExportTargetPk(e.target.value);
     // addPk(e.target.value);
 
+    console.log(users);
     console.log("hi");
     let idx = e.target.value;
     let userArray = [
