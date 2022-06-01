@@ -199,6 +199,18 @@ video {
   height: 600px;
 }
 
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
 .w-btn-neon2 {
   border: none;
   min-width: 120px;
@@ -211,10 +223,10 @@ video {
   border-radius: 1000px;
   color: darkslategray;
   cursor: pointer;
-  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+  box-shadow: 6px 6px 12px rgba(79, 209, 197, 0.64);
   font-weight: 700;
   transition: 0.3s;
-  padding: 15px 30px;
+  /* padding: 15px 30px; */
 }
 .w-btn-neon2:hover {
   transform: scale(1.2);
@@ -232,6 +244,10 @@ video {
   transform: translate(-50%, -50%);
   animation: ring 1.5s infinite;
 }
-.w-btn:active {
+.w-btn-neon2:active {
   transform: scale(1.5);
+}
+.w-btn-neon2:first-child,
+.w-btn-neon2:nth-child(2) {
+  margin-right: 35px;
 }
