@@ -558,14 +558,18 @@ function Streaming({ users, addPk }) {
                     <Paper
                       square
                       elevation={0}
+                      align="center"
                       sx={{
                         display: "flex",
                         alignItems: "center",
+                        justifyContent: "center",
                         height: 50,
                         pl: 2,
                         bgcolor: "#6aafe6",
                         color: "white",
                         // bgcolor: "#EBE8EA",
+                        alignContent: "center",
+                        align: "center",
                       }}
                     >
                       <Typography align="center">
