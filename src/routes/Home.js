@@ -110,6 +110,7 @@ function Home({ users, addPk, userAdd }) {
       users[0].user.dtoList[idx],
       users[0].user.imagePathDtoList[idx],
     ];
+    console.log(userArray);
     userAdd(userArray);
 
     console.log(users);
@@ -396,6 +397,8 @@ function Home({ users, addPk, userAdd }) {
           console.log(res.data);
           // addPk(e.target.value);
           userAdd(res.data);
+          console.log("user 데이터 변경");
+          console.log(users[0]);
         })
         .catch((error) => {
           window.alert(error);
