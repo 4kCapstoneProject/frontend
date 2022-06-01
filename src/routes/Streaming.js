@@ -377,18 +377,23 @@ function Streaming({ users, addPk }) {
             <video ref={videoRef}></video>
           </div>
           <div className="actionBtnDiv">
-            <button onClick={takeCapture} className="actionBtn ">
-              타겟 캡처
-            </button>
             {/* <form onSumbit={handleTargetSubmit} entype="multipart/formdata"> */}
             {/* <button onClick={handleClickOpen} className="actionBtn">
               업로드{" "}
             </button> */}
+            <button
+              onClick={takeCapture}
+              // className="actionBtn"
+              className="w-btn-neon2"
+            >
+              타겟 캡처
+            </button>
 
             <label
               htmlFor="imgFile"
               //  className="imgInput"
-              className="actionBtn"
+              // className="actionBtn"
+              className="w-btn-neon2"
             >
               사진 업로드
             </label>
@@ -400,7 +405,11 @@ function Streaming({ users, addPk }) {
               onChange={onLoadImgFile}
               style={{ display: "none" }}
             />
-            <button onClick={handleTargetSubmit} className="actionBtn">
+            <button
+              onClick={handleTargetSubmit}
+              // className="actionBtn"
+              className="w-btn-neon2"
+            >
               타겟 복원
             </button>
             {/* </form> */}
