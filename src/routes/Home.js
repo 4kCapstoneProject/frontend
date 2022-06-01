@@ -163,6 +163,7 @@ function Home({ users, addPk, userAdd }) {
     })
       .then((res) => {
         console.log(res.data);
+        userAdd(res.data);
         setTextItems(res.data.dtoList);
         setImgItems(res.data.imagePathDtoList);
         setCountItems(res.data.totalElement);
