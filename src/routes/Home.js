@@ -697,7 +697,8 @@ function Home({ users, addPk, userAdd }) {
                                   <Button
                                     size="small"
                                     color="primary"
-                                    value={index}
+                                    // value={index}
+                                    value={imgItem.targetPk}
                                     // onClick={onStreaming}
                                     onClick={saveUserInfo}
                                   >
