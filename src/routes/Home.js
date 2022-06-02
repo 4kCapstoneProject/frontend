@@ -695,32 +695,34 @@ function Home({ users, addPk, userAdd }) {
                               <CardActions
                                 sx={{ bgcolor: "rgb(236, 240, 241)" }}
                               >
-                                <Link
-                                  to="/streaming"
-                                  style={{ textDecoration: "none" }}
-                                >
+                                <div className="cardActionsBtn">
+                                  <Link
+                                    to="/streaming"
+                                    style={{ textDecoration: "none" }}
+                                  >
+                                    <Button
+                                      size="small"
+                                      color="primary"
+                                      value={index}
+                                      // value={imgItem.targetPk}
+                                      // onClick={onStreaming}
+                                      onClick={saveUserInfo}
+                                    >
+                                      타겟 찾기
+                                    </Button>
+                                  </Link>
                                   <Button
                                     size="small"
-                                    color="primary"
-                                    value={index}
-                                    // value={imgItem.targetPk}
-                                    // onClick={onStreaming}
-                                    onClick={saveUserInfo}
+                                    sx={{
+                                      color: "rgb(26, 188, 156)",
+                                      // pl: 25,
+                                    }}
+                                    value={imgItem.targetPk}
+                                    onClick={targetDelete}
                                   >
-                                    타겟 찾기
+                                    삭제
                                   </Button>
-                                </Link>
-                                <Button
-                                  size="small"
-                                  sx={{
-                                    color: "rgb(26, 188, 156)",
-                                    pl: 25,
-                                  }}
-                                  value={imgItem.targetPk}
-                                  onClick={targetDelete}
-                                >
-                                  삭제
-                                </Button>
+                                </div>
                               </CardActions>
                             </Card>
                           </Item>

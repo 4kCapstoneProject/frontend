@@ -428,3 +428,8 @@ input[type="search"] {
 .css-sp0t1e-MuiButtonBase-root-MuiButton-root {
   padding-left: 200px;
 }
+
+.cardActionsBtn {
+  display: flex;
+  justify-content: space-between;
+}
