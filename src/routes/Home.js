@@ -366,6 +366,7 @@ function Home({ users, addPk, userAdd }) {
     setOpen(true);
   };
   const handleClose = () => {
+    setImgName("사진 업로드");
     setOpen(false);
   };
   // ~ 업로드 Dialog *****************************************************************
