@@ -96,6 +96,7 @@ function Home({ users, addPk, userAdd }) {
   const [category, setCategory] = useState("personAge");
   const [exportTargetPk, setExportTargetPk] = useState(5);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [imgName, setImgName] = useState("사진 업로드");
 
   const saveUserInfo = (e) => {
     // e.preventDefault();
@@ -256,6 +257,7 @@ function Home({ users, addPk, userAdd }) {
     setImageFiles(imageFile);
     // handleTargetChange(name, sanitize(type, value));
 
+    setImgName(imageFile.name);
     setValues((prevValues) => ({
       ...prevValues,
       imgFile: imageFiles,
@@ -562,7 +564,8 @@ function Home({ users, addPk, userAdd }) {
                     />
 
                     <label htmlFor="imgFile" className="imgInput">
-                      사진 업로드
+                      {/* 사진 업로드 */}
+                      {imgName}
                     </label>
                     <input
                       type="file"
