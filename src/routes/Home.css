@@ -430,6 +430,7 @@ input[type="search"] {
 }
 
 .cardActionsBtn {
+  width: 340px;
   display: flex;
   justify-content: space-between;
 }
