@@ -398,7 +398,7 @@ function Streaming({ users, addPk }) {
               // className="actionBtn"
               className="w-btn-neon2"
             >
-              사진 업로드
+              {imgName}
             </label>
             <input
               type="file"

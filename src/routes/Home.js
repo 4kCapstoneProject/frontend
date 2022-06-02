@@ -281,6 +281,8 @@ function Home({ users, addPk, userAdd }) {
 
     e.preventDefault();
 
+    setImgName("사진 업로드");
+
     let targetInfo = {
       personName: values.name,
       personAge: values.age,
