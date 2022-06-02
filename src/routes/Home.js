@@ -720,7 +720,7 @@ function Home({ users, addPk, userAdd }) {
                                     value={imgItem.targetPk}
                                     onClick={targetDelete}
                                   >
-                                    삭제
+                                    타겟 삭제
                                   </Button>
                                 </div>
                               </CardActions>
