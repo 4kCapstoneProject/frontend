@@ -282,6 +282,8 @@ function Streaming({ users, addPk }) {
 
     setIsLoading(true);
 
+    setImgName("사진 업로드");
+
     const imageFileList = new FormData();
     // imageFileList.append("imageFileList", imageFiles[0].uploadedFile);
     imageFileList.append("captureImage", imageFiles);
